@@ -1,18 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Movement : MonoBehaviour
+namespace Game.Character
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Movement : MonoBehaviour
     {
+        private NavMeshAgent _agent;
         
-    }
+        private void Awake()
+        {
+            _agent = GetComponent<NavMeshAgent>();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Move(Vector3 position)
+        {
+            _agent.SetDestination(position);
+        }
+
+        public void Stop()
+        {
+            _agent.SetDestination(transform.position);
+        }
     }
 }
+
