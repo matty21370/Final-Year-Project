@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Character;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+namespace Game.Core
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface Interactable
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void OnInteract(PlayerController player);
     }
 }
+

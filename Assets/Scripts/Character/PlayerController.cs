@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Core;
 using UnityEngine;
 
 namespace Game.Character
@@ -10,11 +11,13 @@ namespace Game.Character
         private Camera _mainCamera;
         
         private Movement _movement;
+        private Combat _combat;
 
         private void Awake()
         {
             _mainCamera = Camera.main;
             _movement = GetComponent<Movement>();
+            _combat = GetComponent<Combat>();
         }
 
         // Update is called once per frame
@@ -37,14 +40,26 @@ namespace Game.Character
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                
-                MoveToMouse(hit.point);
+                Interactable interact = hit.transform.GetComponent<Interactable>();
+                if (interact != null)
+                {
+                    interact.OnInteract(this);
+                }
+                else
+                {
+                    MoveToMouse(hit.point);
+                }
             }
         }
 
         private void MoveToMouse(Vector3 position)
         {
             _movement.Move(position);
+        }
+
+        public Combat GetCombat()
+        {
+            return _combat;
         }
     }
 }
