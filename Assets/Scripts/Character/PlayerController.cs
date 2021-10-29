@@ -47,6 +47,7 @@ namespace Game.Character
                 }
                 else
                 {
+                    if(_combat.HasTarget()) _combat.RemoveTarget();
                     MoveToMouse(hit.point);
                 }
             }

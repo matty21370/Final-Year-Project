@@ -4432,7 +4432,7 @@ GameObject:
   - component: {fileID: 6098918366492155598}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4520,6 +4520,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30461041925169f428bcb47406938ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatRange: 1.5
+  equippedWeapons:
+  - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
+  - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
+  - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
+  - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
 --- !u!65 &6644745210046997566
 BoxCollider:
   m_ObjectHideFlags: 0
