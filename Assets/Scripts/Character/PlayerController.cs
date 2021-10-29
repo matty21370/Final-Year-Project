@@ -7,10 +7,13 @@ namespace Game.Character
 {
     public class PlayerController : MonoBehaviour
     {
+        private Camera _mainCamera;
+        
         private Movement _movement;
 
         private void Awake()
         {
+            _mainCamera = Camera.main;
             _movement = GetComponent<Movement>();
         }
 
@@ -24,19 +27,24 @@ namespace Game.Character
         {
             if (Input.GetMouseButton(0))
             {
-                MoveToMouse();    
+                 HandleClick();
             }
         }
 
-        private void MoveToMouse()
+        private void HandleClick()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-
             if (Physics.Raycast(ray, out hit))
             {
-                _movement.Move(hit.point);
+                
+                MoveToMouse(hit.point);
             }
+        }
+
+        private void MoveToMouse(Vector3 position)
+        {
+            _movement.Move(position);
         }
     }
 }
