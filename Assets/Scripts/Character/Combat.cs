@@ -9,14 +9,18 @@ public class Combat : MonoBehaviour, Interactable
 {
     private Combat _target;
 
+    private Animator _animator;
     private Movement _movement;
 
     [SerializeField] private float combatRange = 1.5f;
     
     [SerializeField] private Weapon[] equippedWeapons;
 
+    private bool _inCombat = false;
+
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         _movement = GetComponent<Movement>();
     }
 
@@ -27,39 +31,35 @@ public class Combat : MonoBehaviour, Interactable
         {
             HandleTarget();
         }
+
+        if (_inCombat)
+        {
+            _animator.SetBool("inCombat", true);
+        }
+        else
+        {
+            _animator.SetBool("inCombat", false);
+        }
     }
 
     private void HandleTarget()
     {
         if (Vector3.Distance(transform.position, _target.transform.position) <= combatRange)
         {
+            _inCombat = true;
             _movement.Stop();
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                Attack(equippedWeapons[0]);
-            } 
-            else if (Input.GetKeyDown(KeyCode.A))
-            {
-                Attack(equippedWeapons[1]);
-            }
-            else if (Input.GetKeyDown(KeyCode.S))
-            {
-                Attack(equippedWeapons[2]);
-            }
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                Attack(equippedWeapons[3]);
-            }
         }
         else
         {
             _movement.Move(_target.transform.position);
+            _inCombat = false;
         }
     }
 
-    private void Attack(Weapon weapon)
+    public void Attack(int weapon)
     {
-        print("Attacking with damage: " + weapon.damage);
+        _target.GetComponent<Health>().TakeDamage(equippedWeapons[weapon].damage);
+        _animator.SetTrigger("attack");
     }
 
     public void SetTarget(Combat newTarget)
@@ -75,6 +75,12 @@ public class Combat : MonoBehaviour, Interactable
     public void RemoveTarget()
     {
         _target = null;
+        _inCombat = false;
+    }
+
+    public bool IsInCombat()
+    {
+        return _inCombat;
     }
 
     public void OnInteract(PlayerController player)

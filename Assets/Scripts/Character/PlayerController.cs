@@ -32,6 +32,27 @@ namespace Game.Character
             {
                  HandleClick();
             }
+
+            if (_combat.IsInCombat())
+            {
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    Attack(0);
+                
+                } 
+                else if (Input.GetKeyDown(KeyCode.A))
+                {
+                    Attack(1);
+                }
+                else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    Attack(2);
+                }
+                else if (Input.GetKeyDown(KeyCode.D))
+                {
+                    Attack(3);
+                }
+            }
         }
 
         private void HandleClick()
@@ -51,6 +72,11 @@ namespace Game.Character
                     MoveToMouse(hit.point);
                 }
             }
+        }
+
+        private void Attack(int weapon)
+        {
+            _combat.Attack(weapon);
         }
 
         private void MoveToMouse(Vector3 position)
