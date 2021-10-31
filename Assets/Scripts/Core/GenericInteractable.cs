@@ -7,8 +7,9 @@ namespace Game.Core
     {
         public override void OnInteract(Interactor interactor)
         {
-            base.OnInteract(interactor);
+            
             print("Interacting with Generic Interactable!");
+            base.OnInteract(interactor);
         }
     }
 }

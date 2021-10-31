@@ -6,6 +6,7 @@ namespace Game.Character
     {
         public override void OnInteract(Interactor interactor)
         {
+            base.OnInteract(interactor);
             interactor.GetComponent<Combat>().SetTarget(this);
         }
     }

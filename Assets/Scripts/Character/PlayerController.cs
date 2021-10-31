@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Game.Core;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.Character
 {
@@ -34,6 +35,11 @@ namespace Game.Character
             {
                  HandleClick();
             }
+            
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(0);
+            }
 
             if (_combat.IsInCombat())
             {
@@ -62,10 +68,10 @@ namespace Game.Character
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Interactable interact = hit.transform.GetComponent<Interactable>();
-                if (interact != null)
+                Interactable interactable = hit.transform.GetComponent<Interactable>();
+                if (interactable != null)
                 {
-                    interact.MoveToInteract(_interactor);
+                    _interactor.Interact(interactable);
                 }
                 else
                 {

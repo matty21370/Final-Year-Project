@@ -12,6 +12,7 @@ namespace Game.Core
         [SerializeField] private float interactionTime = 1.0f;
         
         private Interactor _interacting;
+        private bool _interacted = false;
 
         private void Update()
         {
@@ -42,7 +43,7 @@ namespace Game.Core
 
         public virtual void OnInteract(Interactor interactor)
         {
-            
+            _interacting = null;
         }
     }
 }
