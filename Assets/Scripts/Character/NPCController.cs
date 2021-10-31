@@ -9,7 +9,7 @@ public class NPCController : MonoBehaviour
     private Combat _combat;
     
     [SerializeField] private float detectionRadius = 2f;
-    
+
     private Transform _player;
     private Vector3 _startPosition;
     

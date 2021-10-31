@@ -12,8 +12,12 @@ public class Combat : MonoBehaviour
     private Animator _animator;
     private Movement _movement;
 
+    [SerializeField] private bool isPlayer = false;
+    
     [SerializeField] private float combatRange = 1.5f;
-    [SerializeField] private float combatCooldown = 0.5f;
+    [SerializeField] private float attackCooldown = 1f;
+
+    private float _nextAttack;
     
     [SerializeField] private Weapon[] equippedWeapons;
 
@@ -49,6 +53,11 @@ public class Combat : MonoBehaviour
         {
             _inCombat = true;
             _movement.Stop();
+
+            if (!isPlayer)
+            {
+                Attack(0);
+            }
         }
         else
         {
@@ -59,8 +68,12 @@ public class Combat : MonoBehaviour
 
     public void Attack(int weapon)
     {
-        _target.GetComponent<Health>().TakeDamage(equippedWeapons[weapon].damage);
-        _animator.SetTrigger("attack");
+        if (Time.time > _nextAttack)
+        {
+            _target.GetComponent<Health>().TakeDamage(equippedWeapons[weapon].damage);
+            _animator.SetTrigger("attack");
+            _nextAttack = Time.time + attackCooldown;
+        }
     }
 
     public void SetTarget(Target newTarget)
@@ -83,4 +96,12 @@ public class Combat : MonoBehaviour
     {
         return _inCombat;
     }
+
+    public float GetAttackCooldown()
+    {
+        return attackCooldown;
+    }
+    
+    public void Hit() {}
+    
 }
