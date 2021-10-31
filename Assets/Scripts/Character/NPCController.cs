@@ -1,18 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Character;
 using UnityEngine;
 
 public class NPCController : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
+{   
+    private Combat _combat;
+    
+    [SerializeField] private float detectionRadius = 2f;
+    
+    private Transform _player;
+    private Vector3 _startPosition;
+    
+    private void Awake()
     {
-        
+        _combat = GetComponent<Combat>();
+        _player = FindObjectOfType<PlayerController>().transform;
+    }
+
+    private void Start()
+    {
+        _startPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Vector3.Distance(_player.position, transform.position) < detectionRadius)
+        {
+            _combat.SetTarget(_player.GetComponent<Target>());
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }

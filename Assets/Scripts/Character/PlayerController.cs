@@ -12,12 +12,14 @@ namespace Game.Character
         
         private Movement _movement;
         private Combat _combat;
+        private Interactor _interactor;
 
         private void Awake()
         {
             _mainCamera = Camera.main;
             _movement = GetComponent<Movement>();
             _combat = GetComponent<Combat>();
+            _interactor = GetComponent<Interactor>();
         }
 
         // Update is called once per frame
@@ -38,7 +40,6 @@ namespace Game.Character
                 if (Input.GetKeyDown(KeyCode.W))
                 {
                     Attack(0);
-                
                 } 
                 else if (Input.GetKeyDown(KeyCode.A))
                 {
@@ -64,12 +65,13 @@ namespace Game.Character
                 Interactable interact = hit.transform.GetComponent<Interactable>();
                 if (interact != null)
                 {
-                    interact.OnInteract(this);
+                    interact.MoveToInteract(_interactor);
                 }
                 else
                 {
                     if(_combat.HasTarget()) _combat.RemoveTarget();
-                    MoveToMouse(hit.point);
+                    
+                    Move(hit.point);
                 }
             }
         }
@@ -79,7 +81,7 @@ namespace Game.Character
             _combat.Attack(weapon);
         }
 
-        private void MoveToMouse(Vector3 position)
+        private void Move(Vector3 position)
         {
             _movement.Move(position);
         }

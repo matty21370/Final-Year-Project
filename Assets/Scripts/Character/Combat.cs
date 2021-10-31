@@ -5,14 +5,15 @@ using Game.Character;
 using Game.Core;
 using UnityEngine;
 
-public class Combat : MonoBehaviour, Interactable
+public class Combat : MonoBehaviour
 {
-    private Combat _target;
+    private Target _target;
 
     private Animator _animator;
     private Movement _movement;
 
     [SerializeField] private float combatRange = 1.5f;
+    [SerializeField] private float combatCooldown = 0.5f;
     
     [SerializeField] private Weapon[] equippedWeapons;
 
@@ -62,7 +63,7 @@ public class Combat : MonoBehaviour, Interactable
         _animator.SetTrigger("attack");
     }
 
-    public void SetTarget(Combat newTarget)
+    public void SetTarget(Target newTarget)
     {
         _target = newTarget;
     }
@@ -81,12 +82,5 @@ public class Combat : MonoBehaviour, Interactable
     public bool IsInCombat()
     {
         return _inCombat;
-    }
-
-    public void OnInteract(PlayerController player)
-    {
-        if(gameObject.CompareTag("Player")) return;
-        
-        player.GetCombat().SetTarget(this);
     }
 }
