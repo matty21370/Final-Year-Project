@@ -7,8 +7,7 @@ namespace Game.Core
     {
         public override void OnInteract(Interactor interactor)
         {
-            
-            print("Interacting with Generic Interactable!");
+            interactor.GetComponent<Health>().TakeDamage(10);
             base.OnInteract(interactor);
         }
     }

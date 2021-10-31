@@ -5,6 +5,7 @@ using Game.Character;
 using Game.Core;
 using UnityEngine;
 
+[RequireComponent(typeof(Target))]
 public class Combat : MonoBehaviour
 {
     private Target _target;
@@ -20,6 +21,7 @@ public class Combat : MonoBehaviour
     private float _nextAttack;
     
     [SerializeField] private Weapon[] equippedWeapons;
+    private int _currentWeapon;
 
     private bool _inCombat = false;
 
@@ -70,7 +72,7 @@ public class Combat : MonoBehaviour
     {
         if (Time.time > _nextAttack)
         {
-            _target.GetComponent<Health>().TakeDamage(equippedWeapons[weapon].damage);
+            _currentWeapon = weapon;
             _animator.SetTrigger("attack");
             _nextAttack = Time.time + attackCooldown;
         }
@@ -101,7 +103,10 @@ public class Combat : MonoBehaviour
     {
         return attackCooldown;
     }
-    
-    public void Hit() {}
+
+    public void Hit()
+    {
+        _target.GetComponent<Health>().TakeDamage(equippedWeapons[_currentWeapon].damage);
+    }
     
 }

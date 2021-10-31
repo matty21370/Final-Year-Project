@@ -12,11 +12,12 @@ namespace Game.Core
         [SerializeField] private float interactionTime = 1.0f;
         
         private Interactor _interacting;
-        private bool _interacted = false;
+        
+        protected bool _interacted = false;
 
         private void Update()
         {
-            if (_interacting != null)
+            if (_interacting != null && !_interacted)
             {
                 if (Vector3.Distance(_interacting.transform.position, transform.position) <= interactionRange)
                 {
@@ -44,6 +45,7 @@ namespace Game.Core
         public virtual void OnInteract(Interactor interactor)
         {
             _interacting = null;
+            _interacted = true;
         }
     }
 }
