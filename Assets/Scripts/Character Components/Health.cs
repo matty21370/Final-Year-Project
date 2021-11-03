@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Game.Character
 {
@@ -9,6 +10,8 @@ namespace Game.Character
     {
         [SerializeField] private float maxHealth;
         private float _currentHealth;
+
+        private bool _isAlive = true;
 
         private void Awake()
         {
@@ -28,12 +31,20 @@ namespace Game.Character
 
         private void HandleDeath()
         {
-            
+            _isAlive = false;
+            GetComponent<Animator>().SetTrigger("die");
+            GetComponent<Combat>().RemoveTarget();
+            GetComponent<NavMeshAgent>().enabled = false;
         }
 
         public float GetHealth()
         {
             return _currentHealth;
+        }
+
+        public bool IsAlive()
+        {
+            return _isAlive;
         }
     }
 }

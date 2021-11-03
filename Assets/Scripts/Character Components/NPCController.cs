@@ -7,6 +7,7 @@ using UnityEngine;
 public class NPCController : MonoBehaviour
 {   
     private Combat _combat;
+    private Health _health;
     
     [SerializeField] private float detectionRadius = 2f;
 
@@ -16,6 +17,7 @@ public class NPCController : MonoBehaviour
     private void Awake()
     {
         _combat = GetComponent<Combat>();
+        _health = GetComponent<Health>();
         _player = FindObjectOfType<PlayerController>().transform;
     }
 
@@ -26,7 +28,9 @@ public class NPCController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {  
+        if(!_health.IsAlive()) return;
+        
         if (Vector3.Distance(_player.position, transform.position) < detectionRadius)
         {
             _combat.SetTarget(_player.GetComponent<Target>());
