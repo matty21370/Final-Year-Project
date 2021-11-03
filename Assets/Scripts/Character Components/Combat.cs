@@ -66,6 +66,8 @@ public class Combat : MonoBehaviour
             _movement.Move(_target.transform.position);
             _inCombat = false;
         }
+        
+        if(!_target.GetComponent<Health>().IsAlive()) RemoveTarget();
     }
 
     public void Attack(int weapon)

@@ -1173,6 +1173,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2146971353}
     m_Modifications:
+    - target: {fileID: 1394821514280344226, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848757779014395384, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848757779014395384, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848757779014395384, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000000022351742
+      objectReference: {fileID: 0}
     - target: {fileID: 6152718211545742532, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1221,7 +1237,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2712152224579650092, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
 --- !u!4 &6152718210156511377 stripped
 Transform:

@@ -34,12 +34,16 @@ namespace Game.Character
             _isAlive = false;
             GetComponent<Animator>().SetTrigger("die");
             GetComponent<Combat>().RemoveTarget();
-            GetComponent<NavMeshAgent>().enabled = false;
         }
 
         public float GetHealth()
         {
             return _currentHealth;
+        }
+
+        public float GetMaxHealth()
+        {
+            return maxHealth;
         }
 
         public bool IsAlive()

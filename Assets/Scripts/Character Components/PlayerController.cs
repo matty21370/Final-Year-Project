@@ -14,18 +14,24 @@ namespace Game.Character
         private Movement _movement;
         private Combat _combat;
         private Interactor _interactor;
-
+        private Health _health;
+        
         private void Awake()
         {
             _mainCamera = Camera.main;
             _movement = GetComponent<Movement>();
             _combat = GetComponent<Combat>();
             _interactor = GetComponent<Interactor>();
+            _health = GetComponent<Health>();
         }
 
         // Update is called once per frame
         void Update()
         {
+            if(!_health.IsAlive()) return;
+
+            //_movement.SetInjured(_health.GetHealth() <= _health.GetMaxHealth() * 0.1f);
+            
             HandleInput();
         }
 
@@ -39,6 +45,11 @@ namespace Game.Character
             if (Input.GetKeyDown(KeyCode.R))
             {
                 SceneManager.LoadScene(0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                _health.TakeDamage(10);
             }
 
             if (_combat.IsInCombat())

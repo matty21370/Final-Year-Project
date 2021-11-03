@@ -39,7 +39,12 @@ namespace Game.Core
         private IEnumerator WaitForInteract()
         {
             yield return new WaitForSeconds(interactionTime);
-            OnInteract(_interacting);
+            
+            try
+            {
+                OnInteract(_interacting);
+            }
+            catch (NullReferenceException e) { }
         }
 
         public virtual void OnInteract(Interactor interactor)
