@@ -50,6 +50,11 @@ namespace Game.Character
         {
             return _isAlive;
         }
+
+        public void SetMaxHealth(float amt)
+        {
+            maxHealth = amt;
+        }
     }
 }
 

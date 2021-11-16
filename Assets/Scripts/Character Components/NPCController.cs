@@ -8,6 +8,7 @@ public class NPCController : MonoBehaviour
 {   
     private Combat _combat;
     private Health _health;
+    private Movement _movement;
     
     [SerializeField] private float detectionRadius = 2f;
 
@@ -18,6 +19,7 @@ public class NPCController : MonoBehaviour
     {
         _combat = GetComponent<Combat>();
         _health = GetComponent<Health>();
+        _movement = GetComponent<Movement>();
         _player = FindObjectOfType<PlayerController>().transform;
     }
 
@@ -41,5 +43,12 @@ public class NPCController : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
+
+    public void ApplyData(EntityData data)
+    {
+        name = data.entityName;
+        _health.SetMaxHealth(data.maxHealth);
+        _movement.SetSpeed(data.movementSpeed);
     }
 }
