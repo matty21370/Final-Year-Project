@@ -6,7 +6,8 @@ using UnityEngine;
 public class EntityData
 {
     public string entityName;
+    public int level;
     public float maxHealth;
     public float movementSpeed;
-
+    
 }

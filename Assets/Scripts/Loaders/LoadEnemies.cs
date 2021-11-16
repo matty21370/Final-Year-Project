@@ -41,6 +41,6 @@ public class LoadEnemies : MonoBehaviour
 
     private void OnFinished()
     {
-        _manager.SpawnEnemies();
+        _manager.ConstructLeveledLists();
     }
 }

@@ -5,7 +5,9 @@ using Game.Character;
 using UnityEngine;
 
 public class NPCController : MonoBehaviour
-{   
+{
+    private int _level;
+    
     private Combat _combat;
     private Health _health;
     private Movement _movement;
@@ -50,5 +52,11 @@ public class NPCController : MonoBehaviour
         name = data.entityName;
         _health.SetMaxHealth(data.maxHealth);
         _movement.SetSpeed(data.movementSpeed);
+        _level = data.level;
+    }
+
+    public int GetLevel()
+    {
+        return _level;
     }
 }
