@@ -54,20 +54,27 @@ public class NPCController : MonoBehaviour
     void Update()
     {  
         if(!_health.IsAlive()) return;
-        
-        if (Vector3.Distance(_player.position, transform.position) < detectionRadius)
-        {
-            _combat.SetTarget(_player.GetComponent<Target>());
-        }
-        
+
         HandleBehaviour();
     }
 
     private void HandleBehaviour()
     {
-        if (startingBehaviour == BehaviourTypes.Patrol)
+        if (_combat.IsAggressive())
         {
-            Patrol();
+            AwareBehaviour();
+        }
+        
+        if (!_combat.HasTarget())
+        {
+            if (startingBehaviour == BehaviourTypes.Patrol)
+            {
+                Patrol();
+            }
+        }
+        else
+        {
+            AttackBehaviour();
         }
     }
 
@@ -85,6 +92,23 @@ public class NPCController : MonoBehaviour
                 _timeSpentAtWaypoint = 0;
                 _patrolIndex = patrolPath.GetNextWaypoint(_patrolIndex);
             }
+        }
+    }
+
+    private void AttackBehaviour()
+    {
+        _movement.SetSpeed(_movement.GetBaseSpeed());
+    }
+
+    private void AwareBehaviour()
+    {
+        if (Vector3.Distance(_player.position, transform.position) < detectionRadius)
+        {
+            _combat.SetTarget(_player.GetComponent<Target>());
+        }
+        else
+        {
+            _combat.RemoveTarget();
         }
     }
 

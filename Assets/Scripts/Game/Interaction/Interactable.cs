@@ -21,6 +21,7 @@ namespace Game.Core
             {
                 if (Vector3.Distance(_interacting.transform.position, transform.position) <= interactionRange)
                 {
+                    _interacting.transform.LookAt(transform);
                     _interacting.GetComponent<Movement>().Stop();
 
                     StartCoroutine(WaitForInteract());
@@ -49,6 +50,7 @@ namespace Game.Core
 
         public virtual void OnInteract(Interactor interactor)
         {
+            print("Interacting");
             _interacting = null;
             _interacted = true;
         }

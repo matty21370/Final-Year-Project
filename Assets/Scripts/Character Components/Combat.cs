@@ -25,10 +25,15 @@ public class Combat : MonoBehaviour
 
     private bool _inCombat = false;
 
+    [SerializeField] private bool isAggressive = false;
+    private bool _isAggressive;
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _movement = GetComponent<Movement>();
+
+        _isAggressive = isAggressive;
     }
 
     // Update is called once per frame
@@ -53,6 +58,7 @@ public class Combat : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, _target.transform.position) <= combatRange)
         {
+            transform.LookAt(_target.transform);
             _inCombat = true;
             _movement.Stop();
 
@@ -109,6 +115,16 @@ public class Combat : MonoBehaviour
     public void Hit()
     {
         _target.GetComponent<Health>().TakeDamage(equippedWeapons[_currentWeapon].damage);
+    }
+
+    public bool IsAggressive()
+    {
+        return _isAggressive;
+    }
+
+    public void SetAggressive(bool val)
+    {
+        _isAggressive = val;
     }
     
 }

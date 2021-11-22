@@ -15,6 +15,8 @@ namespace Game.Character
         private Combat _combat;
         private Interactor _interactor;
         private Health _health;
+
+        private bool _busy = false;
         
         private void Awake()
         {
@@ -31,8 +33,11 @@ namespace Game.Character
             if(!_health.IsAlive()) return;
 
             //_movement.SetInjured(_health.GetHealth() <= _health.GetMaxHealth() * 0.1f);
-            
-            HandleInput();
+
+            if (!_busy)
+            {
+                HandleInput();
+            }
         }
 
         private void HandleInput()
@@ -106,6 +111,11 @@ namespace Game.Character
         public Combat GetCombat()
         {
             return _combat;
+        }
+
+        public void SetBusy(bool busy)
+        {
+            _busy = busy;
         }
     }
 }
