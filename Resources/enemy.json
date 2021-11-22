@@ -1,0 +1,6 @@
+{
+  "name": "enemy",
+  "level": 0,
+  "maxHealth": 50,
+  "movementSpeed": 5.4
+}

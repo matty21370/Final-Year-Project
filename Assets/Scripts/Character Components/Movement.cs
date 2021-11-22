@@ -50,6 +50,7 @@ namespace Game.Character
         public void SetSpeed(float value)
         {
             currentSpeed = value;
+            _agent.speed = currentSpeed;
         }
 
         public float GetBaseSpeed()
