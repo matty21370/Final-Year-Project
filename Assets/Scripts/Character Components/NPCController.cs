@@ -128,4 +128,9 @@ public class NPCController : MonoBehaviour
         bool reached = Vector3.Distance(transform.position, patrolPath.GetCurrentWaypoint(_patrolIndex)) <= 0.2;
         return reached;
     }
+
+    public void Alert()
+    {
+        _combat.SetTarget(_player.GetComponent<Target>());
+    }
 }

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Core;
-using Game.Core.Dialogue;
+using Game.Dialogue;
 using UnityEngine;
 
 public class Speaker : MonoBehaviour
@@ -14,6 +14,8 @@ public class Speaker : MonoBehaviour
     private Queue<Dialogue> _dialogues = new Queue<Dialogue>();
 
     private UIManager _uiManager;
+
+    public string CharacterName => characterName;
     
     private void Awake()
     {

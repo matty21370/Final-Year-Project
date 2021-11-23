@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Character;
-using Game.Core.Dialogue;
+using Game.Dialogue;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,32 +12,25 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject dialogueUI;
     private Speaker _speaker;
-    
-    public void ShowRestrictedNotification()
+
+    private DialogueSystem _dialogueSystem;
+
+    [SerializeField] private GameObject deathScreen;
+
+    private void Awake()
     {
-        restrictedNotification.GetComponent<Animator>().SetTrigger("FadeIn");
-    }
-    
-    public void HideRestrictedNotification()
-    {
-        restrictedNotification.GetComponent<Animator>().SetTrigger("FadeOut");
+        _dialogueSystem = FindObjectOfType<DialogueSystem>();
     }
 
     public void ShowDialogue(Dialogue dialogue, Speaker speaker)
     {
-        print("Callled");
-        FindObjectOfType<PlayerController>().SetBusy(true);
+        _dialogueSystem.ShowDialogue(speaker, dialogue);
         _speaker = speaker;
-        dialogueUI.SetActive(true);
-        dialogueUI.GetComponentInChildren<Text>().text = dialogue.dialogueText;
     }
 
     public void HideDialogue(Speaker speaker)
     {
-        dialogueUI.SetActive(false);
-        dialogueUI.GetComponentInChildren<Text>().text = "";
-        FindObjectOfType<PlayerController>().SetBusy(false);
-        speaker.ResetDialogue();
+        _dialogueSystem.HideDialogue(speaker);
     }
 
     public void NextDialogue()
@@ -44,5 +38,10 @@ public class UIManager : MonoBehaviour
         if(_speaker == null) return;
         
         _speaker.ShowDialogue();
+    }
+
+    public void ShowDeathScreen()
+    {
+        deathScreen.SetActive(true);
     }
 }

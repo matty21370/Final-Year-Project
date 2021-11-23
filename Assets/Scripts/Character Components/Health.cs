@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 namespace Game.Character
 {
@@ -20,6 +21,7 @@ namespace Game.Character
 
         public void TakeDamage(float amount)
         {
+            
             _currentHealth = Mathf.Max(_currentHealth - amount, 0);
             print(_currentHealth);
 
@@ -34,6 +36,20 @@ namespace Game.Character
             _isAlive = false;
             GetComponent<Animator>().SetTrigger("die");
             GetComponent<Combat>().RemoveTarget();
+
+            if (gameObject.tag == "Player")
+            {
+                StartCoroutine(PlayerDeath());
+            }
+        }
+
+        private IEnumerator PlayerDeath()
+        {
+            FindObjectOfType<UIManager>().ShowDeathScreen();
+
+            yield return new WaitForSeconds(4f);
+
+            SceneManager.LoadScene(0);
         }
 
         public float GetHealth()
