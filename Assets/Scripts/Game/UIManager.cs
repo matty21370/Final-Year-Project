@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private CanvasGroup restrictedNotification;
+    [SerializeField] private CanvasGroup healthbar;
 
     [SerializeField] private GameObject dialogueUI;
     private Speaker _speaker;
@@ -43,5 +44,16 @@ public class UIManager : MonoBehaviour
     public void ShowDeathScreen()
     {
         deathScreen.SetActive(true);
+    }
+
+    public void UpdateHealthbar(float health, float maxHealth)
+    {
+        healthbar.GetComponent<Slider>().maxValue = maxHealth;
+        healthbar.GetComponent<Slider>().value = health;
+    }
+
+    public void ToggleHealthbar(bool busy)
+    {
+        healthbar.alpha = busy ? 0 : 1;
     }
 }

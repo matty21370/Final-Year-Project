@@ -16,6 +16,8 @@ namespace Game.Character
         private Interactor _interactor;
         private Health _health;
 
+        private UIManager _uiManager;
+        
         private bool _busy = false;
         
         private void Awake()
@@ -25,6 +27,13 @@ namespace Game.Character
             _combat = GetComponent<Combat>();
             _interactor = GetComponent<Interactor>();
             _health = GetComponent<Health>();
+            
+            _uiManager = FindObjectOfType<UIManager>();
+        }
+
+        private void Start()
+        {
+            _health.UpdateHealth();
         }
 
         // Update is called once per frame
@@ -116,6 +125,7 @@ namespace Game.Character
         public void SetBusy(bool busy)
         {
             _busy = busy;
+            _uiManager.ToggleHealthbar(busy);
         }
     }
 }
