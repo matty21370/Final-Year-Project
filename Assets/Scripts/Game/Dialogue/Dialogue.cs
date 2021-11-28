@@ -7,6 +7,5 @@ namespace Game.Dialogue
     public class Dialogue : ScriptableObject
     {
         public string dialogueText;
-        public UnityEvent Event;
     }
 }

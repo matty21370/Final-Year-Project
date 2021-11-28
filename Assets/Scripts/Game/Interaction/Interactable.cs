@@ -50,7 +50,6 @@ namespace Game.Core
 
         public virtual void OnInteract(Interactor interactor)
         {
-            print("Interacting");
             _interacting = null;
             _interacted = true;
         }

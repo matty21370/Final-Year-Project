@@ -26,8 +26,6 @@ namespace Game.Character
             }
             else
             {
-                print("Initiate dialogue");
-
                 if (_speaker != null)
                 {
                     _speaker.Initiate();

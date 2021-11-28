@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using Game.Core;
 using Game.Dialogue;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Speaker : MonoBehaviour
 {
     [SerializeField] private string characterName;
 
-    [SerializeField] private Dialogue[] dialogues;
+    [SerializeField] private DialogueAction[] dialogues;
     
-    private Queue<Dialogue> _dialogues = new Queue<Dialogue>();
+    private Queue<DialogueAction> _dialogues = new Queue<DialogueAction>();
 
     private UIManager _uiManager;
 
@@ -28,7 +29,15 @@ public class Speaker : MonoBehaviour
     {
         if (_dialogues.Count > 0)
         {
-            Dialogue dialogue = _dialogues.Peek();
+            DialogueAction dialogueAction = _dialogues.Peek();
+            Dialogue dialogue = dialogueAction.dialogue;
+            UnityEvent dialogueEvent = dialogueAction.e;
+
+            if (dialogueEvent != null)
+            {
+                dialogueEvent.Invoke();
+            }
+
             _uiManager.ShowDialogue(dialogue, this);
             _dialogues.Dequeue();
             
@@ -36,13 +45,6 @@ public class Speaker : MonoBehaviour
         }
 
         return false;
-    }
-
-    private void FirstDialogue()
-    {
-        Dialogue dialogue = _dialogues.Peek();
-        FindObjectOfType<UIManager>().ShowDialogue(dialogue,this);
-        _dialogues.Dequeue();
     }
     
     public void ShowDialogue()
@@ -60,16 +62,16 @@ public class Speaker : MonoBehaviour
             _dialogues.Enqueue(dialogue);
         }
     }
-
-    private void DialogueState()
-    {
-        FirstDialogue();
-    }
     
     public void Initiate()
     {
-        print("interachyt");
-        
-        DialogueState();
+        NextDialogue();
     }
+}
+
+[System.Serializable]
+public class DialogueAction
+{
+    public Dialogue dialogue;
+    public UnityEvent e;
 }

@@ -640,8 +640,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Guard
   dialogues:
-  - {fileID: 11400000, guid: ebf78304a3574b644933be2c26bb23ae, type: 2}
-  - {fileID: 11400000, guid: 54f2123d878e68149bbfbdbf627f31c7, type: 2}
+  - dialogue: {fileID: 11400000, guid: ebf78304a3574b644933be2c26bb23ae, type: 2}
+    e:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: {fileID: 11400000, guid: 54f2123d878e68149bbfbdbf627f31c7, type: 2}
+    e:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 880235726}
+          m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
+          m_MethodName: Test
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &880235726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880235713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4643b9b994c24449af50ded3e925a603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &886137153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,9 +1077,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Bob
   dialogues:
-  - {fileID: 11400000, guid: ebf78304a3574b644933be2c26bb23ae, type: 2}
-  - {fileID: 11400000, guid: ebf78304a3574b644933be2c26bb23ae, type: 2}
-  - {fileID: 11400000, guid: 9a44efad592ea69499d32ab2cfd6204b, type: 2}
+  - dialogue: {fileID: 11400000, guid: ebf78304a3574b644933be2c26bb23ae, type: 2}
+    e:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: {fileID: 11400000, guid: ebf78304a3574b644933be2c26bb23ae, type: 2}
+    e:
+      m_PersistentCalls:
+        m_Calls: []
+  - dialogue: {fileID: 11400000, guid: 9a44efad592ea69499d32ab2cfd6204b, type: 2}
+    e:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &1036472783 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
