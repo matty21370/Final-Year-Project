@@ -621,6 +621,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30461041925169f428bcb47406938ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &880235721 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1902443316500038727, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+  m_PrefabInstance: {fileID: 1355423051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880235713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8f00b205985ae468d25e643cde31d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &880235724 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6656153426227831329, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
@@ -640,26 +651,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Guard
   dialogues:
-  - dialogue: {fileID: 11400000, guid: ebf78304a3574b644933be2c26bb23ae, type: 2}
+  - dialogue: 
     e:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: {fileID: 11400000, guid: 54f2123d878e68149bbfbdbf627f31c7, type: 2}
+  - dialogue: ...
     e:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 880235726}
-          m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
-          m_MethodName: Test
-          m_Mode: 1
+        - m_Target: {fileID: 880235721}
+          m_TargetAssemblyTypeName: Game.Character.Health, Assembly-CSharp
+          m_MethodName: TakeDamage
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 0
+            m_FloatArgument: 1000
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  repeating: 0
 --- !u!114 &880235726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -933,8 +945,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.41411063, y: -0.27713627, z: 0.13397726, w: -0.85659677}
-  m_LocalPosition: {x: -25.132566, y: 8.287025, z: -12.87284}
+  m_LocalRotation: {x: 0.35786733, y: 0.2960917, z: -0.1207799, w: 0.8773101}
+  m_LocalPosition: {x: -25.834341, y: 7.4331613, z: -13.532549}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2146971353}
@@ -1077,18 +1089,88 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Bob
   dialogues:
-  - dialogue: {fileID: 11400000, guid: ebf78304a3574b644933be2c26bb23ae, type: 2}
+  - dialogue: yeet
     e:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: {fileID: 11400000, guid: ebf78304a3574b644933be2c26bb23ae, type: 2}
+  - dialogue: Hey! Thanks for coming.
     e:
       m_PersistentCalls:
-        m_Calls: []
-  - dialogue: {fileID: 11400000, guid: 9a44efad592ea69499d32ab2cfd6204b, type: 2}
+        m_Calls:
+        - m_Target: {fileID: 1003393063}
+          m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
+          m_MethodName: Wave
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogue: Behind me is one of many slave operations owned by the cult.
     e:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1003393063}
+          m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
+          m_MethodName: Talk
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogue: Kill the guards, free the slaves, and take any kind of loot you come
+      accross.
+    e:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1003393063}
+          m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
+          m_MethodName: Talk
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - dialogue: Easy right? Well get to it.
+    e:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1003393063}
+          m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
+          m_MethodName: Talk
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  repeating: 0
+--- !u!114 &1003393063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003393050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4643b9b994c24449af50ded3e925a603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1036472783 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
@@ -2391,8 +2473,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086530671}
-  m_LocalRotation: {x: -0.41411063, y: -0.27713627, z: 0.13397726, w: -0.85659677}
-  m_LocalPosition: {x: -25.132566, y: 8.287025, z: -12.87284}
+  m_LocalRotation: {x: 0.35786733, y: 0.2960917, z: -0.1207799, w: 0.8773101}
+  m_LocalPosition: {x: -25.834341, y: 7.4331613, z: -13.532549}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1850179732}

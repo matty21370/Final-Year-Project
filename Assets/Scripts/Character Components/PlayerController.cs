@@ -19,6 +19,8 @@ namespace Game.Character
         private UIManager _uiManager;
         
         private bool _busy = false;
+
+        public Health PlayerHealth => _health;
         
         private void Awake()
         {

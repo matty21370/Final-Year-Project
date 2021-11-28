@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
         _dialogueSystem = FindObjectOfType<DialogueSystem>();
     }
 
-    public void ShowDialogue(Dialogue dialogue, Speaker speaker)
+    public void ShowDialogue(string dialogue, Speaker speaker)
     {
         _dialogueSystem.ShowDialogue(speaker, dialogue);
         _speaker = speaker;

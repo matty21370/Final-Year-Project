@@ -11,6 +11,8 @@ public class Speaker : MonoBehaviour
     [SerializeField] private string characterName;
 
     [SerializeField] private DialogueAction[] dialogues;
+    [SerializeField] private bool repeating;
+    private bool _spoken;
     
     private Queue<DialogueAction> _dialogues = new Queue<DialogueAction>();
 
@@ -30,7 +32,7 @@ public class Speaker : MonoBehaviour
         if (_dialogues.Count > 0)
         {
             DialogueAction dialogueAction = _dialogues.Peek();
-            Dialogue dialogue = dialogueAction.dialogue;
+            //Dialogue dialogue = dialogueAction.dialogue;
             UnityEvent dialogueEvent = dialogueAction.e;
 
             if (dialogueEvent != null)
@@ -38,7 +40,7 @@ public class Speaker : MonoBehaviour
                 dialogueEvent.Invoke();
             }
 
-            _uiManager.ShowDialogue(dialogue, this);
+            _uiManager.ShowDialogue(dialogueAction.dialogue, this);
             _dialogues.Dequeue();
             
             return true;
@@ -52,6 +54,7 @@ public class Speaker : MonoBehaviour
         if (!NextDialogue())
         {
             _uiManager.HideDialogue(this);
+            _spoken = !repeating;
         }
     }
 
@@ -65,13 +68,16 @@ public class Speaker : MonoBehaviour
     
     public void Initiate()
     {
-        NextDialogue();
+        if (!_spoken)
+        {
+            NextDialogue();
+        }
     }
 }
 
 [System.Serializable]
 public class DialogueAction
 {
-    public Dialogue dialogue;
+    public string dialogue;
     public UnityEvent e;
 }

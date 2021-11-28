@@ -22,10 +22,10 @@ namespace Game.Dialogue
             speechText.text = text;
         }
 
-        public void ShowDialogue(Speaker speaker, Dialogue dialogue)
+        public void ShowDialogue(Speaker speaker, string dialogue)
         {
             _canvasGroup.alpha = 1;
-            SetDialogue(speaker.CharacterName, dialogue.dialogueText);
+            SetDialogue(speaker.CharacterName, dialogue);
             FindObjectOfType<PlayerController>().SetBusy(true);
         }
 
