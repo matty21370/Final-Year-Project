@@ -1,35 +1,27 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game.Character
 {
     public class CharacterActions : MonoBehaviour
     {
-        public void Test()
+        private Animator _animator;
+
+        private void Awake()
         {
-            FindObjectOfType<PlayerController>().PlayerHealth.TakeDamage(10f);
+            _animator = GetComponent<Animator>();
         }
 
         public void Talk()
         {
             int r = Random.Range(1, 3);
-
-            switch (r)
-            {
-                case 1:
-                    GetComponent<Animator>().SetTrigger("talk");
-                    break;
-                case 2:
-                    GetComponent<Animator>().SetTrigger("talk1");
-                    break;
-                case 3:
-                    GetComponent<Animator>().SetTrigger("talk2");
-                    break;
-            }
+            _animator.SetTrigger("talk" + r);
         }
 
         public void Wave()
         {
-            GetComponent<Animator>().SetTrigger("wave");
+            _animator.SetTrigger("wave");
         }
     }
 }

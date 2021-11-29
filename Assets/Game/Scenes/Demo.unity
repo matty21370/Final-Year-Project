@@ -661,12 +661,12 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 880235721}
           m_TargetAssemblyTypeName: Game.Character.Health, Assembly-CSharp
-          m_MethodName: TakeDamage
-          m_Mode: 4
+          m_MethodName: Kill
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 2
             m_FloatArgument: 1000
             m_StringArgument: 
             m_BoolArgument: 0
@@ -1126,7 +1126,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - dialogue: Kill the guards, free the slaves, and take any kind of loot you come
-      accross.
+      across.
     e:
       m_PersistentCalls:
         m_Calls:

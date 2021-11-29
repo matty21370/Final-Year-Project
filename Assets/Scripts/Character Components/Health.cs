@@ -34,14 +34,19 @@ namespace Game.Character
             
             if (_currentHealth == 0)
             {
-                HandleDeath();    
+                Kill(1);    
             }
         }
 
-        private void HandleDeath()
+        public void Kill(int deathVar)
+        {
+            HandleDeath(deathVar);
+        }
+
+        private void HandleDeath(int deathVar)
         {
             _isAlive = false;
-            GetComponent<Animator>().SetTrigger("die");
+            GetComponent<Animator>().SetTrigger("die" + deathVar);
             GetComponent<Combat>().RemoveTarget();
 
             if (gameObject.tag == "Player")
