@@ -33,6 +33,9 @@ public class NPCController : MonoBehaviour
     [SerializeField] private float patrolSpeed = 2.3f;
     [SerializeField] private float timeAtWaypoint = 2f;
 
+    [SerializeField] private float susTime = 4f;
+    private float susTimer = 0;
+
     private float _timeSpentAtWaypoint = 0;
 
     private int _patrolIndex = 0;
@@ -105,10 +108,16 @@ public class NPCController : MonoBehaviour
         if (Vector3.Distance(_player.position, transform.position) < detectionRadius)
         {
             _combat.SetTarget(_player.GetComponent<Target>());
+            susTimer = 0;
         }
         else
         {
             _combat.RemoveTarget();
+            susTimer += Time.deltaTime;
+            if (susTimer >= susTime)
+            {
+                _movement.Move(_startPosition);
+            }
         }
     }
 

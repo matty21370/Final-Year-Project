@@ -19,7 +19,8 @@ namespace Game.Character
             base.OnInteract(interactor);
 
             _interacted = false;
-
+            
+            if(_combat == null) _speaker.Initiate();
             if (_combat.IsAggressive())
             {
                 interactor.GetComponent<Combat>().SetTarget(this);
@@ -29,6 +30,7 @@ namespace Game.Character
                 if (_speaker != null)
                 {
                     _speaker.Initiate();
+                    print("Speaking");
                 }
             }
         }

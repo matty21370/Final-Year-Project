@@ -621,17 +621,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30461041925169f428bcb47406938ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &880235721 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1902443316500038727, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
-  m_PrefabInstance: {fileID: 1355423051}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 880235713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd8f00b205985ae468d25e643cde31d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &880235724 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6656153426227831329, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
@@ -655,14 +644,14 @@ MonoBehaviour:
     e:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: ...
+  - dialogue: This is a restricted area.
     e:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 880235721}
-          m_TargetAssemblyTypeName: Game.Character.Health, Assembly-CSharp
-          m_MethodName: Kill
-          m_Mode: 3
+        - m_Target: {fileID: 880235726}
+          m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
+          m_MethodName: Talk
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -671,7 +660,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  repeating: 0
+  repeating: 1
 --- !u!114 &880235726
 MonoBehaviour:
   m_ObjectHideFlags: 0

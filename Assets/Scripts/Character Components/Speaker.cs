@@ -27,37 +27,6 @@ public class Speaker : MonoBehaviour
         ResetDialogue();
     }
 
-    private bool NextDialogue()
-    {
-        if (_dialogues.Count > 0)
-        {
-            DialogueAction dialogueAction = _dialogues.Peek();
-            //Dialogue dialogue = dialogueAction.dialogue;
-            UnityEvent dialogueEvent = dialogueAction.e;
-
-            if (dialogueEvent != null)
-            {
-                dialogueEvent.Invoke();
-            }
-
-            _uiManager.ShowDialogue(dialogueAction.dialogue, this);
-            _dialogues.Dequeue();
-            
-            return true;
-        }
-
-        return false;
-    }
-    
-    public void ShowDialogue()
-    {
-        if (!NextDialogue())
-        {
-            _uiManager.HideDialogue(this);
-            _spoken = !repeating;
-        }
-    }
-
     public void ResetDialogue()
     {
         foreach (var dialogue in dialogues)
@@ -70,8 +39,36 @@ public class Speaker : MonoBehaviour
     {
         if (!_spoken)
         {
-            NextDialogue();
+            ShowDialogue();
         }
+    }
+    
+    public void ShowDialogue()
+    {
+        if (!NextDialogue())
+        {
+            _uiManager.HideDialogue(this);
+            _spoken = !repeating;
+        }
+    }
+    
+    private bool NextDialogue()
+    {
+        if (_dialogues.Count > 0)
+        {
+            DialogueAction dialogueAction = _dialogues.Dequeue();
+            UnityEvent dialogueEvent = dialogueAction.e;
+
+            if (dialogueEvent != null)
+            {
+                dialogueEvent.Invoke();
+            }
+
+            _uiManager.ShowDialogue(dialogueAction.dialogue, this);
+            
+            return true;
+        }
+        return false;
     }
 }
 
