@@ -45,29 +45,33 @@ namespace Game.Character
 
             //_movement.SetInjured(_health.GetHealth() <= _health.GetMaxHealth() * 0.1f);
 
-            if (!_busy)
-            {
-                HandleInput();
-            }
+            HandleInput();
         }
 
         private void HandleInput()
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                 HandleClick();
+                _uiManager.TogglePauseMenu();
             }
             
             if (Input.GetKeyDown(KeyCode.R))
             {
                 SceneManager.LoadScene(0);
             }
+            
+            if(_busy) return;
 
             if (Input.GetKeyDown(KeyCode.T))
             {
                 _health.TakeDamage(10);
             }
-
+            
+            if (Input.GetMouseButton(0))
+            {
+                HandleClick();
+            }
+            
             if (_combat.IsInCombat())
             {
                 if (Input.GetKeyDown(KeyCode.W))
