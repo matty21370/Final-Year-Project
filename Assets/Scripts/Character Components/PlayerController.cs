@@ -43,8 +43,6 @@ namespace Game.Character
         {
             if(!_health.IsAlive()) return;
 
-            //_movement.SetInjured(_health.GetHealth() <= _health.GetMaxHealth() * 0.1f);
-
             HandleInput();
         }
 

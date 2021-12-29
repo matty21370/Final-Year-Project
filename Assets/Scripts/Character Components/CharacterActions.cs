@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Core.Inventory;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,6 +23,11 @@ namespace Game.Character
         public void Wave()
         {
             _animator.SetTrigger("wave");
+        }
+
+        public void GiveItemToPlayer(Item item)
+        {
+            FindObjectOfType<Inventory>().AddItem(item);
         }
     }
 }
