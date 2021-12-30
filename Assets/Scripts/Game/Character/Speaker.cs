@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using Game.Saving;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Game.Character
 {
-    public class Speaker : MonoBehaviour
+    public class Speaker : MonoBehaviour, ISaveable
     {
         [SerializeField] private string characterName;
     
@@ -67,6 +68,16 @@ namespace Game.Character
                 return true;
             }
             return false;
+        }
+
+        public object CaptureState()
+        {
+            return _spoken;
+        }
+
+        public void RestoreState(object state)
+        {
+            _spoken = (bool) state;
         }
     }
     

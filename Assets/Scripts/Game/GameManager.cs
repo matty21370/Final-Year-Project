@@ -22,6 +22,7 @@ namespace Game
         public void Load()
         {
             _savingSystem.Load("save");
+            FindObjectOfType<UIManager>().TogglePauseMenu();
         }
     }
 }

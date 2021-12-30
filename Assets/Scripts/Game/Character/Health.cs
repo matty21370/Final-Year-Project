@@ -100,12 +100,18 @@ namespace Game.Character
 
         public object CaptureState()
         {
-            return _currentHealth;
+            Dictionary<string, object> saveData = new Dictionary<string, object>();
+            saveData["currentHealth"] = _currentHealth;
+            saveData["isAlive"] = _isAlive;
+            return saveData;
         }
 
         public void RestoreState(object state)
         {
-            TakeDamage((float) state, true);
+            Dictionary<string, object> saveData = (Dictionary<string, object>) state;
+            TakeDamage((float) saveData["currentHealth"], true);
+            _isAlive = (bool) saveData["isAlive"];
+            if(!_isAlive) Kill(1);
         }
     }
 }
