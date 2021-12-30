@@ -9,12 +9,7 @@ namespace Game.Dialogue
     {
         [SerializeField] private Text nameText, speechText;
 
-        private CanvasGroup _canvasGroup;
-
-        private void Awake()
-        {
-            _canvasGroup = GetComponent<CanvasGroup>();
-        }
+        [SerializeField] private GameObject dialogueUI;
 
         public void SetDialogue(string yeet, string text)
         {
@@ -24,14 +19,14 @@ namespace Game.Dialogue
 
         public void ShowDialogue(Speaker speaker, string dialogue)
         {
-            _canvasGroup.alpha = 1;
+            dialogueUI.SetActive(true);
             SetDialogue(speaker.CharacterName, dialogue);
             FindObjectOfType<PlayerController>().SetBusy(true);
         }
 
         public void HideDialogue(Speaker speaker)
         {
-            _canvasGroup.alpha = 0;
+            dialogueUI.SetActive(false);
             SetDialogue("", "");
             FindObjectOfType<PlayerController>().SetBusy(false);
             speaker.ResetDialogue();

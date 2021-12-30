@@ -11,11 +11,11 @@ namespace Game
 {
     public class UIManager : MonoBehaviour
     {
-        [SerializeField] private CanvasGroup restrictedNotification;
-        [SerializeField] private CanvasGroup healthbar;
-        [SerializeField] private CanvasGroup characterMenu;
-        [SerializeField] private CanvasGroup pauseMenu;
-        [SerializeField] private CanvasGroup deathScreen;
+        [SerializeField] private GameObject restrictedNotification;
+        [SerializeField] private GameObject healthbar;
+        [SerializeField] private GameObject characterMenu;
+        [SerializeField] private GameObject pauseMenu;
+        [SerializeField] private GameObject deathScreen;
 
         [SerializeField] private GameObject dialogueUI;
         private Speaker _speaker;
@@ -52,7 +52,7 @@ namespace Game
     
         public void ShowDeathScreen()
         {
-            deathScreen.alpha = 1;
+            deathScreen.SetActive(true);
         }
     
         public void UpdateHealthbar(float health, float maxHealth)
@@ -63,20 +63,20 @@ namespace Game
     
         public void ToggleHealthbar(bool busy)
         {
-            healthbar.alpha = busy ? 0 : 1;
+            healthbar.SetActive(!busy);
         }
     
         public void ToggleCharacterMenu()
         {
             _characterMenuOpen = !_characterMenuOpen;
-            characterMenu.alpha = _characterMenuOpen ? 1 : 0;
+            characterMenu.SetActive(_characterMenuOpen);
             _player.SetBusy(_characterMenuOpen ? true : false);
         }
 
         public void TogglePauseMenu()
         {
             _pauseMenuOpen = !_pauseMenuOpen;
-            pauseMenu.alpha = _pauseMenuOpen ? 1 : 0;
+            pauseMenu.SetActive(_pauseMenuOpen);
             Time.timeScale = _pauseMenuOpen ? 0 : 1;
         }
     }

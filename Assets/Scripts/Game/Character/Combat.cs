@@ -129,7 +129,7 @@ namespace Game.Character
 
         public void Hit()
         {
-            _target.GetComponent<Health>().TakeDamage(equippedWeapons[_currentWeapon].damage);
+            _target.GetComponent<Health>().TakeDamage(equippedWeapons[_currentWeapon].damage, false);
         }
 
         public bool IsAggressive()

@@ -23,15 +23,23 @@ namespace Game.Character
             _currentHealth = maxHealth;
         }
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(float amount, bool heal)
         {
-            _currentHealth = Mathf.Max(_currentHealth - amount, 0);
-            print(_currentHealth);
-
-            if (gameObject.tag == "Player")
+            if (heal)
+            {
+                _currentHealth = amount;
+            }
+            else
+            {
+                _currentHealth = Mathf.Max(_currentHealth - amount, 0);
+            }
+            
+            if (gameObject.CompareTag("Player"))
             {
                 UpdateHealth();
             }
+            
+            print("Healthh");
             
             if (_currentHealth == 0)
             {
@@ -50,7 +58,7 @@ namespace Game.Character
             GetComponent<Animator>().SetTrigger("die" + deathVar);
             GetComponent<Combat>().RemoveTarget();
 
-            if (gameObject.tag == "Player")
+            if (gameObject.CompareTag("Player"))
             {
                 StartCoroutine(PlayerDeath());
             }
@@ -97,7 +105,7 @@ namespace Game.Character
 
         public void RestoreState(object state)
         {
-            _currentHealth = (float) state;
+            TakeDamage((float) state, true);
         }
     }
 }

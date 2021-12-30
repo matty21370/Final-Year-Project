@@ -68,7 +68,7 @@ namespace Game.Character
 
             if (Input.GetKeyDown(KeyCode.T))
             {
-                _health.TakeDamage(10);
+                _health.TakeDamage(10, false);
             }
             
             if (Input.GetMouseButton(0))

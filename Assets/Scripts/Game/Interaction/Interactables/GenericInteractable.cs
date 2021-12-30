@@ -7,7 +7,7 @@ namespace Game.Interaction.Interactables
     {
         public override void OnInteract(Interactor interactor)
         {
-            interactor.GetComponent<Health>().TakeDamage(10);
+            interactor.GetComponent<Health>().TakeDamage(10, false);
             base.OnInteract(interactor);
         }
     }
