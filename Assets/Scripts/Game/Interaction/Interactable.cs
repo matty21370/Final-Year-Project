@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Game.Character;
 using UnityEngine;
 
-namespace Game.Core
+namespace Game.Interaction
 {
     public class Interactable : MonoBehaviour
     {
@@ -13,11 +13,11 @@ namespace Game.Core
         
         private Interactor _interacting;
         
-        protected bool _interacted = false;
+        protected bool Interacted = false;
 
         private void Update()
         {
-            if (_interacting != null && !_interacted)
+            if (_interacting != null && !Interacted)
             {
                 if (Vector3.Distance(_interacting.transform.position, transform.position) <= interactionRange)
                 {
@@ -51,7 +51,7 @@ namespace Game.Core
         public virtual void OnInteract(Interactor interactor)
         {
             _interacting = null;
-            _interacted = true;
+            Interacted = true;
         }
     }
 }

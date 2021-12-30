@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Saving;
+using RPG.Saving;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Game.Character
 {
-    public class Movement : MonoBehaviour
+    public class Movement : MonoBehaviour, ISaveable
     {
         private NavMeshAgent _agent;
         private Animator _animator;
@@ -61,6 +63,17 @@ namespace Game.Character
         public void SetInjured(bool value)
         {
             _animator.SetBool("injured", value);
+        }
+
+        public object CaptureState()
+        {
+            return new SerializableVector3(transform.position);
+        }
+
+        public void RestoreState(object state)
+        {
+            SerializableVector3 serializableVector3 = (SerializableVector3) state;
+            _agent.Warp(serializableVector3.ToVector());
         }
     }
 }

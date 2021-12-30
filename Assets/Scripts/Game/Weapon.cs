@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.Core
+namespace Game
 {
     [CreateAssetMenu(fileName = "Weapon", order = 1)]
     public class Weapon : ScriptableObject

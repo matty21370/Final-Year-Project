@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Saving;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 namespace Game.Character
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] private float maxHealth;
         private float _currentHealth;
@@ -87,6 +88,16 @@ namespace Game.Character
         public void SetMaxHealth(float amt)
         {
             maxHealth = amt;
+        }
+
+        public object CaptureState()
+        {
+            return _currentHealth;
+        }
+
+        public void RestoreState(object state)
+        {
+            _currentHealth = (float) state;
         }
     }
 }

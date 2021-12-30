@@ -1,7 +1,7 @@
 ﻿using Game.Character;
 using UnityEngine;
 
-namespace Game.Core
+namespace Game.Interaction.Interactables
 {
     public class GenericInteractable : Interactable
     {

@@ -4,34 +4,40 @@ using System.Collections.Generic;
 using Game.Character;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
-public class RestrictedArea : MonoBehaviour
+namespace Game
 {
-    [SerializeField] private List<Combat> guards = new List<Combat>();
+    [RequireComponent(typeof(BoxCollider))]
+    public class RestrictedArea : MonoBehaviour
+    {
+        [SerializeField] private List<Combat> guards = new List<Combat>();
 
-    private UIManager _uiManager;
+        private UIManager _uiManager;
     
-    private void Awake()
-    {
-        _uiManager = FindObjectOfType<UIManager>();
-        GetComponent<BoxCollider>().isTrigger = true;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
+        private void Awake()
         {
-            //_uiManager.ShowRestrictedNotification();
+            _uiManager = FindObjectOfType<UIManager>();
+            GetComponent<BoxCollider>().isTrigger = true;
+        }
 
-            foreach (var guard in guards)
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Player")
             {
-                guard.SetAggressive(true);
+                //_uiManager.ShowRestrictedNotification();
+
+                foreach (var guard in guards)
+                {
+                    guard.SetAggressive(true);
+                }
             }
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        //_uiManager.HideRestrictedNotification();
+        private void OnTriggerExit(Collider other)
+        {
+            //_uiManager.HideRestrictedNotification();
+        }
     }
 }
+
+
+

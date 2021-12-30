@@ -1,7 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Game.Core;
+using Game;
+using Game.Interaction;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -50,12 +51,17 @@ namespace Game.Character
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                _uiManager.TogglePauseMenu();
+                _uiManager.ToggleCharacterMenu();
             }
             
             if (Input.GetKeyDown(KeyCode.R))
             {
                 SceneManager.LoadScene(0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _uiManager.TogglePauseMenu();
             }
             
             if(_busy) return;

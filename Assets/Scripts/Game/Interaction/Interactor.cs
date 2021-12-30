@@ -1,19 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-using Game.Core;
 using UnityEngine;
 
-public class Interactor : MonoBehaviour
+namespace Game.Interaction
 {
-    [SerializeField] private bool isPlayer = false;
-
-    public void Interact(Interactable interactable)
+    public class Interactor : MonoBehaviour
     {
-        interactable.MoveToInteract(this);
-    }
+        [SerializeField] private bool isPlayer = false;
 
-    public bool GetIsPlayer()
-    {
-        return isPlayer;
+        public void Interact(Interactable interactable)
+        {
+            interactable.MoveToInteract(this);
+        }
+
+        public bool GetIsPlayer()
+        {
+            return isPlayer;
+        }
     }
 }

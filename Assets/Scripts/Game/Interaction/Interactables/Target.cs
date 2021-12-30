@@ -1,7 +1,8 @@
 ﻿using System;
-using Game.Core;
+using Game.Character;
+using Game;
 
-namespace Game.Character
+namespace Game.Interaction.Interactables
 {
     public class Target : Interactable
     {
@@ -18,7 +19,7 @@ namespace Game.Character
         {
             base.OnInteract(interactor);
 
-            _interacted = false;
+            Interacted = false;
             
             if(_combat == null) _speaker.Initiate();
             if (_combat.IsAggressive())
