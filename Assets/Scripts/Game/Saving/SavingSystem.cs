@@ -33,6 +33,7 @@ namespace Game.Saving
         public void Load(string saveFile)
         {
             RestoreState(LoadFile(saveFile));
+            FindObjectOfType<UIManager>().HideDeathScreen();
         }
 
         public void Delete(string saveFile)

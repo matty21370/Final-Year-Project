@@ -30,6 +30,11 @@ namespace Game.Inventory
         {
             return _itemInSlot == null;
         }
+
+        public void OnClick()
+        {
+            
+        }
     
     }
 }

@@ -39,6 +39,11 @@ namespace Game
         [Header("If applicable")]
         [SerializeField] private string interactMethod;
 
+        [SerializeField] private string parameter1;
+        [SerializeField] private string parameter2;
+        [SerializeField] private string parameter3;
+        [SerializeField] private string parameter4;
+
         private MethodInfo _methodInfo;
 
         public string ItemName => itemName;

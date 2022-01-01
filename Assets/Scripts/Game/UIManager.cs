@@ -54,6 +54,11 @@ namespace Game
         {
             deathScreen.SetActive(true);
         }
+
+        public void HideDeathScreen()
+        {
+            deathScreen.SetActive(false);
+        }
     
         public void UpdateHealthbar(float health, float maxHealth)
         {

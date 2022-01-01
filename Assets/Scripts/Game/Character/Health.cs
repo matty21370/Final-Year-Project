@@ -66,11 +66,9 @@ namespace Game.Character
 
         private IEnumerator PlayerDeath()
         {
+            yield return new WaitForSeconds(2f);
+            
             FindObjectOfType<UIManager>().ShowDeathScreen();
-
-            yield return new WaitForSeconds(4f);
-
-            SceneManager.LoadScene(0);
         }
 
         public void UpdateHealth()
@@ -110,8 +108,12 @@ namespace Game.Character
         {
             Dictionary<string, object> saveData = (Dictionary<string, object>) state;
             TakeDamage((float) saveData["currentHealth"], true);
+            if(!_isAlive) GetComponent<Animator>().SetTrigger("revive");
             _isAlive = (bool) saveData["isAlive"];
-            if(!_isAlive) Kill(1);
+            if (!_isAlive)
+            {
+                Kill(1);
+            }
         }
     }
 }
