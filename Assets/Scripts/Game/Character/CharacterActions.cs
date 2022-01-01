@@ -25,9 +25,9 @@ namespace Game.Character
             _animator.SetTrigger("wave");
         }
 
-        public void GiveItemToPlayer(Item item)
+        public void GiveItemToPlayer(String n)
         {
-            FindObjectOfType<InventorySystem>().AddItem(item);
+            FindObjectOfType<InventorySystem>().AddItem(FindObjectOfType<ItemDatabase>().GetItem(n));
         }
     }
 }

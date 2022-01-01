@@ -107,7 +107,6 @@ namespace Game.Character
                 if (interactable != null)
                 {
                     _interactor.Interact(interactable);
-                    print("Interactable");
                 }
                 else
                 {

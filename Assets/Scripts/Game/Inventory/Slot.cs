@@ -14,10 +14,16 @@ namespace Game.Inventory
         public void SetItem(Item item)
         {
             _itemInSlot = item;
-            slotIcon.sprite = item.Icon;
+            slotIcon.sprite = Resources.Load<Sprite>(item.IconPath);
             var tmp = slotIcon.color;
             tmp.a = 1f;
             slotIcon.color = tmp;
+        }
+
+        public void RemoveItem()
+        {
+            _itemInSlot = null;
+            slotIcon.sprite = null;
         }
 
         public bool Empty()

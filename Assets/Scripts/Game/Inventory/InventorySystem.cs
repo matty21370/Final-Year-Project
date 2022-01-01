@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Saving;
 using UnityEngine;
 
 namespace Game.Inventory
 {
-    public class InventorySystem : MonoBehaviour
+    public class InventorySystem : MonoBehaviour, ISaveable
     {
         [SerializeField] private int numSlots;
         [SerializeField] private GameObject slotPrefab;
@@ -34,6 +35,33 @@ namespace Game.Inventory
                     print("Added item to inventory.");
                     return;
                 }
+            }
+        }
+
+        public void ClearInventory()
+        {
+            foreach (var slot in _slots)
+            {
+                slot.RemoveItem();
+            }
+            
+            _items.Clear();
+        }
+
+        public object CaptureState()
+        {
+            return _items.ToArray();
+        }
+
+        public void RestoreState(object state)
+        {
+            Item[] data = (Item[]) state;
+            
+            ClearInventory();
+            
+            foreach (var item in data)
+            {
+                AddItem(item);
             }
         }
     }

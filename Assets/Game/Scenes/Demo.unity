@@ -918,25 +918,13 @@ MonoBehaviour:
         - m_Target: {fileID: 1003393063}
           m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
           m_MethodName: GiveItemToPlayer
-          m_Mode: 2
+          m_Mode: 5
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 6ba897f375c24e147a717fd6b52f4a42, type: 2}
-            m_ObjectArgumentAssemblyTypeName: Game.Inventory.Item, Assembly-CSharp
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1003393063}
-          m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
-          m_MethodName: GiveItemToPlayer
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 3134b65ab0f2cf64e9a5bd1cf8f38a52, type: 2}
-            m_ObjectArgumentAssemblyTypeName: Game.Inventory.Item, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
+            m_StringArgument: Test
             m_BoolArgument: 0
           m_CallState: 2
   - dialogue: Easy right? Well get to it.
@@ -1549,6 +1537,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1717547525}
   - component: {fileID: 1717547526}
+  - component: {fileID: 1717547527}
+  - component: {fileID: 1717547528}
   m_Layer: 0
   m_Name: Inventory System
   m_TagString: Untagged
@@ -1585,6 +1575,36 @@ MonoBehaviour:
   numSlots: 80
   slotPrefab: {fileID: 4738227547982489787, guid: 37c8b9ff3db573d4bbfc8822187b4ee6, type: 3}
   panel1: {fileID: 627456797}
+--- !u!114 &1717547527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717547524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: aebe826c-6d73-4884-b4a8-33d693b68cab
+--- !u!114 &1717547528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717547524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f59a62897b547e0950fbbd493645c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - itemName: Test
+    iconPath: Sprites/Coin
+    interactable: 0
+    interactMethod: AddHealth
 --- !u!4 &1755744492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4998326679312090, guid: 2b519101e10d4a74580d4c86ac9e03e6, type: 3}
