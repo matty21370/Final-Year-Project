@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Game;
 using Game.Interaction.Interactables;
+using Game.Saving;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Game.Character
 {
     [RequireComponent(typeof(Target))]
-    public class Combat : MonoBehaviour
+    public class Combat : MonoBehaviour, ISaveable
     {
         private Target _target;
 
@@ -141,7 +142,24 @@ namespace Game.Character
         {
             _isAggressive = val;
         }
-        
+
+        public object CaptureState()
+        {
+            Dictionary<string, object> saveData = new Dictionary<string, object>();
+            saveData["inCombat"] = _inCombat;
+            saveData["target"] = _target;
+            saveData["aggressive"] = _isAggressive;
+
+            return saveData;
+        }
+
+        public void RestoreState(object state)
+        {
+            Dictionary<string, object> data = (Dictionary<string, object>) state;
+            _inCombat = (bool) data["inCombat"];
+            _target = (Target) data["target"];
+            _isAggressive = (bool) data["aggressive"];
+        }
     }
 }
 

@@ -108,7 +108,7 @@ namespace Game.Character
         {
             Dictionary<string, object> saveData = (Dictionary<string, object>) state;
             TakeDamage((float) saveData["currentHealth"], true);
-            if(!_isAlive) GetComponent<Animator>().SetTrigger("revive");
+            if(_isAlive) GetComponent<Animator>().SetTrigger("revive");
             _isAlive = (bool) saveData["isAlive"];
             if (!_isAlive)
             {
