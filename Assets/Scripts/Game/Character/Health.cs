@@ -25,9 +25,11 @@ namespace Game.Character
 
         public void TakeDamage(float amount, bool heal)
         {
-            if (heal)
+            if (heal && _currentHealth <= 0)
             {
                 _currentHealth = amount;
+                GetComponent<Animator>().SetTrigger("revive");
+                _isAlive = true;
             }
             else
             {
@@ -38,8 +40,6 @@ namespace Game.Character
             {
                 UpdateHealth();
             }
-            
-            print("Healthh");
             
             if (_currentHealth == 0)
             {
@@ -100,7 +100,7 @@ namespace Game.Character
         {
             Dictionary<string, object> saveData = new Dictionary<string, object>();
             saveData["currentHealth"] = _currentHealth;
-            saveData["isAlive"] = _isAlive;
+            //saveData["isAlive"] = _isAlive;
             return saveData;
         }
 
@@ -108,12 +108,8 @@ namespace Game.Character
         {
             Dictionary<string, object> saveData = (Dictionary<string, object>) state;
             TakeDamage((float) saveData["currentHealth"], true);
-            if(_isAlive) GetComponent<Animator>().SetTrigger("revive");
-            _isAlive = (bool) saveData["isAlive"];
-            if (!_isAlive)
-            {
-                Kill(1);
-            }
+            //if(_isAlive) GetComponent<Animator>().SetTrigger("revive");
+            //_isAlive = (bool) saveData["isAlive"];
         }
     }
 }

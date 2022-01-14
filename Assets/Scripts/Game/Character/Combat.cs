@@ -130,7 +130,10 @@ namespace Game.Character
 
         public void Hit()
         {
-            _target.GetComponent<Health>().TakeDamage(equippedWeapons[_currentWeapon].damage, false);
+            if (_target != null)
+            {
+                _target.GetComponent<Health>().TakeDamage(equippedWeapons[_currentWeapon].damage, false);
+            }
         }
 
         public bool IsAggressive()
@@ -147,7 +150,7 @@ namespace Game.Character
         {
             Dictionary<string, object> saveData = new Dictionary<string, object>();
             saveData["inCombat"] = _inCombat;
-            saveData["target"] = _target;
+            //saveData["target"] = _target;
             saveData["aggressive"] = _isAggressive;
 
             return saveData;
@@ -157,7 +160,7 @@ namespace Game.Character
         {
             Dictionary<string, object> data = (Dictionary<string, object>) state;
             _inCombat = (bool) data["inCombat"];
-            _target = (Target) data["target"];
+            //_target = (Target) data["target"];
             _isAggressive = (bool) data["aggressive"];
         }
     }
