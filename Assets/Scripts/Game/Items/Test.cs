@@ -5,7 +5,7 @@ using Object = UnityEngine.Object;
 
 namespace Game.Items
 {
-    [System.Serializable]
+    [Serializable]
     public class Test : Item
     {
         public Test(string itemName, string iconPath, bool interactable) : base(itemName, iconPath, interactable)

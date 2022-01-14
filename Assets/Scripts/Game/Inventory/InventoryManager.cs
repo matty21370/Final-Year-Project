@@ -4,6 +4,6 @@ namespace Game.Inventory
 {
     public class InventoryManager
     {
-        [SerializeField] private InventorySystem[] _inventories;
+        private InventorySystem[] _inventories;
     }
 }

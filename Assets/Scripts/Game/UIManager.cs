@@ -69,6 +69,8 @@ namespace Game
         public void ToggleHealthbar(bool busy)
         {
             healthbar.SetActive(!busy);
+            
+            if(_characterMenuOpen) healthbar.SetActive(true);
         }
     
         public void ToggleCharacterMenu()
