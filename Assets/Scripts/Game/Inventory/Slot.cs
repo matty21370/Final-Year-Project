@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,14 @@ namespace Game.Inventory
     public class Slot : MonoBehaviour
     {
         [SerializeField] private Image slotIcon;
-    
+
+        private InventorySystem _inventory;
         private Item _itemInSlot;
+
+        private void Awake()
+        {
+            _inventory = FindObjectOfType<InventorySystem>();
+        }
 
         public void SetItem(Item item)
         {
@@ -28,6 +35,9 @@ namespace Game.Inventory
 
         public void RemoveItem()
         {
+            if(_itemInSlot == null) return;
+            
+            _inventory.RemoveItem(_itemInSlot);
             _itemInSlot = null;
             slotIcon.sprite = null;
             HandleIcon(true);

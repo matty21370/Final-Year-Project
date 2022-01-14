@@ -38,14 +38,17 @@ namespace Game.Inventory
             }
         }
 
-        public void ClearInventory()
+        public void RemoveItem(Item item)
+        {
+            _items.Remove(item);
+        }
+
+        private void ClearInventory()
         {
             foreach (var slot in _slots)
             {
                 slot.RemoveItem();
             }
-            
-            _items.Clear();
         }
 
         public object CaptureState()

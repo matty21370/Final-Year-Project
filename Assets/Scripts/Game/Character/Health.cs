@@ -31,6 +31,10 @@ namespace Game.Character
                 GetComponent<Animator>().SetTrigger("revive");
                 _isAlive = true;
             }
+            else if(heal && _currentHealth > 0)
+            {
+                _currentHealth = Math.Min(_currentHealth + amount, maxHealth);
+            }
             else
             {
                 _currentHealth = Mathf.Max(_currentHealth - amount, 0);
@@ -107,8 +111,16 @@ namespace Game.Character
         public void RestoreState(object state)
         {
             Dictionary<string, object> saveData = (Dictionary<string, object>) state;
-            TakeDamage((float) saveData["currentHealth"], true);
-            //if(_isAlive) GetComponent<Animator>().SetTrigger("revive");
+            float h = (float) saveData["currentHealth"];
+            if (h <= 0)
+            {
+                HandleDeath(1);
+            }
+            else 
+            {
+                TakeDamage((float) saveData["currentHealth"], true);
+            }
+        //if(_isAlive) GetComponent<Animator>().SetTrigger("revive");
             //_isAlive = (bool) saveData["isAlive"];
         }
     }

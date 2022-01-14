@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Inventory;
+using Game.Items;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -27,7 +28,12 @@ namespace Game.Character
 
         public void GiveItemToPlayer(String n)
         {
-            FindObjectOfType<InventorySystem>().AddItem(FindObjectOfType<ItemDatabase>().GetItem(n));
+            Item item = FindObjectOfType<ItemDatabase>().GetItem(n);
+
+            if (item != null)
+            {
+                FindObjectOfType<InventorySystem>().AddItem(item);
+            }
         }
     }
 }

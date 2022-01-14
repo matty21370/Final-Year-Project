@@ -10,7 +10,7 @@ namespace Game
 
         private void Awake()
         {
-            _items.Add(new Test("Test", "", true));
+            _items.Add(new Food("Food", "Sprites/Food", true));
         }
 
         public Item GetItem(string itemName)
