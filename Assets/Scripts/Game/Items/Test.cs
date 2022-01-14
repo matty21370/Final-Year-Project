@@ -14,6 +14,7 @@ namespace Game.Items
         
         public override void Use()
         {
+            Debug.Log("Using item " + ItemName);
             Object.FindObjectOfType<PlayerController>().GetComponent<Health>().TakeDamage(10f, false);
         }
     }

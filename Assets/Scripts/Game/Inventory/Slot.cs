@@ -16,8 +16,13 @@ namespace Game.Inventory
         {
             _itemInSlot = item;
             slotIcon.sprite = Resources.Load<Sprite>(item.IconPath);
+            HandleIcon(false);
+        }
+
+        private void HandleIcon(bool clear)
+        {
             var tmp = slotIcon.color;
-            tmp.a = 1f;
+            tmp.a = clear ? 0f : 1f;
             slotIcon.color = tmp;
         }
 
@@ -25,6 +30,7 @@ namespace Game.Inventory
         {
             _itemInSlot = null;
             slotIcon.sprite = null;
+            HandleIcon(true);
         }
 
         public bool Empty()
@@ -34,7 +40,10 @@ namespace Game.Inventory
 
         public void OnClick()
         {
+            if(_itemInSlot == null) return;
             
+            _itemInSlot.Use();
+            RemoveItem();
         }
     
     }
