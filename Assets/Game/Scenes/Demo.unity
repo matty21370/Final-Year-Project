@@ -2017,15 +2017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f59a62897b547e0950fbbd493645c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items:
-  - itemName: Test
-    iconPath: Sprites/Coin
-    interactable: 0
-    interactMethod: AddHealth
-    parameter1: 
-    parameter2: 
-    parameter3: 
-    parameter4: 
 --- !u!4 &1755744492 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4998326679312090, guid: 2b519101e10d4a74580d4c86ac9e03e6, type: 3}
