@@ -8,13 +8,16 @@ namespace Game.Items
     [Serializable]
     public class Food : Item
     {
-        public Food(string itemName, string iconPath, bool interactable) : base(itemName, iconPath, interactable)
+        private float _healAmt;
+        
+        public Food(string itemName, string itemDescription, string iconPath, float healAmt) : base(itemName, itemDescription, "Restores " + healAmt + " health", iconPath, true)
         {
+            _healAmt = healAmt;
         }
         
         public override void Use()
         {
-            Object.FindObjectOfType<PlayerController>().GetComponent<Health>().TakeDamage(20f, true);
+            Object.FindObjectOfType<PlayerController>().GetComponent<Health>().TakeDamage(_healAmt, true);
         }
     }
 }

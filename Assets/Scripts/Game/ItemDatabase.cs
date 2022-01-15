@@ -10,14 +10,14 @@ namespace Game
 
         private void Awake()
         {
-            _items.Add(new Food("Food", "Sprites/Food", true));
+            _items.Add(new Food("Test food", "This is food added for testing purposes.", "Sprites/Food", 20));
         }
 
         public Item GetItem(string itemName)
         {
             foreach (var item in _items)
             {
-                if (item.ItemName == itemName)
+                if (item.ItemName.ToLower() == itemName.ToLower())
                 {
                     return item;
                 }

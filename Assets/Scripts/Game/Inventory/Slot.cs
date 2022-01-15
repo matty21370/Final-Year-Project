@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Game.Items;
+using UnityEngine.EventSystems;
 
 namespace Game.Inventory
 {
-    public class Slot : MonoBehaviour
+    public class Slot : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private Image slotIcon;
 
@@ -48,14 +49,31 @@ namespace Game.Inventory
             return _itemInSlot == null;
         }
 
-        public void OnClick()
+        private void OnLeftClick()
         {
-            if(_itemInSlot == null) return;
-            
+            FindObjectOfType<ItemInfo>().SetItem(_itemInSlot);
+        }
+
+        private void OnRightClick()
+        {
             _itemInSlot.Use();
             RemoveItem();
         }
-    
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if(_itemInSlot == null) return;
+            
+            if (eventData.button == PointerEventData.InputButton.Left)
+            {
+                print("Left click");
+                OnLeftClick();
+            }
+            else if (eventData.button == PointerEventData.InputButton.Right)
+            {
+                
+            }
+        }
     }
 }
 
