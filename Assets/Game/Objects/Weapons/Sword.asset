@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   name: Sword
-  damage: 1000
+  damage: 20
   range: 2
   weaponType: 1

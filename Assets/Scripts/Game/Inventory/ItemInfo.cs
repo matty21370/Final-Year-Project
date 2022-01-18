@@ -39,7 +39,7 @@ namespace Game.Inventory
 
         private void OnUpdate()
         {
-            onUse.gameObject.SetActive(onUseText.text == "");
+            onUse.gameObject.SetActive(onUseText.text != "");
         }
     }
 }

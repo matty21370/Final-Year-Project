@@ -4532,6 +4532,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
   - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
   - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
+  isAggressive: 0
 --- !u!65 &6644745210046997566
 BoxCollider:
   m_ObjectHideFlags: 0

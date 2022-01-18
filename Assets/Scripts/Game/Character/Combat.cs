@@ -22,6 +22,8 @@ namespace Game.Character
         [SerializeField] private float combatRange = 1.5f;
         [SerializeField] private float attackCooldown = 1f;
 
+        [SerializeField] private Transform weaponHand;
+
         private float _nextAttack;
         
         [SerializeField] private Weapon[] equippedWeapons;
@@ -132,7 +134,7 @@ namespace Game.Character
         {
             if (_target != null)
             {
-                _target.GetComponent<Health>().TakeDamage(equippedWeapons[_currentWeapon].damage, false);
+                _target.GetComponent<Health>().TakeDamage(equippedWeapons[_currentWeapon].damage);
             }
         }
 

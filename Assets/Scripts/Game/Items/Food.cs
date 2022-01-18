@@ -17,7 +17,7 @@ namespace Game.Items
         
         public override void Use()
         {
-            Object.FindObjectOfType<PlayerController>().GetComponent<Health>().TakeDamage(_healAmt, true);
+            Object.FindObjectOfType<PlayerController>().GetComponent<Health>().Heal(_healAmt);
         }
     }
 }

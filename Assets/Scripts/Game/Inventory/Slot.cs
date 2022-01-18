@@ -71,7 +71,7 @@ namespace Game.Inventory
             }
             else if (eventData.button == PointerEventData.InputButton.Right)
             {
-                
+                OnRightClick();
             }
         }
     }

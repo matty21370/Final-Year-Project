@@ -23,22 +23,9 @@ namespace Game.Character
             _currentHealth = maxHealth;
         }
 
-        public void TakeDamage(float amount, bool heal)
+        public void TakeDamage(float amount)
         {
-            if (heal && _currentHealth <= 0)
-            {
-                _currentHealth = amount;
-                GetComponent<Animator>().SetTrigger("revive");
-                _isAlive = true;
-            }
-            else if(heal && _currentHealth > 0)
-            {
-                _currentHealth = Math.Min(_currentHealth + amount, maxHealth);
-            }
-            else
-            {
-                _currentHealth = Mathf.Max(_currentHealth - amount, 0);
-            }
+            _currentHealth = Mathf.Max(_currentHealth - amount, 0);
             
             if (gameObject.CompareTag("Player"))
             {
@@ -49,6 +36,30 @@ namespace Game.Character
             {
                 Kill(1);    
             }
+        }
+        
+        //Use only for loading!
+        private void SetHealth(float amt)
+        {
+            _currentHealth = amt;
+            
+            if (_currentHealth == 0)
+            {
+                Kill(1);    
+            }
+            else
+            {
+                GetComponent<Animator>().SetTrigger("revive");
+                _isAlive = true;
+            }
+            
+            UpdateHealth();
+        }
+
+        public void Heal(float amt)
+        {
+            _currentHealth = Mathf.Min(maxHealth, _currentHealth + amt);
+            UpdateHealth();
         }
 
         public void Kill(int deathVar)
@@ -77,6 +88,8 @@ namespace Game.Character
 
         public void UpdateHealth()
         {
+            if(!gameObject.CompareTag("Player")) return;
+            
             _uiManager.UpdateHealthbar(_currentHealth, maxHealth);
         }
 
@@ -118,10 +131,8 @@ namespace Game.Character
             }
             else 
             {
-                TakeDamage((float) saveData["currentHealth"], true);
+                SetHealth((float) saveData["currentHealth"]);
             }
-        //if(_isAlive) GetComponent<Animator>().SetTrigger("revive");
-            //_isAlive = (bool) saveData["isAlive"];
         }
     }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Unarmed
   m_EditorClassIdentifier: 
   name: Unarmed
-  damage: 10
+  damage: 5
   range: 0
   weaponType: 0
