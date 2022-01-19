@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Game;
 using Game.Interaction.Interactables;
+using Game.Items.Weapons;
 using Game.Saving;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -25,8 +25,9 @@ namespace Game.Character
         [SerializeField] private Transform weaponHand;
 
         private float _nextAttack;
-        
-        [SerializeField] private Weapon[] equippedWeapons;
+
+        [SerializeField] private string[] weapons;
+        private Weapon[] _equippedWeapons = new Weapon[4];
         private int _currentWeapon;
 
         private bool _inCombat = false;
@@ -40,6 +41,14 @@ namespace Game.Character
             _movement = GetComponent<Movement>();
 
             _isAggressive = isAggressive;
+        }
+
+        private void Start()
+        {
+            for (int i = 0; i < weapons.Length; i++)
+            {
+                _equippedWeapons[i] = (Weapon)FindObjectOfType<ItemDatabase>().GetItem(weapons[i]);
+            }
         }
 
         // Update is called once per frame
@@ -88,7 +97,7 @@ namespace Game.Character
             {
                 _currentWeapon = weapon;
                 
-                switch (equippedWeapons[weapon].weaponType)
+                switch (_equippedWeapons[weapon].WeaponType)
                 {
                     case Weapon.WeaponTypes.Unarmed:
                         int variant = Random.Range(1, 3);
@@ -102,6 +111,17 @@ namespace Game.Character
 
                 _nextAttack = Time.time + attackCooldown;
             }
+        }
+
+        public void EquipWeapon(int index, Weapon weapon)
+        {
+            if (index >= _equippedWeapons.Length)
+            {
+                Debug.LogWarning("Equipping weapon at invalid index!");
+                return;
+            }
+
+            _equippedWeapons[index] = weapon;
         }
 
         public void SetTarget(Target newTarget)
@@ -134,7 +154,7 @@ namespace Game.Character
         {
             if (_target != null)
             {
-                _target.GetComponent<Health>().TakeDamage(equippedWeapons[_currentWeapon].damage);
+                _target.GetComponent<Health>().TakeDamage(_equippedWeapons[_currentWeapon].Damage);
             }
         }
 

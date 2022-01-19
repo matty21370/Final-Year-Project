@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Game.Items;
+using Game.Items.Weapons;
 using UnityEngine;
 
 namespace Game
@@ -11,6 +12,7 @@ namespace Game
         private void Awake()
         {
             _items.Add(new Food("Test food", "This is food added for testing purposes.", "Sprites/Food", 20));
+            _items.Add(new Weapon("Unarmed", "no", "Deals damage", null, 10f, 1.5f, Weapon.WeaponTypes.Unarmed));
         }
 
         public Item GetItem(string itemName)

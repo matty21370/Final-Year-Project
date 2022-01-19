@@ -212,6 +212,26 @@ PrefabInstance:
       propertyPath: uniqueIdentifier
       value: 2312e947-c94f-4569-ac35-2c31e92dccba
       objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[0]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[1]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[2]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[3]
+      value: Unarmed
+      objectReference: {fileID: 0}
     - target: {fileID: 6654011020469115965, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
       propertyPath: m_Name
       value: EnemyBase (1)
@@ -1024,6 +1044,26 @@ PrefabInstance:
       propertyPath: uniqueIdentifier
       value: 2c87842c-8fcc-4300-8bde-7658204f0a7e
       objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[0]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[1]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[2]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[3]
+      value: Unarmed
+      objectReference: {fileID: 0}
     - target: {fileID: 6654011020469115965, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
       propertyPath: m_Name
       value: EnemyBase
@@ -1320,6 +1360,26 @@ PrefabInstance:
       value: 0ee8c0b2-fb5e-495f-996e-f1ae4330c1c3
       objectReference: {fileID: 0}
     - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[0]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[1]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[2]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[3]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
       propertyPath: equippedWeapons.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 6a1bd5240f70eb54b99f5b664d420368, type: 2}
@@ -1589,6 +1649,26 @@ PrefabInstance:
     - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
       propertyPath: isAggressive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[0]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[1]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[2]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: weapons.Array.data[3]
+      value: Unarmed
       objectReference: {fileID: 0}
     - target: {fileID: 6654011020469115965, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
       propertyPath: m_Name
@@ -2392,6 +2472,26 @@ PrefabInstance:
     - target: {fileID: 1848757779014395384, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.000000022351742
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108668457750612354, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
+      propertyPath: weapons.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108668457750612354, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
+      propertyPath: weapons.Array.data[0]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108668457750612354, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
+      propertyPath: weapons.Array.data[1]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108668457750612354, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
+      propertyPath: weapons.Array.data[2]
+      value: Unarmed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108668457750612354, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
+      propertyPath: weapons.Array.data[3]
+      value: Unarmed
       objectReference: {fileID: 0}
     - target: {fileID: 4108668457750612354, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
       propertyPath: equippedWeapons.Array.data[1]
