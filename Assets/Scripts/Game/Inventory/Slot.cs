@@ -13,11 +13,19 @@ namespace Game.Inventory
         [SerializeField] private Image slotIcon;
 
         private InventorySystem _inventory;
+        private InteractionMenu _interactionMenu;
         private Item _itemInSlot;
+
+        public Item ItemInSlot => _itemInSlot;
 
         private void Awake()
         {
             _inventory = FindObjectOfType<InventorySystem>();
+        }
+
+        public void Init(InteractionMenu menu)
+        {
+            _interactionMenu = menu;
         }
 
         public void SetItem(Item item)
@@ -39,6 +47,7 @@ namespace Game.Inventory
             if(_itemInSlot == null) return;
             
             _inventory.RemoveItem(_itemInSlot);
+            FindObjectOfType<ItemInfo>().ResetInfo();
             _itemInSlot = null;
             slotIcon.sprite = null;
             HandleIcon(true);
@@ -51,22 +60,22 @@ namespace Game.Inventory
 
         private void OnLeftClick()
         {
+            if(_itemInSlot == null) return;
             FindObjectOfType<ItemInfo>().SetItem(_itemInSlot);
         }
 
         private void OnRightClick()
         {
-            _itemInSlot.Use();
-            RemoveItem();
+            if(_itemInSlot == null) return;
+            FindObjectOfType<ItemInfo>().SetItem(_itemInSlot);
+            _interactionMenu.SetSlot(this);
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if(_itemInSlot == null) return;
-            
             if (eventData.button == PointerEventData.InputButton.Left)
             {
-                print("Left click");
+                _interactionMenu.Hide();
                 OnLeftClick();
             }
             else if (eventData.button == PointerEventData.InputButton.Right)

@@ -16,7 +16,7 @@ namespace Game.Inventory
             ResetInfo();
         }
 
-        private void ResetInfo()
+        public void ResetInfo()
         {
             itemNameText.text = "No item selected";
             itemDescriptionText.text = "";
