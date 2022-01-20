@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Game.Items.Weapons
 {
+    [Serializable]
     public class Weapon : Item
     {
         private float _damage;

@@ -17,9 +17,14 @@ namespace Game.Character
 
         private UIManager _uiManager;
 
+        private Animator _animator;
+        private static readonly int Die = Animator.StringToHash("die");
+        private static readonly int Revive = Animator.StringToHash("revive");
+
         private void Awake()
         {
             _uiManager = FindObjectOfType<UIManager>();
+            _animator = GetComponent<Animator>();
             _currentHealth = maxHealth;
         }
 
@@ -34,7 +39,7 @@ namespace Game.Character
             
             if (_currentHealth == 0)
             {
-                Kill(1);    
+                Kill();    
             }
         }
         
@@ -45,12 +50,12 @@ namespace Game.Character
             
             if (_currentHealth == 0)
             {
-                Kill(1);    
+                Kill();    
             }
             else
             {
-                GetComponent<Animator>().SetTrigger("revive");
                 _isAlive = true;
+                _animator.SetTrigger(Revive);
             }
             
             UpdateHealth();
@@ -62,15 +67,15 @@ namespace Game.Character
             UpdateHealth();
         }
 
-        public void Kill(int deathVar)
+        public void Kill()
         {
-            HandleDeath(deathVar);
+            HandleDeath();
         }
 
-        private void HandleDeath(int deathVar)
+        private void HandleDeath()
         {
             _isAlive = false;
-            GetComponent<Animator>().SetTrigger("die" + deathVar);
+            _animator.SetTrigger(Die);
             GetComponent<Combat>().RemoveTarget();
 
             if (gameObject.CompareTag("Player"))
@@ -125,14 +130,18 @@ namespace Game.Character
         {
             Dictionary<string, object> saveData = (Dictionary<string, object>) state;
             float h = (float) saveData["currentHealth"];
+            
             if (h <= 0)
             {
-                HandleDeath(1);
+                HandleDeath();
             }
             else 
             {
                 SetHealth((float) saveData["currentHealth"]);
             }
+            
+            //_animator.ResetTrigger(Die);
+            _animator.ResetTrigger(Revive);
         }
     }
 }

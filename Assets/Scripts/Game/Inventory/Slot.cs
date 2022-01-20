@@ -14,6 +14,7 @@ namespace Game.Inventory
 
         private InventorySystem _inventory;
         private InteractionMenu _interactionMenu;
+        private ItemInfo _itemInfo;
         private Item _itemInSlot;
 
         public Item ItemInSlot => _itemInSlot;
@@ -47,7 +48,8 @@ namespace Game.Inventory
             if(_itemInSlot == null) return;
             
             _inventory.RemoveItem(_itemInSlot);
-            FindObjectOfType<ItemInfo>().ResetInfo();
+            ItemInfo itemInfo = FindObjectOfType<ItemInfo>();
+            if(itemInfo != null) itemInfo.ResetInfo();
             _itemInSlot = null;
             slotIcon.sprite = null;
             HandleIcon(true);
