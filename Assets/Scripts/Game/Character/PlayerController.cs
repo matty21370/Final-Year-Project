@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Game;
 using Game.Interaction;
+using Game.Inventory;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -68,7 +69,7 @@ namespace Game.Character
 
             if (Input.GetKeyDown(KeyCode.T))
             {
-                _health.TakeDamage(10);
+                FindObjectOfType<InventorySystem>().AddItem(FindObjectOfType<ItemDatabase>().GetItem());
             }
             
             if (Input.GetMouseButton(0))

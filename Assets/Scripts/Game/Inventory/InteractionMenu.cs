@@ -25,6 +25,7 @@ namespace Game.Inventory
 
         public void SetSlot(Slot slot)
         {
+            if(!slot.ItemInSlot.Interactable) return;
             transform.position = Input.mousePosition + new Vector3(offset.x, offset.y, 0);
             _contextSlot = slot;
             gameObject.SetActive(true);

@@ -826,15 +826,15 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 3184a7f77f4b37649a71f8a71dcffa12, type: 2}
-  - {fileID: 2100000, guid: 017e81f8bd6f5994badfeaa2e70a9646, type: 2}
-  - {fileID: 2100000, guid: 921663dfebf9c824f8503f6b137800de, type: 2}
+  - {fileID: 2100000, guid: e5d65fad54349b94eb4a31a73cdc7323, type: 2}
+  - {fileID: 2100000, guid: e5d65fad54349b94eb4a31a73cdc7323, type: 2}
   - {fileID: 2100000, guid: 854880fa387ac3f4783f10fa26a6ae65, type: 2}
-  - {fileID: 2100000, guid: 7e2ed5bd7bfdf7f43b0195921253a7bb, type: 2}
-  - {fileID: 2100000, guid: 5f9b6780b23dcc84a9b41be6ede09fb0, type: 2}
-  - {fileID: 2100000, guid: 3de20cd2bfe6ad54995bad6ff86711bd, type: 2}
-  - {fileID: 2100000, guid: 017e81f8bd6f5994badfeaa2e70a9646, type: 2}
-  - {fileID: 2100000, guid: 3184a7f77f4b37649a71f8a71dcffa12, type: 2}
+  - {fileID: 2100000, guid: e5d65fad54349b94eb4a31a73cdc7323, type: 2}
+  - {fileID: 3473348121422435515, guid: c82005efa6bc65e4c838bdcfb57759d7, type: 3}
   - {fileID: 2100000, guid: 921663dfebf9c824f8503f6b137800de, type: 2}
+  - {fileID: 2100010, guid: e53c0edb812c5344698949e4671d1a2c, type: 3}
+  - {fileID: 2100000, guid: 3184a7f77f4b37649a71f8a71dcffa12, type: 2}
+  - {fileID: 2100000, guid: e5d65fad54349b94eb4a31a73cdc7323, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6020,7 +6020,7 @@ GameObject:
   - component: {fileID: 6745834977483767851}
   - component: {fileID: 2006847531537884323}
   m_Layer: 0
-  m_Name: EnemyBase
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6102,11 +6102,12 @@ MonoBehaviour:
   isPlayer: 0
   combatRange: 1.5
   attackCooldown: 3
-  equippedWeapons:
-  - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
-  - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
-  - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
-  - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
+  weaponHand: {fileID: 0}
+  weapons:
+  - Unarmed
+  - Unarmed
+  - Unarmed
+  - Unarmed
   isAggressive: 0
 --- !u!114 &665882775109692189
 MonoBehaviour:
