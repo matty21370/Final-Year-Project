@@ -11,6 +11,9 @@ namespace Game
 {
     public class UIManager : MonoBehaviour
     {
+        private static UIManager _instance;
+        public static UIManager Instance => _instance;
+        
         [SerializeField] private GameObject restrictedNotification;
         [SerializeField] private GameObject healthbar;
         [SerializeField] private GameObject characterMenu;
@@ -19,7 +22,6 @@ namespace Game
 
         [SerializeField] private GameObject dialogueUI;
         private Speaker _speaker;
-        private DialogueSystem _dialogueSystem;
     
         private bool _characterMenuOpen = false;
         private bool _pauseMenuOpen = false;
@@ -28,19 +30,28 @@ namespace Game
     
         private void Awake()
         {
-            _dialogueSystem = FindObjectOfType<DialogueSystem>();
+            if (_instance != null && _instance != this)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                _instance = this;
+                DontDestroyOnLoad(this);
+            }
+            
             _player = FindObjectOfType<PlayerController>();
         }
     
         public void ShowDialogue(string dialogue, Speaker speaker)
         {
-            _dialogueSystem.ShowDialogue(speaker, dialogue);
+            DialogueSystem.Instance.ShowDialogue(speaker, dialogue);
             _speaker = speaker;
         }
     
         public void HideDialogue(Speaker speaker)
         {
-            _dialogueSystem.HideDialogue(speaker);
+            DialogueSystem.Instance.HideDialogue(speaker);
         }
     
         public void NextDialogue()

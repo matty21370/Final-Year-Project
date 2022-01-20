@@ -1,6 +1,7 @@
 ﻿using System;
 using Game.Character;
 using Game;
+using Game.Dialogue;
 
 namespace Game.Interaction.Interactables
 {
@@ -31,7 +32,6 @@ namespace Game.Interaction.Interactables
                 if (_speaker != null)
                 {
                     _speaker.Initiate();
-                    print("Speaking");
                 }
             }
         }

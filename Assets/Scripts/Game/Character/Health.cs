@@ -15,15 +15,12 @@ namespace Game.Character
 
         private bool _isAlive = true;
 
-        private UIManager _uiManager;
-
         private Animator _animator;
         private static readonly int Die = Animator.StringToHash("die");
         private static readonly int Revive = Animator.StringToHash("revive");
 
         private void Awake()
         {
-            _uiManager = FindObjectOfType<UIManager>();
             _animator = GetComponent<Animator>();
             _currentHealth = maxHealth;
         }
@@ -88,14 +85,14 @@ namespace Game.Character
         {
             yield return new WaitForSeconds(2f);
             
-            FindObjectOfType<UIManager>().ShowDeathScreen();
+            UIManager.Instance.ShowDeathScreen();
         }
 
         public void UpdateHealth()
         {
             if(!gameObject.CompareTag("Player")) return;
             
-            _uiManager.UpdateHealthbar(_currentHealth, maxHealth);
+            UIManager.Instance.UpdateHealthbar(_currentHealth, maxHealth);
         }
 
         public float GetHealth()
@@ -122,7 +119,6 @@ namespace Game.Character
         {
             Dictionary<string, object> saveData = new Dictionary<string, object>();
             saveData["currentHealth"] = _currentHealth;
-            //saveData["isAlive"] = _isAlive;
             return saveData;
         }
 
@@ -140,7 +136,6 @@ namespace Game.Character
                 SetHealth((float) saveData["currentHealth"]);
             }
             
-            //_animator.ResetTrigger(Die);
             _animator.ResetTrigger(Revive);
         }
     }

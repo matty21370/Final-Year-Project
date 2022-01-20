@@ -12,8 +12,6 @@ namespace Game.Character
     [RequireComponent(typeof(Target))]
     public class Combat : MonoBehaviour, ISaveable
     {
-        private Target _target;
-
         private Animator _animator;
         private Movement _movement;
 
@@ -21,10 +19,10 @@ namespace Game.Character
         
         [SerializeField] private float combatRange = 1.5f;
         [SerializeField] private float attackCooldown = 1f;
-
-        [SerializeField] private Transform weaponHand;
-
+        private Target _target;
         private float _nextAttack;
+        
+        [SerializeField] private Transform weaponHand;
 
         [SerializeField] private string[] weapons;
         private Weapon[] _equippedWeapons = new Weapon[4];
@@ -34,6 +32,9 @@ namespace Game.Character
 
         [SerializeField] private bool isAggressive = false;
         private bool _isAggressive;
+        
+        private static readonly int InCombat = Animator.StringToHash("inCombat");
+        private static readonly int Sword = Animator.StringToHash("sword");
 
         private void Awake()
         {
@@ -59,14 +60,7 @@ namespace Game.Character
                 HandleTarget();
             }
 
-            if (_inCombat)
-            {
-                _animator.SetBool("inCombat", true);
-            }
-            else
-            {
-                _animator.SetBool("inCombat", false);
-            }
+            _animator.SetBool(InCombat, _inCombat);
         }
 
         private void HandleTarget()
@@ -102,10 +96,9 @@ namespace Game.Character
                     case Weapon.WeaponTypes.Unarmed:
                         int variant = Random.Range(1, 3);
                         _animator.SetTrigger("unarmed" + variant); 
-                        print("unarmed" + variant);
                         break;
                     case Weapon.WeaponTypes.Sword:
-                        _animator.SetTrigger("sword");
+                        _animator.SetTrigger(Sword);
                         break;
                 }
 
@@ -122,6 +115,30 @@ namespace Game.Character
             }
 
             _equippedWeapons[index] = weapon;
+        }
+        
+        public void Hit()
+        {
+            if (_target != null)
+            {
+                _target.GetComponent<Health>().TakeDamage(_equippedWeapons[_currentWeapon].Damage);
+            }
+        }
+        
+        public object CaptureState()
+        {
+            Dictionary<string, object> saveData = new Dictionary<string, object>();
+            saveData["inCombat"] = _inCombat;
+            saveData["aggressive"] = _isAggressive;
+
+            return saveData;
+        }
+
+        public void RestoreState(object state)
+        {
+            Dictionary<string, object> data = (Dictionary<string, object>) state;
+            _inCombat = (bool) data["inCombat"];
+            _isAggressive = (bool) data["aggressive"];
         }
 
         public void SetTarget(Target newTarget)
@@ -150,14 +167,6 @@ namespace Game.Character
             return attackCooldown;
         }
 
-        public void Hit()
-        {
-            if (_target != null)
-            {
-                _target.GetComponent<Health>().TakeDamage(_equippedWeapons[_currentWeapon].Damage);
-            }
-        }
-
         public bool IsAggressive()
         {
             return _isAggressive;
@@ -166,22 +175,6 @@ namespace Game.Character
         public void SetAggressive(bool val)
         {
             _isAggressive = val;
-        }
-
-        public object CaptureState()
-        {
-            Dictionary<string, object> saveData = new Dictionary<string, object>();
-            saveData["inCombat"] = _inCombat;
-            saveData["aggressive"] = _isAggressive;
-
-            return saveData;
-        }
-
-        public void RestoreState(object state)
-        {
-            Dictionary<string, object> data = (Dictionary<string, object>) state;
-            _inCombat = (bool) data["inCombat"];
-            _isAggressive = (bool) data["aggressive"];
         }
     }
 }

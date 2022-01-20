@@ -12,17 +12,11 @@ namespace Game.Inventory
     {
         [SerializeField] private Image slotIcon;
 
-        private InventorySystem _inventory;
         private InteractionMenu _interactionMenu;
         private ItemInfo _itemInfo;
         private Item _itemInSlot;
 
         public Item ItemInSlot => _itemInSlot;
-
-        private void Awake()
-        {
-            _inventory = FindObjectOfType<InventorySystem>();
-        }
 
         public void Init(InteractionMenu menu)
         {
@@ -47,7 +41,7 @@ namespace Game.Inventory
         {
             if(_itemInSlot == null) return;
             
-            _inventory.RemoveItem(_itemInSlot);
+            InventorySystem.Instance.RemoveItem(_itemInSlot);
             ItemInfo itemInfo = FindObjectOfType<ItemInfo>();
             if(itemInfo != null) itemInfo.ResetInfo();
             _itemInSlot = null;

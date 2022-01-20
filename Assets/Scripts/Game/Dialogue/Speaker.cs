@@ -3,7 +3,7 @@ using Game.Saving;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Game.Character
+namespace Game.Dialogue
 {
     public class Speaker : MonoBehaviour, ISaveable
     {
@@ -15,14 +15,10 @@ namespace Game.Character
         
         private Queue<DialogueAction> _dialogues = new Queue<DialogueAction>();
     
-        private UIManager _uiManager;
-    
         public string CharacterName => characterName;
         
         private void Awake()
         {
-            _uiManager = FindObjectOfType<UIManager>();
-            
             ResetDialogue();
         }
     
@@ -46,7 +42,7 @@ namespace Game.Character
         {
             if (!NextDialogue())
             {
-                _uiManager.HideDialogue(this);
+                UIManager.Instance.HideDialogue(this);
                 _spoken = !repeating;
             }
         }
@@ -63,7 +59,7 @@ namespace Game.Character
                     dialogueEvent.Invoke();
                 }
     
-                _uiManager.ShowDialogue(dialogueAction.dialogue, this);
+                UIManager.Instance.ShowDialogue(dialogueAction.dialogue, this);
                 
                 return true;
             }

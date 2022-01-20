@@ -7,21 +7,37 @@ namespace Game.Dialogue
 {
     public class DialogueSystem : MonoBehaviour
     {
+        private static DialogueSystem _instance;
+        public static DialogueSystem Instance => _instance;
+        
         [SerializeField] private Text nameText, speechText;
 
         [SerializeField] private GameObject dialogueUI;
 
-        public void SetDialogue(string yeet, string text)
+        private void Awake()
         {
-            nameText.text = yeet;
-            speechText.text = text;
+            if (_instance != null && _instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
         }
-
+        
         public void ShowDialogue(Speaker speaker, string dialogue)
         {
             dialogueUI.SetActive(true);
             SetDialogue(speaker.CharacterName, dialogue);
             FindObjectOfType<PlayerController>().SetBusy(true);
+        }
+        
+        private void SetDialogue(string yeet, string text)
+        {
+            nameText.text = yeet;
+            speechText.text = text;
         }
 
         public void HideDialogue(Speaker speaker)

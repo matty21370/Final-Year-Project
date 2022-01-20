@@ -28,11 +28,11 @@ namespace Game.Character
 
         public void GiveItemToPlayer(String n)
         {
-            Item item = FindObjectOfType<ItemDatabase>().GetItem(n);
+            Item item = ItemDatabase.Instance.GetItem(n);
 
             if (item != null)
             {
-                FindObjectOfType<InventorySystem>().AddItem(item);
+                InventorySystem.Instance.AddItem(item);
             }
         }
     }

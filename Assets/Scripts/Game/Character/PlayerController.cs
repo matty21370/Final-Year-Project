@@ -18,8 +18,6 @@ namespace Game.Character
         private Interactor _interactor;
         private Health _health;
 
-        private UIManager _uiManager;
-        
         private bool _busy = false;
 
         public Health PlayerHealth => _health;
@@ -31,8 +29,6 @@ namespace Game.Character
             _combat = GetComponent<Combat>();
             _interactor = GetComponent<Interactor>();
             _health = GetComponent<Health>();
-            
-            _uiManager = FindObjectOfType<UIManager>();
         }
 
         private void Start()
@@ -52,7 +48,7 @@ namespace Game.Character
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                _uiManager.ToggleCharacterMenu();
+                UIManager.Instance.ToggleCharacterMenu();
             }
             
             if (Input.GetKeyDown(KeyCode.R))
@@ -62,14 +58,14 @@ namespace Game.Character
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                _uiManager.TogglePauseMenu();
+                UIManager.Instance.TogglePauseMenu();
             }
             
             if(_busy) return;
 
             if (Input.GetKeyDown(KeyCode.T))
             {
-                FindObjectOfType<InventorySystem>().AddItem(FindObjectOfType<ItemDatabase>().GetItem());
+                InventorySystem.Instance.AddItem(ItemDatabase.Instance.GetItem());
             }
             
             if (Input.GetMouseButton(0))
@@ -136,7 +132,7 @@ namespace Game.Character
         public void SetBusy(bool busy)
         {
             _busy = busy;
-            _uiManager.ToggleHealthbar(busy);
+            UIManager.Instance.ToggleHealthbar(busy);
         }
     }
 }

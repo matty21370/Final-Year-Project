@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Game.Saving;
 using Game.Items;
@@ -7,12 +8,28 @@ namespace Game.Inventory
 {
     public class InventorySystem : MonoBehaviour, ISaveable
     {
+        private static InventorySystem _instance;
+        public static InventorySystem Instance => _instance;
+        
         [SerializeField] private int numSlots;
         [SerializeField] private GameObject slotPrefab;
         [SerializeField] private GameObject panel1;
 
         private List<Slot> _slots = new List<Slot>();
         private List<Item> _items = new List<Item>();
+
+        private void Awake()
+        {
+            if (_instance != null && _instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+        }
 
         // Start is called before the first frame update
         void Start()
