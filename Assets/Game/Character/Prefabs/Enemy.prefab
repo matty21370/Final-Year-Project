@@ -6102,7 +6102,7 @@ MonoBehaviour:
   isPlayer: 0
   combatRange: 1.5
   attackCooldown: 3
-  weaponHand: {fileID: 0}
+  weaponHand: {fileID: 6647665343082625779}
   weapons:
   - Unarmed
   - Unarmed

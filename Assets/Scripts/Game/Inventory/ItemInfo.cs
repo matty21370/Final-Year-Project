@@ -1,6 +1,7 @@
 ﻿using System;
 using Game.Character;
 using Game.Items;
+using Game.Items.Weapons;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,7 +47,23 @@ namespace Game.Inventory
             _contextItem = item;
             itemNameText.text = item.ItemName;
             itemDescriptionText.text = item.ItemDescription;
-            onUseText.text = item.OnUse;
+            if (item.GetType() == ItemTypes.Weapon)
+            {
+                var weapon = (Weapon) item;
+                onUse.text = "Stats";
+                onUseText.text = $"Damage: {weapon.Damage}\nRange: {weapon.Range}";
+            }
+            else if (item.GetType() == ItemTypes.Consumable)
+            {
+                var consumable = (Food) item;
+                onUse.text = "When eaten:";
+                onUseText.text = item.OnUse;
+            }
+            else
+            {
+                onUse.text = "";
+                onUseText.text = "";
+            }
             OnUpdate();
         }
 

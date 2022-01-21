@@ -30,7 +30,8 @@ namespace Game
         private void Init()
         {
             _items.Add(new Food("Test food", "This is food added for testing purposes.", "Sprites/Food", 20));
-            _items.Add(new Weapon("Unarmed", "no", "Deals damage", null, 10f, 1.5f, Weapon.WeaponTypes.Unarmed));
+            _items.Add(new Weapon("Unarmed", "no", "Deals damage", null, 10f, 1.5f, Weapon.WeaponTypes.Unarmed, null));
+            _items.Add(new Weapon("Sword", "The best sword ever.", "Deals damage", null, 20f, 1.5f, Weapon.WeaponTypes.Sword, "Test"));
             _items.Add(new Resource("Wood", "Used for crafting.", "Sprites/Wood"));
         }
 

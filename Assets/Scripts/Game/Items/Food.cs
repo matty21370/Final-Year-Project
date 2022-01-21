@@ -13,6 +13,7 @@ namespace Game.Items
         public Food(string itemName, string itemDescription, string iconPath, float healAmt) : base(itemName, itemDescription, "Restores " + healAmt + " health", iconPath, true)
         {
             _healAmt = healAmt;
+            ItemType = ItemTypes.Consumable;
         }
         
         public override void Use()

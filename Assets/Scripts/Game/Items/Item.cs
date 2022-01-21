@@ -9,6 +9,8 @@ namespace Game.Items
         private string _itemDescription, _onUse;
         private string _iconPath;
         private bool _interactable;
+        
+        protected ItemTypes ItemType;
 
         public string ItemName => _itemName;
         public string ItemDescription => _itemDescription;
@@ -25,7 +27,20 @@ namespace Game.Items
             _interactable = interactable;
         }
         public abstract void Use();
+
+        public ItemTypes GetType()
+        {
+            return ItemType;
+        }
         
+    }
+
+    public enum ItemTypes
+    {
+        Consumable,
+        Weapon,
+        Equipment,
+        Resource
     }
 }
 

@@ -33,8 +33,11 @@ namespace Game.Character
         [SerializeField] private bool isAggressive = false;
         private bool _isAggressive;
         
-        private static readonly int InCombat = Animator.StringToHash("inCombat");
+        //private static readonly int InCombat = Animator.StringToHash("inCombat");
         private static readonly int Sword = Animator.StringToHash("sword");
+
+        private GameObject _weaponPrefab;
+        private bool _hasModel = false;
 
         private void Awake()
         {
@@ -60,7 +63,22 @@ namespace Game.Character
                 HandleTarget();
             }
 
-            _animator.SetBool(InCombat, _inCombat);
+            if (_inCombat)
+            {
+                if (_equippedWeapons[0].WeaponType == Weapon.WeaponTypes.Unarmed)
+                {
+                    _animator.SetBool("inCombatUnarmed", _inCombat);
+                }
+                else if (_equippedWeapons[0].WeaponType == Weapon.WeaponTypes.Sword)
+                {
+                    _animator.SetBool("inCombatSword", _inCombat);
+                }
+            }
+            else
+            {
+                _animator.SetBool("inCombatSword", false);
+                _animator.SetBool("inCombatUnarmed", false);
+            }
         }
 
         private void HandleTarget()
@@ -144,6 +162,11 @@ namespace Game.Character
         public void SetTarget(Target newTarget)
         {
             _target = newTarget;
+            if (_equippedWeapons[0].HasModel() && !_hasModel)
+            {
+                _weaponPrefab = Instantiate(_equippedWeapons[0].GetModel(), weaponHand);
+                _hasModel = true;
+            }
         }
 
         public bool HasTarget()
@@ -155,6 +178,11 @@ namespace Game.Character
         {
             _target = null;
             _inCombat = false;
+            if (_weaponPrefab != null)
+            {
+                Destroy(_weaponPrefab);
+                _hasModel = false;
+            }
         }
 
         public bool IsInCombat()
