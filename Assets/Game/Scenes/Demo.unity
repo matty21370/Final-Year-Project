@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: b4d1d10ed4e19c94b96dc6075f555457, type: 2}
---- !u!114 &81574152 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1370587726600398802, guid: 5176b3b94778f1348b5edbffd41867da, type: 3}
-  m_PrefabInstance: {fileID: 1370587726664589018}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0940438935ed1f74baf296732097e0ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &98583605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6656153426227831329, guid: 737d6fc5dd5f5a04582f9a0c7377e08e, type: 3}
@@ -171,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3474910749776566119, guid: 737d6fc5dd5f5a04582f9a0c7377e08e, type: 3}
       propertyPath: weapons.Array.data[0]
-      value: Sword
+      value: Hammer
       objectReference: {fileID: 0}
     - target: {fileID: 3474910749776566119, guid: 737d6fc5dd5f5a04582f9a0c7377e08e, type: 3}
       propertyPath: weapons.Array.data[1]
@@ -427,8 +416,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Guard
+  openingDialogue: 
   dialogues:
-  - dialogue: 
+  - dialogue: yeet
     e:
       m_PersistentCalls:
         m_Calls: []
@@ -985,28 +975,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Bob
+  openingDialogue: 
   dialogues:
   - dialogue: yeet
     e:
       m_PersistentCalls:
         m_Calls: []
-  - dialogue: Hey! Thanks for coming.
-    e:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1003393063}
-          m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
-          m_MethodName: Wave
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - dialogue: Behind me is one of many slave operations owned by the cult.
+  - dialogue: Behind me is one of the many slave operations owned by the cult.
     e:
       m_PersistentCalls:
         m_Calls:
@@ -1022,8 +997,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - dialogue: Kill the guards, free the slaves, and take any kind of loot you come
-      across.
+  - dialogue: Break in, kill the guards, free the captives, and take any loot you
+      come accross.
     e:
       m_PersistentCalls:
         m_Calls:
@@ -1045,18 +1020,6 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1003393063}
           m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
-          m_MethodName: Talk
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1003393063}
-          m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
           m_MethodName: GiveItemToPlayer
           m_Mode: 5
           m_Arguments:
@@ -1065,6 +1028,18 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: Test Food
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1003393063}
+          m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
+          m_MethodName: Talk
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
   - dialogue: Easy right? Well get to it.
@@ -2145,30 +2120,42 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 681900103}
+    - target: {fileID: 1197652181, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197652181, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197652181, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 223.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197652181, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25.828
+      objectReference: {fileID: 0}
     - target: {fileID: 1197652182, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 81574152}
+      objectReference: {fileID: 2050169675}
+    - target: {fileID: 1197652182, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197652182, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.Dialogue.DialogueSystem, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393841611, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1404600293, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 681900103}
-    - target: {fileID: 1801700245, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1075423472683970205, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1075423472683970205, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1075423472683970205, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.7365824
-      objectReference: {fileID: 0}
     - target: {fileID: 1075423472738255346, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2256,6 +2243,22 @@ PrefabInstance:
     - target: {fileID: 1075423472738255358, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823354499106032338, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823354499106032338, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823354499106032338, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 669.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823354499106032338, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25.828
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
@@ -2373,7 +2376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4108668457750612354, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
       propertyPath: weapons.Array.data[0]
-      value: Sword
+      value: Hammer
       objectReference: {fileID: 0}
     - target: {fileID: 4108668457750612354, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
       propertyPath: weapons.Array.data[1]

@@ -25,7 +25,7 @@ namespace Game.Character
         [SerializeField] private Transform weaponHand;
 
         [SerializeField] private string[] weapons;
-        private Weapon[] _equippedWeapons = new Weapon[4];
+        private Items.Weapons.Weapon[] _equippedWeapons = new Items.Weapons.Weapon[4];
         private int _currentWeapon;
 
         private bool _inCombat = false;
@@ -51,7 +51,7 @@ namespace Game.Character
         {
             for (int i = 0; i < weapons.Length; i++)
             {
-                _equippedWeapons[i] = (Weapon)FindObjectOfType<ItemDatabase>().GetItem(weapons[i]);
+                _equippedWeapons[i] = (Items.Weapons.Weapon)FindObjectOfType<ItemDatabase>().GetItem(weapons[i]);
             }
         }
 
@@ -65,11 +65,11 @@ namespace Game.Character
 
             if (_inCombat)
             {
-                if (_equippedWeapons[0].WeaponType == Weapon.WeaponTypes.Unarmed)
+                if (_equippedWeapons[0].WeaponType == Items.Weapons.Weapon.WeaponTypes.Unarmed)
                 {
                     _animator.SetBool("inCombatUnarmed", _inCombat);
                 }
-                else if (_equippedWeapons[0].WeaponType == Weapon.WeaponTypes.Sword)
+                else if (_equippedWeapons[0].WeaponType == Items.Weapons.Weapon.WeaponTypes.Sword)
                 {
                     _animator.SetBool("inCombatSword", _inCombat);
                 }
@@ -111,11 +111,11 @@ namespace Game.Character
                 
                 switch (_equippedWeapons[weapon].WeaponType)
                 {
-                    case Weapon.WeaponTypes.Unarmed:
+                    case Items.Weapons.Weapon.WeaponTypes.Unarmed:
                         int variant = Random.Range(1, 3);
                         _animator.SetTrigger("unarmed" + variant); 
                         break;
-                    case Weapon.WeaponTypes.Sword:
+                    case Items.Weapons.Weapon.WeaponTypes.Sword:
                         _animator.SetTrigger(Sword);
                         break;
                 }
@@ -124,7 +124,7 @@ namespace Game.Character
             }
         }
 
-        public void EquipWeapon(int index, Weapon weapon)
+        public void EquipWeapon(int index, Items.Weapons.Weapon weapon)
         {
             if (index >= _equippedWeapons.Length)
             {
@@ -140,6 +140,7 @@ namespace Game.Character
             if (_target != null)
             {
                 _target.GetComponent<Health>().TakeDamage(_equippedWeapons[_currentWeapon].Damage);
+                print($"{gameObject.name} dealt {_equippedWeapons[_currentWeapon].Damage} damage to {_target.gameObject.name}");
             }
         }
         

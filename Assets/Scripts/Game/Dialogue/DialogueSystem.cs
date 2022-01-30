@@ -9,6 +9,8 @@ namespace Game.Dialogue
     {
         private static DialogueSystem _instance;
         public static DialogueSystem Instance => _instance;
+
+        private Speaker _activeSpeaker;
         
         [SerializeField] private Text nameText, speechText;
 
@@ -25,6 +27,18 @@ namespace Game.Dialogue
                 _instance = this;
                 DontDestroyOnLoad(gameObject);
             }
+        }
+
+        public void Initiate(Speaker speaker)
+        {
+            _activeSpeaker = speaker;
+        }
+        
+        public void NextDialogue()
+        {
+            if(_activeSpeaker == null) return;
+            
+            _activeSpeaker.ShowDialogue();
         }
         
         public void ShowDialogue(Speaker speaker, string dialogue)

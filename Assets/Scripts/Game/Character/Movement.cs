@@ -37,6 +37,16 @@ namespace Game.Character
             _agent.SetDestination(position);
         }
 
+        public void Move(float x, float y, float z)
+        {
+            _agent.SetDestination(new Vector3(x, y, z));
+        }
+
+        public void Move(GameObject g)
+        {
+            _agent.SetDestination(g.transform.position);
+        }
+
         public void Stop()
         {
             _agent.SetDestination(transform.position);

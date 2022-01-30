@@ -21,7 +21,6 @@ namespace Game
         [SerializeField] private GameObject deathScreen;
 
         [SerializeField] private GameObject dialogueUI;
-        private Speaker _speaker;
     
         private bool _characterMenuOpen = false;
         private bool _pauseMenuOpen = false;
@@ -41,24 +40,6 @@ namespace Game
             }
             
             _player = FindObjectOfType<PlayerController>();
-        }
-    
-        public void ShowDialogue(string dialogue, Speaker speaker)
-        {
-            DialogueSystem.Instance.ShowDialogue(speaker, dialogue);
-            _speaker = speaker;
-        }
-    
-        public void HideDialogue(Speaker speaker)
-        {
-            DialogueSystem.Instance.HideDialogue(speaker);
-        }
-    
-        public void NextDialogue()
-        {
-            if(_speaker == null) return;
-            
-            _speaker.ShowDialogue();
         }
     
         public void ShowDeathScreen()

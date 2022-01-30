@@ -21,8 +21,13 @@ namespace Game.Interaction.Interactables
             base.OnInteract(interactor);
 
             Interacted = false;
+
+            if (_combat == null && _speaker != null)
+            {
+                _speaker.Initiate();
+                return;
+            }
             
-            if(_combat == null) _speaker.Initiate();
             if (_combat.IsAggressive())
             {
                 interactor.GetComponent<Combat>().SetTarget(this);

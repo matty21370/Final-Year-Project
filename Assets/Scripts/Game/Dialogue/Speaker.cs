@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Game.Saving;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace Game.Dialogue
     public class Speaker : MonoBehaviour, ISaveable
     {
         [SerializeField] private string characterName;
+        [SerializeField] private string openingDialogue;
     
         [SerializeField] private DialogueAction[] dialogues;
         [SerializeField] private bool repeating;
@@ -24,9 +26,9 @@ namespace Game.Dialogue
     
         public void ResetDialogue()
         {
-            foreach (var dialogue in dialogues)
+            foreach (var sequence in dialogues)
             {
-                _dialogues.Enqueue(dialogue);
+                _dialogues.Enqueue(sequence);
             }
         }
         
@@ -34,6 +36,7 @@ namespace Game.Dialogue
         {
             if (!_spoken)
             {
+                DialogueSystem.Instance.Initiate(this);
                 ShowDialogue();
             }
         }
@@ -42,7 +45,7 @@ namespace Game.Dialogue
         {
             if (!NextDialogue())
             {
-                UIManager.Instance.HideDialogue(this);
+                DialogueSystem.Instance.HideDialogue(this);
                 _spoken = !repeating;
             }
         }
@@ -59,7 +62,7 @@ namespace Game.Dialogue
                     dialogueEvent.Invoke();
                 }
     
-                UIManager.Instance.ShowDialogue(dialogueAction.dialogue, this);
+                DialogueSystem.Instance.ShowDialogue(this, dialogueAction.dialogue);
                 
                 return true;
             }
@@ -82,5 +85,12 @@ namespace Game.Dialogue
     {
         public string dialogue;
         public UnityEvent e;
+    }
+
+    [Serializable]
+    public class DialogueSequence
+    {
+        public DialogueAction[] dialogues;
+        public bool active;
     }
 }

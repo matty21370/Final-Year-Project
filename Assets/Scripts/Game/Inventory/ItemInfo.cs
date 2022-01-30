@@ -49,7 +49,7 @@ namespace Game.Inventory
             itemDescriptionText.text = item.ItemDescription;
             if (item.GetType() == ItemTypes.Weapon)
             {
-                var weapon = (Weapon) item;
+                var weapon = (Items.Weapons.Weapon) item;
                 onUse.text = "Stats";
                 onUseText.text = $"Damage: {weapon.Damage}\nRange: {weapon.Range}";
             }
