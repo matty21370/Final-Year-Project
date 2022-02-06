@@ -9,74 +9,39 @@ namespace Game.Dialogue
     public class Speaker : MonoBehaviour, ISaveable
     {
         [SerializeField] private string characterName;
-        [SerializeField] private string openingDialogue;
+        [SerializeField] private string openingDialogue, endingDialogue;
     
-        [SerializeField] private DialogueAction[] dialogues;
-        [SerializeField] private bool repeating;
+        [SerializeField] private DialogueSequence[] sequences;
         private bool _spoken;
         
-        private Queue<DialogueAction> _dialogues = new Queue<DialogueAction>();
-    
         public string CharacterName => characterName;
-        
-        private void Awake()
-        {
-            ResetDialogue();
-        }
-    
-        public void ResetDialogue()
-        {
-            foreach (var sequence in dialogues)
-            {
-                _dialogues.Enqueue(sequence);
-            }
-        }
-        
+
+        public string OpeningDialogue => openingDialogue;
+        public string EndingDialogue => endingDialogue;
+
         public void Initiate()
         {
-            if (!_spoken)
-            {
-                DialogueSystem.Instance.Initiate(this);
-                ShowDialogue();
-            }
-        }
-        
-        public void ShowDialogue()
-        {
-            if (!NextDialogue())
-            {
-                DialogueSystem.Instance.HideDialogue(this);
-                _spoken = !repeating;
-            }
-        }
-        
-        private bool NextDialogue()
-        {
-            if (_dialogues.Count > 0)
-            {
-                DialogueAction dialogueAction = _dialogues.Dequeue();
-                UnityEvent dialogueEvent = dialogueAction.e;
-    
-                if (dialogueEvent != null)
-                {
-                    dialogueEvent.Invoke();
-                }
-    
-                DialogueSystem.Instance.ShowDialogue(this, dialogueAction.dialogue);
-                
-                return true;
-            }
-            return false;
+            DialogueSystem.Instance.Activate(this, sequences);
         }
 
         public object CaptureState()
         {
-            return _spoken;
+            List<bool> list = new List<bool>();
+            foreach (var sequence in sequences)
+            {
+                list.Add(sequence.spoken);
+            }
+
+            return list;
         }
 
         public void RestoreState(object state)
         {
-            _spoken = (bool) state;
+            List<bool> list = (List<bool>) state;
+            for (int i = 0; i < list.Count; i++)
+            {
+                sequences[i].spoken = list[i];
+            }
         }
     }
     
@@ -90,7 +55,30 @@ namespace Game.Dialogue
     [Serializable]
     public class DialogueSequence
     {
+        public string promptText;
         public DialogueAction[] dialogues;
-        public bool active;
+        public bool repeating, spoken;
+        
+        private int _index = 0;
+
+        public DialogueAction GetNextDialogue()
+        {
+            if (!repeating) spoken = true;
+            _index++;
+            try
+            {
+                return dialogues[_index];
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                return null;
+            }
+        }
+
+        public void Reset()
+        {
+            _index = 0;
+        }
+
     }
 }

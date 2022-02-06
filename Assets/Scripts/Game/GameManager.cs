@@ -10,7 +10,7 @@ namespace Game
 
         private void Awake()
         {
-            QualitySettings.vSyncCount = 1;
+            //QualitySettings.vSyncCount = 1;
             _savingSystem = GetComponent<SavingSystem>();
         }
 

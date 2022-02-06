@@ -98,7 +98,7 @@ namespace Game.Character
             {
                 _movement.Move(_target.transform.position);
                 _inCombat = false;
-            }
+            } 
             
             if(!_target.GetComponent<Health>().IsAlive()) RemoveTarget();
         }
