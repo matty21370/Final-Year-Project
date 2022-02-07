@@ -32,12 +32,17 @@ namespace Game.Character
 
         [SerializeField] private bool isAggressive = false;
         private bool _isAggressive;
+
+        [SerializeField] private string factionName;
+        private Faction _faction;
         
         //private static readonly int InCombat = Animator.StringToHash("inCombat");
         private static readonly int Sword = Animator.StringToHash("sword");
 
         private GameObject _weaponPrefab;
         private bool _hasModel = false;
+
+        public string FactionName => factionName;
 
         private void Awake()
         {
@@ -53,6 +58,8 @@ namespace Game.Character
             {
                 _equippedWeapons[i] = (Items.Weapons.Weapon)FindObjectOfType<ItemDatabase>().GetItem(weapons[i]);
             }
+            
+            _faction = Faction.GetFactionByName(factionName);
         }
 
         // Update is called once per frame
@@ -204,6 +211,65 @@ namespace Game.Character
         public void SetAggressive(bool val)
         {
             _isAggressive = val;
+        }
+
+        public bool IsEnemyOfFaction(Faction f)
+        {
+            return _faction.IsEnemy(f);
+        } 
+
+    }
+
+    public class Faction
+    {
+        public static List<Faction> AllFactions = new List<Faction>();
+
+        public static Faction GetFactionByName(string name)
+        {
+            foreach (var faction in AllFactions)
+            {
+                if (faction.FactionName == name)
+                {
+                    return faction;
+                }
+            }
+
+            return null;
+        }
+
+        public static void RegisterFaction(string name)
+        {
+            new Faction(name);
+        }
+
+        private string _factionName;
+
+        private List<Faction> _enemyFactions = new List<Faction>();
+
+        public string FactionName => _factionName;
+        
+        private Faction(string name)
+        {
+            _factionName = name;
+            AllFactions.Add(this);
+        }
+
+        public void AssignEnemy(Faction faction)
+        {
+            _enemyFactions.Add(faction);
+        }
+
+        public bool IsEnemy(Faction faction)
+        {
+            foreach (var f in _enemyFactions)
+            {
+                if (f.FactionName == faction.FactionName)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

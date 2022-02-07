@@ -155,6 +155,10 @@ PrefabInstance:
       value: 750c81a5-c348-43ac-8018-24d100f54407
       objectReference: {fileID: 0}
     - target: {fileID: 3474910749776566119, guid: 737d6fc5dd5f5a04582f9a0c7377e08e, type: 3}
+      propertyPath: factionName
+      value: The Omlex
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: 737d6fc5dd5f5a04582f9a0c7377e08e, type: 3}
       propertyPath: weapons.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -274,6 +278,10 @@ PrefabInstance:
       propertyPath: uniqueIdentifier
       value: 9ead0fe8-da32-4390-ad23-cb95be56e793
       objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: 737d6fc5dd5f5a04582f9a0c7377e08e, type: 3}
+      propertyPath: factionName
+      value: The Omlex
+      objectReference: {fileID: 0}
     - target: {fileID: 6654011020469115965, guid: 737d6fc5dd5f5a04582f9a0c7377e08e, type: 3}
       propertyPath: m_Name
       value: House Guard
@@ -357,7 +365,7 @@ Transform:
   - {fileID: 2050169674}
   - {fileID: 1717547525}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &487189641 stripped
 GameObject:
@@ -1116,6 +1124,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueIdentifier: 11bcc7c5-3950-4495-8fe2-e9c5dc214ee9
+--- !u!1001 &1015558609
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1369031296425274, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_Name
+      value: Tree
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252784401376168, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252784401376168, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.201168
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252784401376168, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0000010093008
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252784401376168, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.982958
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252784401376168, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252784401376168, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252784401376168, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252784401376168, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252784401376168, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252784401376168, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252784401376168, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 22a3fd8d3e59a1149bdcd775c0e87241, type: 3}
 --- !u!1 &1063712365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,7 +1444,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1393841611 stripped
 GameObject:
@@ -1689,6 +1754,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: factionName
+      value: The Resistance
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
       propertyPath: isAggressive
       value: 0
       objectReference: {fileID: 0}
@@ -1718,7 +1787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6656153426227831329, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6656153426227831329, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1857,6 +1926,10 @@ PrefabInstance:
     - target: {fileID: 2006847531537884323, guid: 737d6fc5dd5f5a04582f9a0c7377e08e, type: 3}
       propertyPath: uniqueIdentifier
       value: 9712db78-3f7f-48b8-a8f2-036e27ff165f
+      objectReference: {fileID: 0}
+    - target: {fileID: 3474910749776566119, guid: 737d6fc5dd5f5a04582f9a0c7377e08e, type: 3}
+      propertyPath: factionName
+      value: The Omlex
       objectReference: {fileID: 0}
     - target: {fileID: 6654011020469115965, guid: 737d6fc5dd5f5a04582f9a0c7377e08e, type: 3}
       propertyPath: m_Name
@@ -2488,7 +2561,7 @@ Transform:
   - {fileID: 617662317}
   - {fileID: 1002527238}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -55.278, z: 0}
 --- !u!1 &2115126379
 GameObject:
@@ -2600,7 +2673,7 @@ Transform:
   - {fileID: 705507995}
   - {fileID: 2086530672}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1075423472835029448
 PrefabInstance:
@@ -2872,6 +2945,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1345477614}
     - target: {fileID: 4108668457750612354, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
+      propertyPath: factionName
+      value: The Resistance
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108668457750612354, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
       propertyPath: weapons.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -2897,7 +2974,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 6a1bd5240f70eb54b99f5b664d420368, type: 2}
     - target: {fileID: 6152718211545742532, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6152718211545742532, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
       propertyPath: m_LocalPosition.x

@@ -23,9 +23,7 @@ namespace Game.Utility
                 DontDestroyOnLoad(gameObject);
             }
             
-            Model model = new Model("Test", (GameObject)Resources.Load("Models/Test"));
-            print(model.TheModel.ToString());
-            _models.Add(model);
+            _models.Add(new Model("Test", (GameObject)Resources.Load("Models/Test")));
         }
 
         public GameObject GetModel(string n)

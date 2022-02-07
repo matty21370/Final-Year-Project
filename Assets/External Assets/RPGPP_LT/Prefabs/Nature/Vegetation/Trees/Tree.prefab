@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 4252784401376168}
   - component: {fileID: 33583730029358272}
   - component: {fileID: 23009263249696568}
+  - component: {fileID: 3815851176124905470}
+  - component: {fileID: -4233344971397081352}
   m_Layer: 0
-  m_Name: rpgpp_lt_tree_pine_01
+  m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,3 +84,31 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3815851176124905470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369031296425274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10458b50c644a848f1636fabe276198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 1.5
+  interactionTime: 1
+  itemToGive: Wood
+--- !u!65 &-4233344971397081352
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369031296425274}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.79294693, y: 6.930383, z: 0.55144185}
+  m_Center: {x: -0.19897133, y: 3.4651916, z: -0.41947773}

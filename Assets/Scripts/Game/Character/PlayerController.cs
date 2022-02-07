@@ -103,6 +103,7 @@ namespace Game.Character
                 Interactable interactable = hit.transform.GetComponent<Interactable>();
                 if (interactable != null)
                 {
+                    print("Yeet");
                     _interactor.Interact(interactable);
                 }
                 else
