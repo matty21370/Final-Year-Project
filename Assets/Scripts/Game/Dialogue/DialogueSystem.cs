@@ -10,23 +10,15 @@ namespace Game.Dialogue
     {
         private static DialogueSystem _instance;
         public static DialogueSystem Instance => _instance;
-
-        private Speaker _activeSpeaker;
-
+        
         [SerializeField] private Text nameText, speechText;
-
-        [SerializeField] private GameObject dialogueUI;
-
+        [SerializeField] private GameObject dialogueUI, buttonPrefab, buttonContainer, nextDialogueButton;
+        [SerializeField] private CanvasGroup endDialogueButton;
+        
+        private Speaker _activeSpeaker;
         private DialogueSequence _activeSequence;
 
-        private GameObject _buttonContainer;
-        [SerializeField] private GameObject buttonPrefab;
-
-        private bool _yeet = false;
-
-        [SerializeField] private CanvasGroup endDialogueButton;
-
-        public GameObject nextDialogueButton;
+        private bool _active = false;
         
         private List<GameObject> _activeButtons = new List<GameObject>();
         private List<DialogueSequence> _sequences = new List<DialogueSequence>();
@@ -42,24 +34,11 @@ namespace Game.Dialogue
                 _instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-            
-            //_buttonContainer = GameObject.Find("Options");
         }
-
-        public void Initialization(GameObject buttonContainer)
-        {
-            _buttonContainer = buttonContainer;
-        }
-
-        public void Initiate(Speaker speaker, DialogueSequence sequence)
-        {
-            _activeSpeaker = speaker;
-            _activeSequence = sequence;
-        }
-
+        
         public void Activate(Speaker speaker, DialogueSequence[] sequences)
         {
-            if(_yeet) return;
+            if(_active) return;
 
             _activeSpeaker = speaker;
             nameText.text = _activeSpeaker.CharacterName;
@@ -77,12 +56,7 @@ namespace Game.Dialogue
             dialogueUI.SetActive(true);
             SetDialogue(speaker.OpeningDialogue);
             FindObjectOfType<PlayerController>().SetBusy(true);
-            _yeet = true;
-        }
-
-        public void Reactivate()
-        {
-            SetUpButtons();
+            _active = true;
         }
 
         public void InitiateSequence(DialogueSequence sequence)
@@ -120,7 +94,7 @@ namespace Game.Dialogue
             _activeSpeaker = null;
             _activeSequence = null;
             _sequences.Clear();
-            _yeet = false;
+            _active = false;
             DestroyButtons();
             FindObjectOfType<PlayerController>().SetBusy(false);
             SetDialogue("");
@@ -131,7 +105,7 @@ namespace Game.Dialogue
         {
             foreach (var sequence in _sequences)
             {
-                DialogueButton newButton = Instantiate(buttonPrefab, _buttonContainer.transform).GetComponent<DialogueButton>();
+                DialogueButton newButton = Instantiate(buttonPrefab, buttonContainer.transform).GetComponent<DialogueButton>();
                 newButton.Init(_activeSpeaker, sequence);
                 _activeButtons.Add(newButton.gameObject);
             }

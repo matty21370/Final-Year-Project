@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Game;
+using Game.UI;
 using Game.Interaction;
 using Game.Inventory;
 using UnityEngine;

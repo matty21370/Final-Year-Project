@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game
+namespace Game.Utility
 {
     public class ModelLoader : MonoBehaviour
     {

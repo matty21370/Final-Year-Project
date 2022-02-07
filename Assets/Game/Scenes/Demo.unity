@@ -1480,19 +1480,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2888335649395310182, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
   m_PrefabInstance: {fileID: 1075423472835029448}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1429501595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429501592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96c42e37371a47e7ba09b1e1107fe735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueSystem: {fileID: 1393841611}
 --- !u!1001 &1432896622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2220,8 +2207,9 @@ MonoBehaviour:
   speechText: {fileID: 1546356331}
   dialogueUI: {fileID: 1393841611}
   buttonPrefab: {fileID: 4727684257183604547, guid: d1c5303a797b25b4f838cebb9e637c5d, type: 3}
-  endDialogueButton: {fileID: 2086767522}
+  buttonContainer: {fileID: 1429501592}
   nextDialogueButton: {fileID: 1063712365}
+  endDialogueButton: {fileID: 2086767522}
 --- !u!1 &2086530671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2327,9 +2315,9 @@ RectTransform:
   m_Father: {fileID: 1429501593}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 446.5, y: -25.828}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2086767519
@@ -2663,7 +2651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1393841611, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1404600293, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

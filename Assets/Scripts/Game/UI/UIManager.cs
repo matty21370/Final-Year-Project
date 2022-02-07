@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Game
+namespace Game.UI
 {
     public class UIManager : MonoBehaviour
     {

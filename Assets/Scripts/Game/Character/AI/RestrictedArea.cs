@@ -1,5 +1,5 @@
 using System;
-using System.Collections;
+using Game.UI;
 using System.Collections.Generic;
 using Game.Character;
 using UnityEngine;

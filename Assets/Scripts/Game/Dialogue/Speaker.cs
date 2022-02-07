@@ -12,10 +12,8 @@ namespace Game.Dialogue
         [SerializeField] private string openingDialogue, endingDialogue;
     
         [SerializeField] private DialogueSequence[] sequences;
-        private bool _spoken;
         
         public string CharacterName => characterName;
-
         public string OpeningDialogue => openingDialogue;
         public string EndingDialogue => endingDialogue;
 

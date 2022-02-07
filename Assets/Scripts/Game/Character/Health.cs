@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Game.Saving;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.SceneManagement;
+using Game.UI;
 
 namespace Game.Character
 {
