@@ -23,6 +23,8 @@ namespace Game.Dialogue
         private List<GameObject> _activeButtons = new List<GameObject>();
         private List<DialogueSequence> _sequences = new List<DialogueSequence>();
 
+        private Rect _startingPosition, _speakingPosition;
+
         private void Awake()
         {
             if (_instance != null && _instance != this)
@@ -34,6 +36,9 @@ namespace Game.Dialogue
                 _instance = this;
                 DontDestroyOnLoad(gameObject);
             }
+
+            _startingPosition = new Rect(-75, 110, 689, 161);
+            _speakingPosition = new Rect(0, 110, 689, 161);
         }
         
         public void Activate(Speaker speaker, DialogueSequence[] sequences)
@@ -62,6 +67,7 @@ namespace Game.Dialogue
         public void InitiateSequence(DialogueSequence sequence)
         {
             DestroyButtons();
+            dialogueUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 110);
 
             nextDialogueButton.SetActive(true);
             endDialogueButton.alpha = 0;
@@ -82,6 +88,7 @@ namespace Game.Dialogue
         
         public void EndOfSequence()
         {
+            dialogueUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-75, 110);
             speechText.text = _activeSpeaker.EndingDialogue;
             nextDialogueButton.SetActive(false);
             _activeSequence.Reset();
