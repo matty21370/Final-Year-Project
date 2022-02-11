@@ -42,11 +42,6 @@ namespace Game.Items.Weapons
         {
             return ModelLoader.Instance.GetModel(_model);
         }
-
-        public override void Use()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

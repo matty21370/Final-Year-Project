@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Interaction.Interactables;
+using Game.Inventory;
 using Game.Items.Weapons;
 using Game.Saving;
 using UnityEngine;
@@ -25,8 +26,9 @@ namespace Game.Character
         [SerializeField] private Transform weaponHand;
 
         [SerializeField] private string[] weapons;
-        private Items.Weapons.Weapon[] _equippedWeapons = new Items.Weapons.Weapon[4];
-        private int _currentWeapon;
+        private Items.Weapons.Weapon[] _equippedWeapons = new Items.Weapons.Weapon[2];
+        //private int _currentWeapon;
+        private Weapon _currentWeapon;
 
         private bool _inCombat = false;
 
@@ -58,8 +60,13 @@ namespace Game.Character
             {
                 _equippedWeapons[i] = (Items.Weapons.Weapon)FindObjectOfType<ItemDatabase>().GetItem(weapons[i]);
             }
-            
+
             _faction = Faction.GetFactionByName(factionName);
+
+            if (isPlayer)
+            {
+                GetComponent<PlayerController>().InitWeapons(_equippedWeapons[0], _equippedWeapons[1]);
+            }
         }
 
         // Update is called once per frame
@@ -72,6 +79,13 @@ namespace Game.Character
 
             if (_inCombat)
             {
+
+                if (_equippedWeapons[0] == null)
+                {
+                    _animator.SetBool("inCombatUnarmed", _inCombat);
+                    return;
+                }
+                
                 if (_equippedWeapons[0].WeaponType == Items.Weapons.Weapon.WeaponTypes.Unarmed)
                 {
                     _animator.SetBool("inCombatUnarmed", _inCombat);
@@ -98,7 +112,7 @@ namespace Game.Character
 
                 if (!isPlayer)
                 {
-                    Attack(0);
+                    Attack(_equippedWeapons[0]);
                 }
             }
             else
@@ -110,13 +124,13 @@ namespace Game.Character
             if(!_target.GetComponent<Health>().IsAlive()) RemoveTarget();
         }
 
-        public void Attack(int weapon)
+        public void Attack(Weapon weapon)
         {
             if (Time.time > _nextAttack)
             {
                 _currentWeapon = weapon;
                 
-                switch (_equippedWeapons[weapon].WeaponType)
+                switch (_currentWeapon.WeaponType)
                 {
                     case Items.Weapons.Weapon.WeaponTypes.Unarmed:
                         int variant = Random.Range(1, 3);
@@ -146,8 +160,8 @@ namespace Game.Character
         {
             if (_target != null)
             {
-                _target.GetComponent<Health>().TakeDamage(_equippedWeapons[_currentWeapon].Damage);
-                print($"{gameObject.name} dealt {_equippedWeapons[_currentWeapon].Damage} damage to {_target.gameObject.name}");
+                _target.GetComponent<Health>().TakeDamage(_currentWeapon.Damage);
+                print($"{gameObject.name} dealt {_currentWeapon.Damage} damage to {_target.gameObject.name}");
             }
         }
         
@@ -174,6 +188,21 @@ namespace Game.Character
             {
                 _weaponPrefab = Instantiate(_equippedWeapons[0].GetModel(), weaponHand);
                 _hasModel = true;
+            }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if(isPlayer) return;
+            if(HasTarget()) return;
+            
+            Combat collided = other.GetComponent<Combat>();
+
+            if(collided == null) return;
+
+            if (collided.IsEnemyOfFaction(_faction))
+            {
+                SetTarget(collided.GetComponent<Target>());
             }
         }
 
@@ -216,7 +245,12 @@ namespace Game.Character
         public bool IsEnemyOfFaction(Faction f)
         {
             return _faction.IsEnemy(f);
-        } 
+        }
+
+        public void SetCollider(float radius)
+        {
+            GetComponent<SphereCollider>().radius = radius;
+        }
 
     }
 
@@ -239,7 +273,8 @@ namespace Game.Character
 
         public static void RegisterFaction(string name)
         {
-            new Faction(name);
+            Faction faction = new Faction(name);
+            AllFactions.Add(faction);
         }
 
         private string _factionName;
@@ -251,7 +286,6 @@ namespace Game.Character
         private Faction(string name)
         {
             _factionName = name;
-            AllFactions.Add(this);
         }
 
         public void AssignEnemy(Faction faction)

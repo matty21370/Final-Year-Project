@@ -7,10 +7,5 @@
         {
             ItemType = ItemTypes.Resource;
         }
-
-        public override void Use()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

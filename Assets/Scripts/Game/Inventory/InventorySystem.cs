@@ -18,6 +18,9 @@ namespace Game.Inventory
         private List<Slot> _slots = new List<Slot>();
         private List<Item> _items = new List<Item>();
 
+        [SerializeField] private EquipmentSlot[] equipmentSlots;
+        [SerializeField] private WeaponSlot[] weaponSlots;
+
         private void Awake()
         {
             if (_instance != null && _instance != this)
@@ -49,7 +52,6 @@ namespace Game.Inventory
                 {
                     _slots[i].SetItem(item);
                     _items.Add(item);
-                    print("Added item to inventory.");
                     return;
                 }
             }
@@ -66,6 +68,16 @@ namespace Game.Inventory
             {
                 slot.RemoveItem();
             }
+        }
+
+        public EquipmentSlot GetEquipmentSlot(int index)
+        {
+            return equipmentSlots[index];
+        }
+
+        public WeaponSlot GetWeaponSlot(int index)
+        {
+            return weaponSlots[index];
         }
 
         public object CaptureState()

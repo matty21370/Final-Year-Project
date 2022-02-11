@@ -6106,9 +6106,8 @@ MonoBehaviour:
   weapons:
   - Unarmed
   - Unarmed
-  - Unarmed
-  - Unarmed
   isAggressive: 0
+  factionName: 
 --- !u!114 &665882775109692189
 MonoBehaviour:
   m_ObjectHideFlags: 0

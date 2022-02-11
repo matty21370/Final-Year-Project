@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Game.UI;
 using Game.Interaction;
 using Game.Inventory;
+using Game.Items.Weapons;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,11 @@ namespace Game.Character
 
         private bool _busy = false;
 
+        private EquipmentSlot[] _equipmentSlots;
+        [SerializeField] private WeaponSlot[] weaponSlots;
+
+        private Weapon _unarmed;
+        
         public Health PlayerHealth => _health;
         
         private void Awake()
@@ -31,9 +37,18 @@ namespace Game.Character
             _health = GetComponent<Health>();
         }
 
+        public void InitWeapons(Weapon weapon1, Weapon weapon2)
+        {
+            weaponSlots[0].SetWeapon(weapon1);
+            weaponSlots[1].SetWeapon(weapon2);
+        }
+        
         private void Start()
         {
+            _equipmentSlots = FindObjectsOfType<EquipmentSlot>();
             _health.UpdateHealth();
+            
+            _unarmed = ItemDatabase.Instance.GetItem("Unarmed") as Weapon;
         }
 
         // Update is called once per frame
@@ -73,23 +88,51 @@ namespace Game.Character
                 HandleClick();
             }
             
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                //Attack(0);
+                _equipmentSlots[3].UseItem();
+            } 
+            else if (Input.GetKeyDown(KeyCode.A))
+            {
+                //Attack(1);
+                _equipmentSlots[2].UseItem();
+            }
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                //Attack(2);
+                _equipmentSlots[1].UseItem();
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                //Attack(3);
+                _equipmentSlots[0].UseItem();
+            }
+            
             if (_combat.IsInCombat())
             {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    if (weaponSlots[0].WeaponInSlot != null)
+                    {
+                        _combat.Attack(weaponSlots[0].WeaponInSlot);
+                    }
+                    else
+                    {
+                        _combat.Attack(_unarmed);
+                    }
+                }
+
                 if (Input.GetKeyDown(KeyCode.W))
                 {
-                    Attack(0);
-                } 
-                else if (Input.GetKeyDown(KeyCode.A))
-                {
-                    Attack(1);
-                }
-                else if (Input.GetKeyDown(KeyCode.S))
-                {
-                    Attack(2);
-                }
-                else if (Input.GetKeyDown(KeyCode.D))
-                {
-                    Attack(3);
+                    if (weaponSlots[1].WeaponInSlot != null)
+                    {
+                        _combat.Attack(weaponSlots[1].WeaponInSlot);
+                    }
+                    else
+                    {
+                        _combat.Attack(_unarmed);
+                    }
                 }
             }
         }
@@ -103,7 +146,6 @@ namespace Game.Character
                 Interactable interactable = hit.transform.GetComponent<Interactable>();
                 if (interactable != null)
                 {
-                    print("Yeet");
                     _interactor.Interact(interactable);
                 }
                 else
@@ -113,11 +155,6 @@ namespace Game.Character
                     Move(hit.point);
                 }
             }
-        }
-
-        private void Attack(int weapon)
-        {
-            _combat.Attack(weapon);
         }
 
         private void Move(Vector3 position)

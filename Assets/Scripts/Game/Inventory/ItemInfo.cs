@@ -13,7 +13,7 @@ namespace Game.Inventory
         [SerializeField] private Text itemDescriptionText;
         [SerializeField] private Text onUse, onUseText;
 
-        private Item _contextItem;
+        private Slot _contextSlot;
 
         private PlayerController _playerController;
         
@@ -25,26 +25,63 @@ namespace Game.Inventory
 
         private void Update()
         {
-            if(_contextItem == null) return;
+            if(_contextSlot == null) return;
 
-            if (Input.GetKeyDown(KeyCode.W))
+            if (_contextSlot.ItemInSlot is IUsable)
             {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    InventorySystem.Instance.GetEquipmentSlot(0).UpdateSlot(_contextSlot.ItemInSlot);
+                    _contextSlot.RemoveItem();
+                }
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    InventorySystem.Instance.GetEquipmentSlot(1).UpdateSlot(_contextSlot.ItemInSlot);
+                    _contextSlot.RemoveItem();
+                }
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    InventorySystem.Instance.GetEquipmentSlot(2).UpdateSlot(_contextSlot.ItemInSlot);
+                    _contextSlot.RemoveItem();
+                }
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    InventorySystem.Instance.GetEquipmentSlot(3).UpdateSlot(_contextSlot.ItemInSlot);
+                    _contextSlot.RemoveItem();
+                }
+            }
+
+            if (_contextSlot.ItemInSlot is Weapon)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    InventorySystem.Instance.GetWeaponSlot(0).SetWeapon(_contextSlot.ItemInSlot as Weapon);
+                    FindObjectOfType<PlayerController>().GetComponent<Combat>().EquipWeapon(0, _contextSlot.ItemInSlot as Weapon);
+                    _contextSlot.RemoveItem();
+                }
                 
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    InventorySystem.Instance.GetWeaponSlot(1).SetWeapon(_contextSlot.ItemInSlot as Weapon);
+                    FindObjectOfType<PlayerController>().GetComponent<Combat>().EquipWeapon(1, _contextSlot.ItemInSlot as Weapon);
+                    _contextSlot.RemoveItem();
+                }
             }
         }
 
         public void ResetInfo()
         {
-            _contextItem = null;
+            _contextSlot = null;
             itemNameText.text = "No item selected";
             itemDescriptionText.text = "";
             onUseText.text = "";
             OnUpdate();
         }
 
-        public void SetItem(Item item)
+        public void SetSlot(Slot slot)
         {
-            _contextItem = item;
+            _contextSlot = slot;
+            var item = slot.ItemInSlot;
             itemNameText.text = item.ItemName;
             itemDescriptionText.text = item.ItemDescription;
             if (item.GetType() == ItemTypes.Weapon)

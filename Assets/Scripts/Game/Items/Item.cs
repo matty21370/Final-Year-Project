@@ -26,8 +26,6 @@ namespace Game.Items
             _iconPath = iconPath;
             _interactable = interactable;
         }
-        public abstract void Use();
-
         public ItemTypes GetType()
         {
             return ItemType;

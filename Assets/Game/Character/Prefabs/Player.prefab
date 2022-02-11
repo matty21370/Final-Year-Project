@@ -4527,12 +4527,10 @@ MonoBehaviour:
   isPlayer: 1
   combatRange: 1.5
   attackCooldown: 1
-  equippedWeapons:
-  - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
-  - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
-  - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
-  - {fileID: 11400000, guid: d6199e830f1774045a4225137e01cd74, type: 2}
+  weaponHand: {fileID: 0}
+  weapons: []
   isAggressive: 0
+  factionName: 
 --- !u!65 &6644745210046997566
 BoxCollider:
   m_ObjectHideFlags: 0

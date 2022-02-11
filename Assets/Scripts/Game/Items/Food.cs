@@ -6,7 +6,7 @@ using Object = UnityEngine.Object;
 namespace Game.Items
 {
     [Serializable]
-    public class Food : Item
+    public class Food : Item, IUsable
     {
         private float _healAmt;
         
@@ -16,7 +16,7 @@ namespace Game.Items
             ItemType = ItemTypes.Consumable;
         }
         
-        public override void Use()
+        public void OnUse()
         {
             Object.FindObjectOfType<PlayerController>().GetComponent<Health>().Heal(_healAmt);
         }

@@ -52,6 +52,8 @@ namespace Game.Character
         private void Start()
         {
             _startPosition = transform.position;
+            
+            GetComponent<Combat>().SetCollider(detectionRadius);
         }
 
         // Update is called once per frame

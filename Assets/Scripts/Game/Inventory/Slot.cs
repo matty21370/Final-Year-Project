@@ -15,8 +15,10 @@ namespace Game.Inventory
         private InteractionMenu _interactionMenu;
         private ItemInfo _itemInfo;
         private Item _itemInSlot;
+        private IUsable _usable;
 
         public Item ItemInSlot => _itemInSlot;
+        public IUsable Usable => _usable;
 
         public void Init(InteractionMenu menu)
         {
@@ -26,6 +28,8 @@ namespace Game.Inventory
         public void SetItem(Item item)
         {
             _itemInSlot = item;
+            if(_itemInSlot is IUsable)
+                _usable = (IUsable) item;
             slotIcon.sprite = Resources.Load<Sprite>(item.IconPath);
             HandleIcon(false);
         }
@@ -57,13 +61,13 @@ namespace Game.Inventory
         private void OnLeftClick()
         {
             if(_itemInSlot == null) return;
-            FindObjectOfType<ItemInfo>().SetItem(_itemInSlot);
+            FindObjectOfType<ItemInfo>().SetSlot(this);
         }
 
         private void OnRightClick()
         {
             if(_itemInSlot == null) return;
-            FindObjectOfType<ItemInfo>().SetItem(_itemInSlot);
+            FindObjectOfType<ItemInfo>().SetSlot(this);
             _interactionMenu.SetSlot(this);
         }
 

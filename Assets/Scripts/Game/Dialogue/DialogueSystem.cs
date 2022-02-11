@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.Character;
+using Game.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,9 +11,10 @@ namespace Game.Dialogue
     {
         private static DialogueSystem _instance;
         public static DialogueSystem Instance => _instance;
-        
+
         [SerializeField] private Text nameText, speechText;
         [SerializeField] private GameObject dialogueUI, buttonPrefab, buttonContainer, nextDialogueButton;
+        [SerializeField] private DialogueUI ui;
         [SerializeField] private CanvasGroup endDialogueButton;
         
         private Speaker _activeSpeaker;
@@ -22,8 +24,6 @@ namespace Game.Dialogue
         
         private List<GameObject> _activeButtons = new List<GameObject>();
         private List<DialogueSequence> _sequences = new List<DialogueSequence>();
-
-        private Rect _startingPosition, _speakingPosition;
 
         private void Awake()
         {
@@ -36,15 +36,19 @@ namespace Game.Dialogue
                 _instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-
-            _startingPosition = new Rect(-75, 110, 689, 161);
-            _speakingPosition = new Rect(0, 110, 689, 161);
         }
-        
+
+        private void Start()
+        {
+            EndDialogue();
+        }
+
         public void Activate(Speaker speaker, DialogueSequence[] sequences)
         {
             if(_active) return;
 
+            ui.OnOpen();
+            
             _activeSpeaker = speaker;
             nameText.text = _activeSpeaker.CharacterName;
             nextDialogueButton.SetActive(false);
@@ -68,7 +72,7 @@ namespace Game.Dialogue
         {
             DestroyButtons();
             dialogueUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 110);
-
+            //LeanTween.move(dialogueUI.GetComponent<RectTransform>(), new Vector3(0, 110, 0), 0.1f);
             nextDialogueButton.SetActive(true);
             endDialogueButton.alpha = 0;
             _activeSequence = sequence;
@@ -88,7 +92,8 @@ namespace Game.Dialogue
         
         public void EndOfSequence()
         {
-            dialogueUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-75, 110);
+            LeanTween.move(dialogueUI.GetComponent<RectTransform>(), new Vector3(-75, 110, 0), 0.1f);
+            //dialogueUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-75, 110);
             speechText.text = _activeSpeaker.EndingDialogue;
             nextDialogueButton.SetActive(false);
             _activeSequence.Reset();
@@ -98,6 +103,7 @@ namespace Game.Dialogue
 
         public void EndDialogue()
         {
+            ui.OnClose();
             _activeSpeaker = null;
             _activeSequence = null;
             _sequences.Clear();
@@ -105,7 +111,6 @@ namespace Game.Dialogue
             DestroyButtons();
             FindObjectOfType<PlayerController>().SetBusy(false);
             SetDialogue("");
-            dialogueUI.SetActive(false);
         }
         
         private void SetUpButtons()
