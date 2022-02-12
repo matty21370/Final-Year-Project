@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Game.Character.AI;
 using Game.Interaction.Interactables;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Character
 {
@@ -30,12 +31,11 @@ namespace Game.Character
         [SerializeField] private BehaviourTypes startingBehaviour;
 
         [SerializeField] private PatrolPath patrolPath;
-        [SerializeField] private float patrolDelay = 1f;
         [SerializeField] private float patrolSpeed = 2.3f;
         [SerializeField] private float timeAtWaypoint = 2f;
 
-        [SerializeField] private float susTime = 4f;
-        private float susTimer = 0;
+        [FormerlySerializedAs("susTime")] [SerializeField] private float suspicionTime = 4f;
+        private float _suspicionTimer = 0;
 
         private float _timeSpentAtWaypoint = 0;
 
@@ -111,13 +111,13 @@ namespace Game.Character
             if (Vector3.Distance(_player.position, transform.position) < detectionRadius)
             {
                 _combat.SetTarget(_player.GetComponent<Target>());
-                susTimer = 0;
+                _suspicionTimer = 0;
             }
             else
             {
                 _combat.RemoveTarget();
-                susTimer += Time.deltaTime;
-                if (susTimer >= susTime)
+                _suspicionTimer += Time.deltaTime;
+                if (_suspicionTimer >= suspicionTime)
                 {
                     _movement.Move(_startPosition);
                 }

@@ -26,6 +26,7 @@ namespace Game.Inventory
         private void Update()
         {
             if(_contextSlot == null) return;
+            if(_contextSlot.ItemInSlot == null) return;
 
             if (_contextSlot.ItemInSlot is IUsable)
             {
@@ -84,17 +85,17 @@ namespace Game.Inventory
             var item = slot.ItemInSlot;
             itemNameText.text = item.ItemName;
             itemDescriptionText.text = item.ItemDescription;
-            if (item.GetType() == ItemTypes.Weapon)
+            if (item.GetItemType() == ItemTypes.Weapon)
             {
                 var weapon = (Items.Weapons.Weapon) item;
                 onUse.text = "Stats";
                 onUseText.text = $"Damage: {weapon.Damage}\nRange: {weapon.Range}";
             }
-            else if (item.GetType() == ItemTypes.Consumable)
+            else if (item.GetItemType() == ItemTypes.Consumable)
             {
                 var consumable = (Food) item;
                 onUse.text = "When eaten:";
-                onUseText.text = item.OnUse;
+                onUseText.text = item.OnUseText;
             }
             else
             {

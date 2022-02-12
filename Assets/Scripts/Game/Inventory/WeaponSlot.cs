@@ -1,11 +1,12 @@
 ﻿using System;
 using Game.Items.Weapons;
+using Game.Saving;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Game.Inventory
 {
-    public class WeaponSlot : MonoBehaviour
+    public class WeaponSlot : MonoBehaviour, ISaveable
     {
         [SerializeField] private Image iconImage;
         
@@ -20,7 +21,8 @@ namespace Game.Inventory
 
         public void SetWeapon(Weapon weapon)
         {
-            print("Setting weapon " + weapon.ItemName);
+            if(weapon == null) return;
+            
             _weaponInSlot = weapon;
             iconImage.sprite = Resources.Load<Sprite>(weapon.IconPath);
             HandleColour(true);
@@ -38,6 +40,24 @@ namespace Game.Inventory
             var col = iconImage.color;
             col.a = show ? 1 : 0;
             iconImage.color = col;
+        }
+
+        public void OnClick()
+        {
+            if(_weaponInSlot == null) return;
+            
+            InventorySystem.Instance.AddItem(_weaponInSlot);
+            RemoveWeapon();
+        }
+
+        public object CaptureState()
+        {
+            return _weaponInSlot;
+        }
+
+        public void RestoreState(object state)
+        {
+            SetWeapon((Weapon) state);
         }
     }
 }

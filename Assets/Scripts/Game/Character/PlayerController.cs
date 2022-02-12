@@ -6,6 +6,7 @@ using Game.Interaction;
 using Game.Inventory;
 using Game.Items.Weapons;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 namespace Game.Character
@@ -21,7 +22,9 @@ namespace Game.Character
 
         private bool _busy = false;
 
-        private EquipmentSlot[] _equipmentSlots;
+        [SerializeField] private GameObject slotParent;
+
+        [SerializeField] private EquipmentSlot[] equipmentSlots;
         [SerializeField] private WeaponSlot[] weaponSlots;
 
         private Weapon _unarmed;
@@ -45,7 +48,7 @@ namespace Game.Character
         
         private void Start()
         {
-            _equipmentSlots = FindObjectsOfType<EquipmentSlot>();
+            //equipmentSlots = FindObjectsOfType<EquipmentSlot>();
             _health.UpdateHealth();
             
             _unarmed = ItemDatabase.Instance.GetItem("Unarmed") as Weapon;
@@ -90,23 +93,19 @@ namespace Game.Character
             
             if (Input.GetKeyDown(KeyCode.E))
             {
-                //Attack(0);
-                _equipmentSlots[3].UseItem();
+                equipmentSlots[0].UseItem();
             } 
             else if (Input.GetKeyDown(KeyCode.A))
             {
-                //Attack(1);
-                _equipmentSlots[2].UseItem();
+                equipmentSlots[1].UseItem();
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
-                //Attack(2);
-                _equipmentSlots[1].UseItem();
+                equipmentSlots[2].UseItem();
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
-                //Attack(3);
-                _equipmentSlots[0].UseItem();
+                equipmentSlots[3].UseItem();
             }
             
             if (_combat.IsInCombat())
@@ -139,6 +138,8 @@ namespace Game.Character
 
         private void HandleClick()
         {
+            if(EventSystem.current.IsPointerOverGameObject()) return;
+            
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
@@ -171,6 +172,11 @@ namespace Game.Character
         {
             _busy = busy;
             UIManager.Instance.ToggleHealthbar(busy);
+        }
+
+        public void HideEquipmentSlots(bool hide)
+        {
+            slotParent.GetComponent<CanvasGroup>().alpha = hide ? 0 : 1;
         }
     }
 }

@@ -6,27 +6,30 @@ namespace Game.Items
     public abstract class Item
     {
         private string _itemName;
-        private string _itemDescription, _onUse;
+        private string _itemDescription, _onUseText;
         private string _iconPath;
         private bool _interactable;
+        private bool _stackable;
         
         protected ItemTypes ItemType;
 
         public string ItemName => _itemName;
         public string ItemDescription => _itemDescription;
-        public string OnUse => _onUse;
+        public string OnUseText => _onUseText;
         public string IconPath => _iconPath;
         public bool Interactable => _interactable;
-
-        public Item(string itemName, string itemDescription, string onUse, string iconPath, bool interactable)
+        public bool Stackable => _stackable;
+        
+        public Item(string itemName, string itemDescription, string onUseText, string iconPath, bool interactable, bool stackable)
         {
             _itemName = itemName;
             _itemDescription = itemDescription;
-            _onUse = onUse;
+            _onUseText = onUseText;
             _iconPath = iconPath;
             _interactable = interactable;
+            _stackable = stackable;
         }
-        public ItemTypes GetType()
+        public ItemTypes GetItemType()
         {
             return ItemType;
         }

@@ -249,7 +249,7 @@ namespace Game.Character
 
         public void SetCollider(float radius)
         {
-            GetComponent<SphereCollider>().radius = radius;
+            //GetComponent<SphereCollider>().radius = radius;
         }
 
     }

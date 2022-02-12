@@ -10,7 +10,7 @@ namespace Game.Items
     {
         private float _healAmt;
         
-        public Food(string itemName, string itemDescription, string iconPath, float healAmt) : base(itemName, itemDescription, "Restores " + healAmt + " health", iconPath, true)
+        public Food(string itemName, string itemDescription, string iconPath, float healAmt) : base(itemName, itemDescription, "Restores " + healAmt + " health", iconPath, true, true)
         {
             _healAmt = healAmt;
             ItemType = ItemTypes.Consumable;

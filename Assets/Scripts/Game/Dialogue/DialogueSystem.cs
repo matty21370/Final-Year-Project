@@ -20,10 +20,12 @@ namespace Game.Dialogue
         private Speaker _activeSpeaker;
         private DialogueSequence _activeSequence;
 
+        private PlayerController _playerController;
+
         private bool _active = false;
         
-        private List<GameObject> _activeButtons = new List<GameObject>();
-        private List<DialogueSequence> _sequences = new List<DialogueSequence>();
+        private readonly List<GameObject> _activeButtons = new List<GameObject>();
+        private readonly List<DialogueSequence> _sequences = new List<DialogueSequence>();
 
         private void Awake()
         {
@@ -36,6 +38,8 @@ namespace Game.Dialogue
                 _instance = this;
                 DontDestroyOnLoad(gameObject);
             }
+
+            _playerController = FindObjectOfType<PlayerController>();
         }
 
         private void Start()
@@ -64,7 +68,8 @@ namespace Game.Dialogue
             
             dialogueUI.SetActive(true);
             SetDialogue(speaker.OpeningDialogue);
-            FindObjectOfType<PlayerController>().SetBusy(true);
+            _playerController.SetBusy(true);
+            _playerController.HideEquipmentSlots(true);
             _active = true;
         }
 
@@ -72,7 +77,6 @@ namespace Game.Dialogue
         {
             DestroyButtons();
             dialogueUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 110);
-            //LeanTween.move(dialogueUI.GetComponent<RectTransform>(), new Vector3(0, 110, 0), 0.1f);
             nextDialogueButton.SetActive(true);
             endDialogueButton.alpha = 0;
             _activeSequence = sequence;
@@ -93,7 +97,6 @@ namespace Game.Dialogue
         public void EndOfSequence()
         {
             LeanTween.move(dialogueUI.GetComponent<RectTransform>(), new Vector3(-75, 110, 0), 0.1f);
-            //dialogueUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-75, 110);
             speechText.text = _activeSpeaker.EndingDialogue;
             nextDialogueButton.SetActive(false);
             _activeSequence.Reset();
@@ -109,7 +112,8 @@ namespace Game.Dialogue
             _sequences.Clear();
             _active = false;
             DestroyButtons();
-            FindObjectOfType<PlayerController>().SetBusy(false);
+            _playerController.SetBusy(false);
+            _playerController.HideEquipmentSlots(false);
             SetDialogue("");
         }
         

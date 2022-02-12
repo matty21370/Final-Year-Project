@@ -4,21 +4,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Game.Items;
+using Game.Saving;
 using UnityEngine.EventSystems;
 
 namespace Game.Inventory
 {
-    public class Slot : MonoBehaviour, IPointerClickHandler
+    public class Slot : MonoBehaviour, IPointerClickHandler, ISaveable
     {
         [SerializeField] private Image slotIcon;
-
+        [SerializeField] private Text amountText;
+        
         private InteractionMenu _interactionMenu;
         private ItemInfo _itemInfo;
         private Item _itemInSlot;
+        private int amt;
         private IUsable _usable;
 
         public Item ItemInSlot => _itemInSlot;
         public IUsable Usable => _usable;
+        public int ItemAmount => amt;
 
         public void Init(InteractionMenu menu)
         {
@@ -32,6 +36,19 @@ namespace Game.Inventory
                 _usable = (IUsable) item;
             slotIcon.sprite = Resources.Load<Sprite>(item.IconPath);
             HandleIcon(false);
+        }
+
+        public void SetItem(Item item, int amount)
+        {
+            SetItem(item);
+            amt = amount;
+            //amountText.text = amt.ToString();
+        }
+
+        public void AddItem(int amount)
+        {
+            amt += amount;
+            //amountText.text = amt.ToString();
         }
 
         private void HandleIcon(bool clear)
@@ -50,6 +67,7 @@ namespace Game.Inventory
             if(itemInfo != null) itemInfo.ResetInfo();
             _itemInSlot = null;
             slotIcon.sprite = null;
+            //amountText.text = "";
             HandleIcon(true);
         }
 
@@ -82,6 +100,19 @@ namespace Game.Inventory
             {
                 OnRightClick();
             }
+        }
+
+        public object CaptureState()
+        {
+            return _itemInSlot;
+        }
+
+        public void RestoreState(object state)
+        {
+            //if(state == null) return;
+            
+            RemoveItem();
+            SetItem(state as Item);
         }
     }
 }

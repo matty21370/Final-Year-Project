@@ -20,7 +20,7 @@ namespace Game.Items.Weapons
         public WeaponTypes WeaponType => _weaponType;
         public string Model => _model;
         
-        public Weapon(string itemName, string itemDescription, string onUse, string iconPath, float damage, float range, WeaponTypes weaponType, string modelPath) : base(itemName, itemDescription, onUse, iconPath, false)
+        public Weapon(string itemName, string itemDescription, string onUseText, string iconPath, float damage, float range, WeaponTypes weaponType, string modelPath) : base(itemName, itemDescription, onUseText, iconPath, false, false)
         {
             _damage = damage;
             _range = range;

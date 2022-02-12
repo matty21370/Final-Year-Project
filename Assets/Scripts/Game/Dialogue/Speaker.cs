@@ -69,6 +69,7 @@ namespace Game.Dialogue
             }
             catch (IndexOutOfRangeException e)
             {
+                Debug.LogWarning(e.Message);
                 return null;
             }
         }

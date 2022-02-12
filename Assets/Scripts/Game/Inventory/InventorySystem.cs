@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game.Inventory
 {
-    public class InventorySystem : MonoBehaviour, ISaveable
+    public class InventorySystem : MonoBehaviour
     {
         private static InventorySystem _instance;
         public static InventorySystem Instance => _instance;
@@ -16,7 +16,7 @@ namespace Game.Inventory
         [SerializeField] private GameObject panel1;
 
         private List<Slot> _slots = new List<Slot>();
-        private List<Item> _items = new List<Item>();
+        //private List<Item> _items = new List<Item>();
 
         [SerializeField] private EquipmentSlot[] equipmentSlots;
         [SerializeField] private WeaponSlot[] weaponSlots;
@@ -51,7 +51,28 @@ namespace Game.Inventory
                 if (_slots[i].Empty())
                 {
                     _slots[i].SetItem(item);
-                    _items.Add(item);
+                    //_items.Add(item);
+                    return;
+                }
+            }
+        }
+
+        public void AddItem(Item item, int amt)
+        {
+            foreach (var slot in _slots)
+            {
+                if (item.Stackable)
+                {
+                    if (slot.ItemInSlot == item)
+                    {
+                        slot.AddItem(amt);
+                        return;
+                    }
+                }
+
+                if (slot.Empty())
+                {
+                    slot.SetItem(item, amt);
                     return;
                 }
             }
@@ -59,7 +80,7 @@ namespace Game.Inventory
 
         public void RemoveItem(Item item)
         {
-            _items.Remove(item);
+            //_items.Remove(item);
         }
 
         private void ClearInventory()
@@ -80,21 +101,16 @@ namespace Game.Inventory
             return weaponSlots[index];
         }
 
-        public object CaptureState()
-        {
-            return _items.ToArray();
-        }
-
         public void RestoreState(object state)
         {
-            Item[] data = (Item[]) state;
+            //Item[] data = (Item[]) state;
             
-            ClearInventory();
+            //ClearInventory();
             
-            foreach (var item in data)
-            {
-                AddItem(item);
-            }
+            //foreach (var item in data)
+            //{
+                //AddItem(item);
+            //}
         }
     }
 
