@@ -4432,6 +4432,7 @@ GameObject:
   - component: {fileID: 6098918366492155598}
   - component: {fileID: 2003619929}
   - component: {fileID: 2003619930}
+  - component: {fileID: 1994996909}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4486,6 +4487,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbe4d37c53becc4db11595840353220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotParent: {fileID: 0}
+  equipmentSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponSlots:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1907853392973840395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4511,7 +4521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd8f00b205985ae468d25e643cde31d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 100
 --- !u!114 &4108668457750612354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4527,10 +4537,12 @@ MonoBehaviour:
   isPlayer: 1
   combatRange: 1.5
   attackCooldown: 1
-  weaponHand: {fileID: 0}
-  weapons: []
+  weaponHand: {fileID: 6160063044988757014}
+  weapons:
+  - 
+  - 
   isAggressive: 0
-  factionName: 
+  factionName: The Resistance
 --- !u!65 &6644745210046997566
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4609,6 +4621,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
+--- !u!114 &1994996909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6154867217320444632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: bf449934-99a1-40f9-a72b-ef4292ef3e46
 --- !u!1 &6154869071640383362
 GameObject:
   m_ObjectHideFlags: 0
