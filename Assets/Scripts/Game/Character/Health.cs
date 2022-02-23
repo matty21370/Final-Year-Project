@@ -70,8 +70,14 @@ namespace Game.Character
 
         private void HandleDeath()
         {
+            if(GetComponent<Destructable>() != null) GetComponent<Destructable>().Destruct();
+            
             _isAlive = false;
-            _animator.SetTrigger(Die);
+            if (GetComponent<Animator>() != null)
+            {
+                _animator.SetTrigger(Die);
+            }
+
             GetComponent<Combat>().RemoveTarget();
 
             if (gameObject.CompareTag("Player"))

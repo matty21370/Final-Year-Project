@@ -77,9 +77,11 @@ namespace Game.Character
                 HandleTarget();
             }
 
+            if(GetComponent<Animator>() == null) return;
+            
             if (_inCombat)
             {
-
+                
                 if (_equippedWeapons[0] == null)
                 {
                     _animator.SetBool("inCombatUnarmed", _inCombat);
