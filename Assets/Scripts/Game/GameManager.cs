@@ -7,6 +7,7 @@ namespace Game
 {
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] private GameObject characterMenu;
         private SavingSystem _savingSystem;
 
         private void Awake()
@@ -17,14 +18,17 @@ namespace Game
 
         public void Save()
         {
-            print("saved");
+            characterMenu.SetActive(true);
             _savingSystem.Save("save");
+            characterMenu.SetActive(false);
         }
 
         public void Load()
         {
+            characterMenu.SetActive(true);
             _savingSystem.Load("save");
             FindObjectOfType<UIManager>().TogglePauseMenu();
+            characterMenu.SetActive(false);
         }
     }
 }

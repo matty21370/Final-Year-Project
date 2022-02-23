@@ -69,6 +69,8 @@ namespace Game.UI
         {
             _characterMenuOpen = !_characterMenuOpen;
             characterMenu.SetActive(_characterMenuOpen);
+            //characterMenu.GetComponent<CanvasGroup>().alpha = _characterMenuOpen ? 0 : 1;
+            //characterMenu.GetComponent<CanvasGroup>().blocksRaycasts = !_characterMenuOpen;
             _player.SetBusy(_characterMenuOpen ? true : false);
         }
 

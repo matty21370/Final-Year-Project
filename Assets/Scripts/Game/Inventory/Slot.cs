@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 
 namespace Game.Inventory
 {
-    public class Slot : MonoBehaviour, IPointerClickHandler, ISaveable
+    public class Slot : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private Image slotIcon;
         [SerializeField] private Text amountText;
@@ -31,6 +31,7 @@ namespace Game.Inventory
 
         public void SetItem(Item item)
         {
+            if(item == null) return;
             _itemInSlot = item;
             if(_itemInSlot is IUsable)
                 _usable = (IUsable) item;
@@ -100,19 +101,6 @@ namespace Game.Inventory
             {
                 OnRightClick();
             }
-        }
-
-        public object CaptureState()
-        {
-            return _itemInSlot;
-        }
-
-        public void RestoreState(object state)
-        {
-            //if(state == null) return;
-            
-            RemoveItem();
-            SetItem(state as Item);
         }
     }
 }

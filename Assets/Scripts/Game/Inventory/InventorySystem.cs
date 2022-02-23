@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game.Inventory
 {
-    public class InventorySystem : MonoBehaviour
+    public class InventorySystem : MonoBehaviour, ISaveable
     {
         private static InventorySystem _instance;
         public static InventorySystem Instance => _instance;
@@ -101,16 +101,25 @@ namespace Game.Inventory
             return weaponSlots[index];
         }
 
+        public object CaptureState()
+        {
+            var items = new List<Tuple<int, Item>>();
+            for (int i = 0; i < _slots.Count; i++)
+            {
+                items.Add(Tuple.Create(i, _slots[i].ItemInSlot));
+            }
+
+            return items;
+        }
+
         public void RestoreState(object state)
         {
-            //Item[] data = (Item[]) state;
-            
-            //ClearInventory();
-            
-            //foreach (var item in data)
-            //{
-                //AddItem(item);
-            //}
+            ClearInventory();
+            var items = (List<Tuple<int, Item>>) state;
+            foreach (var item in items)
+            {
+                _slots[item.Item1].SetItem(item.Item2);
+            }
         }
     }
 
