@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Game.Character;
+using Game.Questing;
 using UnityEngine;
 
 namespace Game.Interaction
@@ -40,20 +41,28 @@ namespace Game.Interaction
         {
             yield return new WaitForSeconds(interactionTime);
 
-            try
-            {
-                OnInteract(_interacting);
-            }
-            catch (NullReferenceException e)
-            {
-                Debug.LogWarning(e.Message);
-            }
+            OnInteract(_interacting);
         }
 
         public virtual void OnInteract(Interactor interactor)
         {
             _interacting = null;
             Interacted = true;
+            
+            if (QuestManager.Instance.ActiveQuest != null)
+            {
+                Objective objective = QuestManager.Instance.ActiveQuest.GetCurrentObjective();
+                if (objective.Goal == Objective.Goals.INTERACT)
+                {
+                    foreach (Interactable interactable in objective.Targets)
+                    {
+                        if (interactable == this)
+                        {
+                            objective.CompleteTarget(this);
+                        }
+                    }
+                }
+            }
         }
     }
 }

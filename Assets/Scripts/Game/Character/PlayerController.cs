@@ -142,7 +142,7 @@ namespace Game.Character
             
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit) && !hit.transform.CompareTag("unclickabble"))
             {
                 Interactable interactable = hit.transform.GetComponent<Interactable>();
                 if (interactable != null)

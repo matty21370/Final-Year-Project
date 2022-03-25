@@ -6019,6 +6019,7 @@ GameObject:
   - component: {fileID: 4364780555573100058}
   - component: {fileID: 6745834977483767851}
   - component: {fileID: 2006847531537884323}
+  - component: {fileID: -1860815838460002596}
   m_Layer: 0
   m_Name: CharacterBase
   m_TagString: Untagged
@@ -6057,10 +6058,9 @@ MonoBehaviour:
   detectionRadius: 3
   startingBehaviour: 0
   patrolPath: {fileID: 0}
-  patrolDelay: 1
   patrolSpeed: 2.3
   timeAtWaypoint: 2
-  susTime: 4
+  suspicionTime: 4
 --- !u!114 &1389288288475897582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6216,6 +6216,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueIdentifier: 
+--- !u!114 &-1860815838460002596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6654011020469115965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4643b9b994c24449af50ded3e925a603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6654011363295514983
 GameObject:
   m_ObjectHideFlags: 0

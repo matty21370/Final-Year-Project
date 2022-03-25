@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using Game.Saving;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,6 +17,26 @@ namespace Game.Dialogue
         public string CharacterName => characterName;
         public string OpeningDialogue => openingDialogue;
         public string EndingDialogue => endingDialogue;
+
+        private static List<Speaker> _allSpeakers = new List<Speaker>();
+
+        public static Speaker GetSpeakerByName(string name)
+        {
+            foreach (var speaker in _allSpeakers)
+            {
+                if (speaker.characterName == name)
+                {
+                    return speaker;
+                }
+            }
+
+            return null;
+        }
+
+        private void Awake()
+        {
+            _allSpeakers.Add(this);
+        }
 
         public void Initiate()
         {
@@ -51,6 +72,7 @@ namespace Game.Dialogue
     }
 
     [Serializable]
+    [XmlRoot("Sequence")]
     public class DialogueSequence
     {
         public string promptText;

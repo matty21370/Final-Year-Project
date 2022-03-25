@@ -15,5 +15,10 @@ public class Destructable : MonoBehaviour
         }
 
         GetComponent<NavMeshObstacle>().enabled = false;
+
+        if (GetComponent<Alerter>() != null)
+        {
+            GetComponent<Alerter>().Alert();
+        }
     }
 }

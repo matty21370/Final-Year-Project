@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using Game.Dialogue;
+using UnityEngine;
+
+namespace Game.Questing
+{
+    [System.Serializable]
+    public class Quest
+    {
+        [SerializeField] private string uniqueIdentifier;
+        [SerializeField] private Speaker giver;
+        [SerializeField] private string title, description;
+        
+        [SerializeField] private List<Objective> objectives;
+        private int _objectiveIndex;
+
+        private bool _isCompleted = false;
+        
+        public bool IsCompleted => _isCompleted;
+
+        public string UniqueIdentifier => uniqueIdentifier;
+        public Speaker Giver => giver;
+        public string Title => title;
+        public string Description => description;
+        public List<Objective> Objectives => objectives;
+
+        public Objective GetCurrentObjective()
+        {
+            return objectives[_objectiveIndex];
+        }
+
+        public void CompleteObjective()
+        {
+            if (_objectiveIndex + 1 >= objectives.Count)
+            {
+                CompleteQuest();
+            }
+            else
+            {
+                _objectiveIndex++;
+            }
+        }
+
+        public void CompleteQuest()
+        {
+            Debug.Log("Completed quest");
+            _isCompleted = true;
+        }
+    }
+}

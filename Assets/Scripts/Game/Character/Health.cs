@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Interaction;
+using Game.Questing;
 using Game.Saving;
 using UnityEngine;
 using Game.UI;
@@ -83,6 +85,24 @@ namespace Game.Character
             if (gameObject.CompareTag("Player"))
             {
                 StartCoroutine(PlayerDeath());
+            }
+            else
+            {
+                if (QuestManager.Instance.ActiveQuest != null)
+                {
+                    Interactable myInteractable = GetComponent<Interactable>();
+                    Objective objective = QuestManager.Instance.ActiveQuest.GetCurrentObjective();
+                    if (objective.Goal == Objective.Goals.KILL)
+                    {
+                        foreach (Interactable interactable in objective.Targets)
+                        {
+                            if (interactable == myInteractable)
+                            {
+                                objective.CompleteTarget(myInteractable);
+                            }
+                        }
+                    }
+                }
             }
         }
 
