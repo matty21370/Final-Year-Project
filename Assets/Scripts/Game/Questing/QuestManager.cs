@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Game.Dialogue;
 using Game.Interaction;
 using UnityEngine;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace Game.Questing
@@ -14,6 +15,8 @@ namespace Game.Questing
         public static QuestManager Instance => _instance;
 
         private List<Quest> _allQuests = new List<Quest>();
+
+        [SerializeField] private Text titleText, objectiveText;
 
         public void RegisterQuest(Quest quest)
         {
@@ -49,21 +52,47 @@ namespace Game.Questing
             {
                 Destroy(this);
             }
+            
+            UpdateUI();
         }
 
         public void SetActiveQuest(Quest quest)
         {
             _activeQuest = quest;
+            quest.Init();
             foreach (var objective in quest.Objectives)
             {
                 objective.Init();
             }
+            
+            UpdateUI();
         }
 
         public void AddQuestToJournal(Quest quest)
         {
             _currentQuests.Add(quest);
             SetActiveQuest(quest);
+        }
+        
+        public void UpdateUI()
+        {
+            if (ActiveQuest == null)
+            {
+                titleText.text = "No active quest";
+                objectiveText.text = "";
+            }
+            else
+            {
+                titleText.text = ActiveQuest.Title;
+                objectiveText.text = ActiveQuest.GetCurrentObjective().Description;
+            }
+            
+        }
+
+        public void RemoveQuest()
+        {
+            _activeQuest.CleanUp();
+            _activeQuest = null;
         }
     }
 }

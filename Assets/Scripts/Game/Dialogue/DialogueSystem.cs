@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.Character;
+using Game.Questing;
 using Game.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -59,7 +60,17 @@ namespace Game.Dialogue
 
             foreach (var sequence in sequences)
             {
-                _sequences.Add(sequence);
+                if (sequence.conditional)
+                {
+                    if (QuestManager.Instance.ActiveQuest != null && QuestManager.Instance.ActiveQuest.UniqueIdentifier == sequence.condition)
+                    {
+                        _sequences.Add(sequence);
+                    }
+                }
+                else
+                {
+                    _sequences.Add(sequence);
+                }
             }
             
             SetUpButtons();

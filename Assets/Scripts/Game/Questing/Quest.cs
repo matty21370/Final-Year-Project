@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Game.Dialogue;
 using UnityEngine;
@@ -11,7 +12,8 @@ namespace Game.Questing
         [SerializeField] private string uniqueIdentifier;
         [SerializeField] private Speaker giver;
         [SerializeField] private string title, description;
-        
+        [SerializeField] private List<GameObject> questObjects;
+
         [SerializeField] private List<Objective> objectives;
         private int _objectiveIndex;
 
@@ -24,6 +26,22 @@ namespace Game.Questing
         public string Title => title;
         public string Description => description;
         public List<Objective> Objectives => objectives;
+
+        public void Init()
+        {
+            foreach (var questObject in questObjects)
+            {
+                questObject.SetActive(true);
+            }
+        }
+
+        public void CleanUp()
+        {
+            foreach (var questObject in questObjects)
+            {
+                questObject.SetActive(false);
+            }
+        }
 
         public Objective GetCurrentObjective()
         {
@@ -46,6 +64,10 @@ namespace Game.Questing
         {
             Debug.Log("Completed quest");
             _isCompleted = true;
+            if (QuestManager.Instance.ActiveQuest == this)
+            {
+                QuestManager.Instance.RemoveQuest();
+            }
         }
     }
 }

@@ -58,11 +58,18 @@ namespace Game.Interaction
                     {
                         if (interactable == this)
                         {
+                            //StartCoroutine(Delay(objective));
                             objective.CompleteTarget(this);
                         }
                     }
                 }
             }
+        }
+        
+        private IEnumerator Delay(Objective objective)
+        {
+            yield return new WaitForSeconds(1f);
+            objective.CompleteTarget(this);
         }
     }
 }

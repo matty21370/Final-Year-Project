@@ -43,6 +43,7 @@ public class Objective
     {
         if (_targets.ContainsKey(target))
         {
+            QuestManager.Instance.UpdateUI();
             _targets[target] = true;
             Debug.Log("Target completed");
             CheckForCompletion();
@@ -61,5 +62,6 @@ public class Objective
         
         Debug.Log("Objective completed");
         QuestManager.Instance.ActiveQuest.CompleteObjective();
+        QuestManager.Instance.UpdateUI();
     }
 }

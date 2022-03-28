@@ -75,6 +75,8 @@ namespace Game.Dialogue
     [XmlRoot("Sequence")]
     public class DialogueSequence
     {
+        public bool conditional = false;
+        public string condition;
         public string promptText;
         public DialogueAction[] dialogues;
         public bool repeating, spoken;
