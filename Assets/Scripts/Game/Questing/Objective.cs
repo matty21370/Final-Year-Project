@@ -10,9 +10,11 @@ public class Objective
     public enum Goals
     {
         INTERACT,
-        KILL
+        KILL,
+        TALK
     }
-    
+
+    [SerializeField] private string identifier;
     [SerializeField] private string description;
     
     [SerializeField] private List<Interactable> targets;
@@ -22,6 +24,7 @@ public class Objective
     public Goals Goal => goal;
     public List<Interactable> Targets => targets;
     public string Description => description;
+    public string Identifier => identifier;
 
     public Objective(string description, List<Interactable> targets, Goals goal)
     {

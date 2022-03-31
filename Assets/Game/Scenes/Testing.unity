@@ -1395,7 +1395,45 @@ MonoBehaviour:
   characterName: Bob
   openingDialogue: Hello there friend
   endingDialogue: Kill yourself
-  sequences: []
+  sequences:
+  - conditional: 1
+    condition: bob_quest_01_objective_01
+    promptText: Bob sent me
+    dialogues:
+    - dialogue: Kill that dude over there.
+      e:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 569769622}
+            m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
+            m_MethodName: Talk
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    - dialogue: Kill that dude over there.
+      e:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 569769622}
+            m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
+            m_MethodName: Talk
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    repeating: 0
+    spoken: 0
 --- !u!114 &569769621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1409,6 +1447,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _questsToGive: []
+--- !u!114 &569769622 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1860815838460002596, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+  m_PrefabInstance: {fileID: 269004921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569769619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4643b9b994c24449af50ded3e925a603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &569769629 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 665882775109692189, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
@@ -4715,18 +4764,21 @@ MonoBehaviour:
     - {fileID: 2071494461}
     - {fileID: 499992002}
     objectives:
-    - description: Speak to Jim
+    - identifier: bob_quest_01_objective_01
+      description: Speak to Jim
       targets:
       - {fileID: 569769629}
-      goal: 0
-    - description: Kill this stupid person
+      goal: 2
+    - identifier: bob_quest_01_objective_02
+      description: Kill this stupid person
       targets:
       - {fileID: 1324868953}
       goal: 1
-    - description: Speak to Bob
+    - identifier: bob_quest_01_objective_03
+      description: Speak to Bob
       targets:
       - {fileID: 1857911575}
-      goal: 0
+      goal: 2
 --- !u!114 &1857911568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4767,6 +4819,32 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+          - m_Target: {fileID: 1857911567}
+            m_TargetAssemblyTypeName: Game.Questing.QuestGiver, Assembly-CSharp
+            m_MethodName: ActivateQuest
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: quest_bob_01
+              m_BoolArgument: 0
+            m_CallState: 2
+    repeating: 0
+    spoken: 0
+  - conditional: 1
+    condition: bob_quest_01_objective_03
+    promptText: I helped Jim
+    dialogues:
+    - dialogue: 
+      e:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: very good. Now go away
+      e:
+        m_PersistentCalls:
+          m_Calls:
           - m_Target: {fileID: 1857911567}
             m_TargetAssemblyTypeName: Game.Questing.QuestGiver, Assembly-CSharp
             m_MethodName: ActivateQuest

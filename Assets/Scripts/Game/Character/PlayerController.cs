@@ -5,6 +5,7 @@ using Game.UI;
 using Game.Interaction;
 using Game.Inventory;
 using Game.Items.Weapons;
+using Game.Questing;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -106,6 +107,11 @@ namespace Game.Character
             else if (Input.GetKeyDown(KeyCode.D))
             {
                 equipmentSlots[3].UseItem();
+            }
+
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                print(QuestManager.Instance.ActiveQuest.GetCurrentObjective().Identifier);
             }
             
             if (_combat.IsInCombat())

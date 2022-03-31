@@ -58,6 +58,7 @@ namespace Game.Questing
 
         public void SetActiveQuest(Quest quest)
         {
+            print(quest.Description);
             _activeQuest = quest;
             quest.Init();
             foreach (var objective in quest.Objectives)

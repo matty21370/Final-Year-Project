@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Game.Character;
+using Game.Interaction;
 using Game.Questing;
 using Game.UI;
 using UnityEngine;
@@ -62,7 +63,7 @@ namespace Game.Dialogue
             {
                 if (sequence.conditional)
                 {
-                    if (QuestManager.Instance.ActiveQuest != null && QuestManager.Instance.ActiveQuest.UniqueIdentifier == sequence.condition)
+                    if (QuestManager.Instance.ActiveQuest != null && QuestManager.Instance.ActiveQuest.GetCurrentObjective().Identifier == sequence.condition)
                     {
                         _sequences.Add(sequence);
                     }
@@ -107,6 +108,21 @@ namespace Game.Dialogue
         
         public void EndOfSequence()
         {
+            Quest activeQuest = QuestManager.Instance.ActiveQuest;
+            if (activeQuest != null)
+            {
+                if (activeQuest.GetCurrentObjective().Goal == Objective.Goals.TALK)
+                {
+                    foreach (Interactable interactable in activeQuest.GetCurrentObjective().Targets)
+                    {
+                        if (interactable == _activeSpeaker.GetComponent<Interactable>())
+                        {
+                            //StartCoroutine(Delay(objective));
+                            activeQuest.GetCurrentObjective().CompleteTarget(_activeSpeaker.GetComponent<Interactable>());
+                        }
+                    }
+                }
+            }
             LeanTween.move(dialogueUI.GetComponent<RectTransform>(), new Vector3(-75, 110, 0), 0.1f);
             speechText.text = _activeSpeaker.EndingDialogue;
             nextDialogueButton.SetActive(false);
