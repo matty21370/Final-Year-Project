@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using Game.Dialogue;
 using Game.Interaction;
+using Game.Saving;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace Game.Questing
 {
-    public class QuestManager : MonoBehaviour
+    public class QuestManager : MonoBehaviour, ISaveable
     {
         private static QuestManager _instance;
 
@@ -61,11 +62,6 @@ namespace Game.Questing
             print(quest.Description);
             _activeQuest = quest;
             quest.Init();
-            foreach (var objective in quest.Objectives)
-            {
-                objective.Init();
-            }
-            
             UpdateUI();
         }
 
@@ -94,6 +90,27 @@ namespace Game.Questing
         {
             _activeQuest.CleanUp();
             _activeQuest = null;
+        }
+
+        public object CaptureState()
+        {
+            //if (_activeQuest != null)
+            //{
+            //    Dictionary<string, string> data = new Dictionary<string, string>();
+            //    data.Add("quest", _activeQuest.UniqueIdentifier);
+            //    data.Add("objective", _activeQuest.GetCurrentObjective().Identifier);
+            //    return data;
+            //}
+
+            return null;
+        }
+
+        public void RestoreState(object state)
+        {
+            //if(state == null) return;
+
+            //Dictionary<string, string> data = (Dictionary<string, string>)state;
+            //SetActiveQuest(GetQuestFromID(data["quest"]));
         }
     }
 }

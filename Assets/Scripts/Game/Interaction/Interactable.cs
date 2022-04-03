@@ -10,6 +10,8 @@ namespace Game.Interaction
     {
         [SerializeField] private float interactionRange = 1.5f;
         [SerializeField] private float interactionTime = 1.0f;
+
+        [SerializeField] private GameObject marker;
         
         private Interactor _interacting;
         
@@ -70,6 +72,13 @@ namespace Game.Interaction
         {
             yield return new WaitForSeconds(1f);
             objective.CompleteTarget(this);
+        }
+
+        public void HandleMarker(bool enable)
+        {
+            if(marker == null) return;
+            
+            marker.SetActive(enable);
         }
     }
 }

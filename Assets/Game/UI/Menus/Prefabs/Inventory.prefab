@@ -180,6 +180,8 @@ MonoBehaviour:
   numSlots: 24
   slotPrefab: {fileID: 4738227547982489787, guid: 37c8b9ff3db573d4bbfc8822187b4ee6, type: 3}
   panel1: {fileID: 7129990577488150904}
+  equipmentSlots: []
+  weaponSlots: []
 --- !u!1 &7129990576221687322
 GameObject:
   m_ObjectHideFlags: 0

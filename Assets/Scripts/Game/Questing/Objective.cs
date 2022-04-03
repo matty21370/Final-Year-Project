@@ -42,6 +42,22 @@ public class Objective
         }
     }
 
+    public void OnObjectiveActivated()
+    {
+        foreach (var target in targets)
+        {
+            target.HandleMarker(true);
+        }
+    }
+    
+    public void OnObjectiveDeactivated()
+    {
+        foreach (var target in targets)
+        {
+            target.HandleMarker(false);
+        }
+    }
+
     public void CompleteTarget(Interactable target)
     {
         if (_targets.ContainsKey(target))

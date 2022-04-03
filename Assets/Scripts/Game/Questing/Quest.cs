@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game.Dialogue;
+using Game.Interaction;
 using UnityEngine;
 
 namespace Game.Questing
@@ -33,6 +34,13 @@ namespace Game.Questing
             {
                 questObject.SetActive(true);
             }
+            
+            foreach (var objective in Objectives)
+            {
+                objective.Init();
+            }
+            
+            objectives[_objectiveIndex].OnObjectiveActivated();
         }
 
         public void CleanUp()
@@ -50,6 +58,8 @@ namespace Game.Questing
 
         public void CompleteObjective()
         {
+            objectives[_objectiveIndex].OnObjectiveDeactivated();
+            
             if (_objectiveIndex + 1 >= objectives.Count)
             {
                 CompleteQuest();
@@ -57,6 +67,7 @@ namespace Game.Questing
             else
             {
                 _objectiveIndex++;
+                objectives[_objectiveIndex].OnObjectiveActivated();
             }
         }
 
