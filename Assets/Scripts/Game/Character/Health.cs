@@ -92,7 +92,7 @@ namespace Game.Character
                 {
                     Interactable myInteractable = GetComponent<Interactable>();
                     Objective objective = QuestManager.Instance.ActiveQuest.GetCurrentObjective();
-                    if (objective.Goal == Objective.Goals.KILL)
+                    if (objective.Goal == Objective.Goals.Kill)
                     {
                         foreach (Interactable interactable in objective.Targets)
                         {

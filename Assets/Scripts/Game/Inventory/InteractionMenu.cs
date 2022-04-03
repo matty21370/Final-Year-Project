@@ -37,8 +37,12 @@ namespace Game.Inventory
             if(_contextSlot.Usable == null) return;
 
             _contextSlot.Usable.OnUse();
-            _contextSlot.RemoveItem();
-            _contextSlot = null;
+            if (_contextSlot.ItemInSlot.Consumable)
+            {
+                _contextSlot.RemoveItem();
+                _contextSlot = null;
+            }
+
             gameObject.SetActive(false);
         }
 

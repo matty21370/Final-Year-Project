@@ -10,6 +10,7 @@ namespace Game.Items
         private string _iconPath;
         private bool _interactable;
         private bool _stackable;
+        private bool _consumable;
         
         protected ItemTypes ItemType;
 
@@ -19,8 +20,9 @@ namespace Game.Items
         public string IconPath => _iconPath;
         public bool Interactable => _interactable;
         public bool Stackable => _stackable;
+        public bool Consumable => _consumable;
         
-        public Item(string itemName, string itemDescription, string onUseText, string iconPath, bool interactable, bool stackable)
+        public Item(string itemName, string itemDescription, string onUseText, string iconPath, bool interactable, bool stackable, bool consumable)
         {
             _itemName = itemName;
             _itemDescription = itemDescription;
@@ -28,6 +30,7 @@ namespace Game.Items
             _iconPath = iconPath;
             _interactable = interactable;
             _stackable = stackable;
+            _consumable = consumable;
         }
         public ItemTypes GetItemType()
         {
@@ -41,7 +44,8 @@ namespace Game.Items
         Consumable,
         Weapon,
         Equipment,
-        Resource
+        Resource,
+        Interactable
     }
 }
 

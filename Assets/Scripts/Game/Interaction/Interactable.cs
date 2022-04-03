@@ -54,7 +54,7 @@ namespace Game.Interaction
             if (QuestManager.Instance.ActiveQuest != null)
             {
                 Objective objective = QuestManager.Instance.ActiveQuest.GetCurrentObjective();
-                if (objective.Goal == Objective.Goals.INTERACT)
+                if (objective.Goal == Objective.Goals.Interact)
                 {
                     foreach (Interactable interactable in objective.Targets)
                     {

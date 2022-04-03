@@ -33,6 +33,7 @@ namespace Game
             _items.Add(new Items.Weapons.Weapon("Unarmed", "no", "Deals damage", null, 10f, 1.5f, Items.Weapons.Weapon.WeaponTypes.Unarmed, null));
             _items.Add(new Items.Weapons.Weapon("Hammer", "An amazing hammer", "Deals damage", "Sprites/Hammer", 20f, 1.5f, Items.Weapons.Weapon.WeaponTypes.Sword, "Test"));
             _items.Add(new Resource("Wood", "Used for crafting.", "Sprites/Wood"));
+            _items.Add(new Letter("Letter from Bob", "Dear player,\n\nPlease speak to me as soon as you arrive on the island. We are in a bad way, many people need your help.\n\nSafe travels,\n\nBob"));
         }
 
         public Item GetItem()

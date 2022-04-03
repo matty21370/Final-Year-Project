@@ -111,7 +111,7 @@ namespace Game.Dialogue
             Quest activeQuest = QuestManager.Instance.ActiveQuest;
             if (activeQuest != null)
             {
-                if (activeQuest.GetCurrentObjective().Goal == Objective.Goals.TALK)
+                if (activeQuest.GetCurrentObjective().Goal == Objective.Goals.Talk)
                 {
                     foreach (Interactable interactable in activeQuest.GetCurrentObjective().Targets)
                     {

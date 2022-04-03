@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using Game.Interaction;
+using Game.Items;
 using Game.Questing;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class Objective
 {
     public enum Goals
     {
-        INTERACT,
-        KILL,
-        TALK
+        Interact,
+        Kill,
+        Talk,
+        Use
     }
 
     [SerializeField] private string identifier;
@@ -19,12 +23,21 @@ public class Objective
     
     [SerializeField] private List<Interactable> targets;
     private Dictionary<Interactable, bool> _targets;
+    
+    [Header("Use only for items")]
+    [SerializeField] private string targetString;
+    private Item itemTarget;
+
     [SerializeField] private Goals goal;
+
+    [SerializeField] private UnityEvent eEvent;
 
     public Goals Goal => goal;
     public List<Interactable> Targets => targets;
     public string Description => description;
     public string Identifier => identifier;
+
+    public Item ItemObjective => itemTarget;
 
     public Objective(string description, List<Interactable> targets, Goals goal)
     {
@@ -40,6 +53,11 @@ public class Objective
         {
             _targets.Add(interactable, false);
         }
+
+        if (targetString.Length > 0)
+        {
+            itemTarget = ItemDatabase.Instance.GetItem(targetString);
+        }
     }
 
     public void OnObjectiveActivated()
@@ -47,6 +65,11 @@ public class Objective
         foreach (var target in targets)
         {
             target.HandleMarker(true);
+        }
+
+        if (eEvent != null)
+        {
+            eEvent.Invoke();
         }
     }
     
@@ -64,7 +87,6 @@ public class Objective
         {
             QuestManager.Instance.UpdateUI();
             _targets[target] = true;
-            Debug.Log("Target completed");
             CheckForCompletion();
         }
     }
@@ -79,7 +101,12 @@ public class Objective
             }
         }
         
-        Debug.Log("Objective completed");
+        QuestManager.Instance.ActiveQuest.CompleteObjective();
+        QuestManager.Instance.UpdateUI();
+    }
+
+    public void CompleteObjective()
+    {
         QuestManager.Instance.ActiveQuest.CompleteObjective();
         QuestManager.Instance.UpdateUI();
     }
