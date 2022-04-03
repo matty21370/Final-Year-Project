@@ -547,6 +547,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1101354681}
     - target: {fileID: 3539037203281438823, guid: c9f43e2f565661e458fddd59d7c54890, type: 3}
+      propertyPath: starterQuest
+      value: 
+      objectReference: {fileID: 337629195}
+    - target: {fileID: 3539037203281438823, guid: c9f43e2f565661e458fddd59d7c54890, type: 3}
       propertyPath: characterMenu
       value: 
       objectReference: {fileID: 1101354681}
@@ -736,6 +740,61 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 826378913732519652, guid: 14af263ad028e444fab71f6b70bd0130, type: 3}
   m_PrefabInstance: {fileID: 319500133}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &337629193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 337629194}
+  - component: {fileID: 337629195}
+  m_Layer: 0
+  m_Name: quest_game_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &337629194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337629193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 896665747}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &337629195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337629193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2517a42d1b04488082e8855fc6208d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questsToGive:
+  - uniqueIdentifier: quest_game_01
+    giver: {fileID: 0}
+    title: Getting Started
+    description: 
+    questObjects: []
+    objectives:
+    - identifier: quest_game_01_objective_01
+      description: Speak to Bob
+      targets:
+      - {fileID: 1857911575}
+      goal: 2
 --- !u!114 &343009975 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6758993542366797121, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
@@ -1784,6 +1843,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5989909704486127957, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6758993541154312740, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2376,6 +2439,7 @@ Transform:
   m_LocalPosition: {x: -381.15555, y: 30.3442, z: -362.91858}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 337629194}
   - {fileID: 1756641225}
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -4535,7 +4599,7 @@ Transform:
   - {fileID: 499992013}
   - {fileID: 2071494465}
   m_Father: {fileID: 896665747}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1759834034 stripped
 MonoBehaviour:
@@ -4985,8 +5049,8 @@ MonoBehaviour:
   openingDialogue: Hello there friend
   endingDialogue: Kill yourself
   sequences:
-  - conditional: 0
-    condition: 
+  - conditional: 1
+    condition: quest_game_01_objective_01
     promptText: Hello
     dialogues:
     - dialogue: 

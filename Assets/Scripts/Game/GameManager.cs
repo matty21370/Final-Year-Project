@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Questing;
 using Game.Saving;
 using UnityEngine;
 using Game.UI;
@@ -10,10 +11,17 @@ namespace Game
         [SerializeField] private GameObject characterMenu;
         private SavingSystem _savingSystem;
 
+        [SerializeField] private QuestGiver starterQuest;
+
         private void Awake()
         {
             QualitySettings.vSyncCount = 1;
             _savingSystem = GetComponent<SavingSystem>();
+        }
+
+        private void Start()
+        {
+            starterQuest.ActivateQuest("quest_game_01");
         }
 
         public void Save()
