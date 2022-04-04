@@ -27,6 +27,13 @@ namespace Game.UI
         private Slider _xpSlider;
         private CanvasGroup _xpCanvasGroup;
         private Text _xpBarText;
+
+        [SerializeField] private CanvasGroup questCompletedUI;
+        [SerializeField] private Text questCompletedUIText;
+        [SerializeField] private Text questCompletedQuestNameText;
+
+        [SerializeField] private CanvasGroup questStartedUI;
+        [SerializeField] private Text questStartedText;
     
         private bool _characterMenuOpen = false;
         private bool _pauseMenuOpen = false;
@@ -163,6 +170,60 @@ namespace Game.UI
             yield return new WaitForSeconds(1f);
             
             
+        }
+
+        public void ShowQuestCompletedUI(float xp, string title)
+        {
+            questCompletedUIText.text = "+" + xp + " XP";
+            questCompletedQuestNameText.text = title;
+            StartCoroutine(QuestCompletedSequence(xp));
+        }
+
+        private IEnumerator QuestCompletedSequence(float xp)
+        {
+            StartCoroutine(FadeIn(questCompletedUI));
+            
+            yield return new WaitForSeconds(0.5f);
+
+            StartCoroutine(FadeIn(questCompletedQuestNameText.GetComponent<CanvasGroup>()));
+
+            yield return new WaitForSeconds(1.5f);
+
+            StartCoroutine(FadeIn(questCompletedUIText.GetComponent<CanvasGroup>()));
+
+            yield return new WaitForSeconds(3f);
+
+            StartCoroutine(FadeOut(questCompletedUI));
+
+            yield return new WaitForSeconds(1f);
+            
+            LevellingSystem.Instance.GiveXp(xp);
+
+            questCompletedUIText.GetComponent<CanvasGroup>().alpha = 0;
+            questCompletedQuestNameText.GetComponent<CanvasGroup>().alpha = 0;
+        }
+
+        public void ShowQuestStartedUI(string title)
+        {
+            questStartedText.text = title;
+            StartCoroutine(QuestStartedSequence());
+        }
+
+        public IEnumerator QuestStartedSequence()
+        {
+            StartCoroutine(FadeIn(questStartedUI));
+
+            yield return new WaitForSeconds(1f);
+
+            StartCoroutine(FadeIn(questStartedText.GetComponent<CanvasGroup>()));
+
+            yield return new WaitForSeconds(2f);
+
+            StartCoroutine(FadeOut(questStartedUI));
+
+            yield return new WaitForSeconds(1f);
+
+            questStartedText.GetComponent<CanvasGroup>().alpha = 0;
         }
     }
 }

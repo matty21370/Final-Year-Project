@@ -21,6 +21,11 @@ namespace Game
 
         private void Start()
         {
+            Invoke(nameof(GiveQuest), 1f);
+        }
+
+        private void GiveQuest()
+        {
             starterQuest.ActivateQuest("quest_game_01");
         }
 

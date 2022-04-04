@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Game.UI;
 using UnityEngine;
 
 namespace Game.Questing
@@ -11,14 +12,15 @@ namespace Game.Questing
         public void ActivateQuest(string id)
         {
             Quest quest = QuestManager.Instance.GetQuestFromID(id);
-            print("Adding quest: " + quest.Title);
+            UIManager.Instance.ShowQuestStartedUI(quest.Title);
             QuestManager.Instance.AddQuestToJournal(quest);
         }
 
-        private void Awake()
+        private void Start()
         {
             foreach (var quest in _questsToGive)
             {
+                print(quest.UniqueIdentifier);
                 QuestManager.Instance.RegisterQuest(quest);
             }
         }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Character;
 using Game.Dialogue;
 using Game.Interaction;
+using Game.UI;
 using UnityEngine;
 
 namespace Game.Questing
@@ -14,6 +16,7 @@ namespace Game.Questing
         [SerializeField] private Speaker giver;
         [SerializeField] private string title, description;
         [SerializeField] private List<GameObject> questObjects;
+        [SerializeField] private float xpReward;
 
         [SerializeField] private List<Objective> objectives;
         private int _objectiveIndex;
@@ -74,7 +77,8 @@ namespace Game.Questing
 
         public void CompleteQuest()
         {
-            Debug.Log("Completed quest");
+            UIManager.Instance.ShowQuestCompletedUI(xpReward, title);
+            
             _isCompleted = true;
             if (QuestManager.Instance.ActiveQuest == this)
             {
