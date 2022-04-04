@@ -65,7 +65,7 @@ namespace Game.Character
     
         private void LevelUp()
         {
-            print("Level up");
+            UIManager.Instance.LevelUpUi(_level, _level + 1);
             _level += 1;
             _xp = 0;
             
@@ -74,7 +74,7 @@ namespace Game.Character
     
         private void CalculateXpToLevel()
         {
-            _xpToLevel = _level * 100f;
+            _xpToLevel = 100 + (_level * 10);
         }
     
         public object CaptureState()

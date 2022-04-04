@@ -1,9 +1,11 @@
-﻿using Game.Questing;
+﻿using System;
+using Game.Questing;
 using Game.UI;
 using UnityEngine;
 
 namespace Game.Items
 {
+    [Serializable]
     public class Letter : InteractableItem
     {
         private string letterContents;

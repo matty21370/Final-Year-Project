@@ -93,6 +93,18 @@ namespace Game.Dialogue
             endDialogueButton.alpha = 0;
             _activeSequence = sequence;
             SetDialogue(_activeSequence.GetNextDialogue());
+            
+            if (QuestManager.Instance.ActiveQuest != null)
+            {
+                Objective currentObjective = QuestManager.Instance.ActiveQuest.GetCurrentObjective();
+                if (currentObjective.Goal == Objective.Goals.InitTalk)
+                {
+                    if (currentObjective.Identifier == _activeSequence.condition)
+                    {
+                        currentObjective.CompleteTarget(_activeSpeaker.GetComponent<Interactable>());
+                    }
+                }
+            }
         }
         
         public void NextDialogue()

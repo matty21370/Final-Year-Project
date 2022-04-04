@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3539037203281438817}
   - component: {fileID: 3539037203281438816}
   - component: {fileID: 105264919}
+  - component: {fileID: 2105380479}
   m_Layer: 0
   m_Name: Game Systems
   m_TagString: Untagged
@@ -52,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterMenu: {fileID: 0}
+  starterQuest: {fileID: 0}
 --- !u!114 &3539037203281438822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +108,15 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   deathScreen: {fileID: 0}
   dialogueUI: {fileID: 0}
+  xpBar: {fileID: 0}
+  questCompletedUI: {fileID: 0}
+  questCompletedUIText: {fileID: 0}
+  questCompletedQuestNameText: {fileID: 0}
+  questStartedUI: {fileID: 0}
+  questStartedText: {fileID: 0}
+  levelUpUI: {fileID: 0}
+  oldLevelText: {fileID: 0}
+  newLevelText: {fileID: 0}
 --- !u!114 &3539037203281438818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,3 +187,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   titleText: {fileID: 0}
   objectiveText: {fileID: 0}
+--- !u!114 &2105380479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3539037203281438830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67622dc9eebf444aa7463c7161add92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpMultiplier: 1

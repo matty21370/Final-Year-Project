@@ -1,7 +1,9 @@
-﻿using Game.Questing;
+﻿using System;
+using Game.Questing;
 
 namespace Game.Items
 {
+    [Serializable]
     public class InteractableItem : Item, IUsable
     {
         public InteractableItem(string itemName, string itemDescription, string onUseText, string iconPath, bool interactable, bool stackable, bool consumable) : base(itemName, itemDescription, "", iconPath, interactable, stackable, consumable)

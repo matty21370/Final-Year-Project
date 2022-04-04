@@ -15,6 +15,7 @@ public class Objective
         Interact,
         Kill,
         Talk,
+        InitTalk,
         Use
     }
 

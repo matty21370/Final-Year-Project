@@ -18,6 +18,11 @@ namespace Game.Questing
         private List<Quest> _allQuests = new List<Quest>();
 
         [SerializeField] private Text titleText, objectiveText;
+        
+        private List<Quest> _currentQuests = new List<Quest>();
+        private Quest _activeQuest;
+
+        public Quest ActiveQuest => _activeQuest;
 
         public void RegisterQuest(Quest quest)
         {
@@ -36,11 +41,6 @@ namespace Game.Questing
 
             return null;
         }
-
-        private List<Quest> _currentQuests = new List<Quest>();
-        private Quest _activeQuest;
-
-        public Quest ActiveQuest => _activeQuest;
         
         private void Awake()
         {
