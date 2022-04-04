@@ -11,11 +11,11 @@ namespace Game.Questing
         public void ActivateQuest(string id)
         {
             Quest quest = QuestManager.Instance.GetQuestFromID(id);
+            print("Adding quest: " + quest.Title);
             QuestManager.Instance.AddQuestToJournal(quest);
-            print("Added quest: " + quest.Title);
         }
 
-        private void Start()
+        private void Awake()
         {
             foreach (var quest in _questsToGive)
             {

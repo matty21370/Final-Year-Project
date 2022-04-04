@@ -135,8 +135,16 @@ namespace Game.Character
                 switch (_currentWeapon.WeaponType)
                 {
                     case Items.Weapons.Weapon.WeaponTypes.Unarmed:
-                        int variant = Random.Range(1, 3);
-                        _animator.SetTrigger("unarmed" + variant); 
+                        if (_animator != null)
+                        {
+                            int variant = Random.Range(1, 3);
+                            _animator.SetTrigger("unarmed" + variant);
+                        }
+                        else
+                        {
+                            Hit();
+                        }
+
                         break;
                     case Items.Weapons.Weapon.WeaponTypes.Sword:
                         _animator.SetTrigger(Sword);

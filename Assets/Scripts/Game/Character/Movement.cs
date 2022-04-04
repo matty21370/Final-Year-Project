@@ -54,6 +54,7 @@ namespace Game.Character
 
         private void Animate()
         {
+            if(_animator == null) return;
             Vector3 velocity = transform.InverseTransformDirection(_agent.velocity);
             _animator.SetFloat("speed", velocity.z);
 

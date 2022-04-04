@@ -95,7 +95,17 @@ namespace Game.Inventory
             {
                 var consumable = (Food) item;
                 onUse.text = "When eaten:";
-                onUseText.text = consumable.OnUseText;
+                string description;
+                if (consumable.Poisonous)
+                {
+                    description = "Amazing stuff";
+                }
+                else
+                {
+                    description = consumable.OnUseText;
+                }
+
+                onUseText.text = description;
             }
             else if (item.GetItemType() == ItemTypes.Interactable)
             {

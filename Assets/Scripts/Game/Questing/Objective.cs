@@ -51,7 +51,10 @@ public class Objective
         _targets = new Dictionary<Interactable, bool>();
         foreach (Interactable interactable in targets)
         {
-            _targets.Add(interactable, false);
+            if (interactable != null)
+            {
+                _targets.Add(interactable, false);
+            }
         }
 
         if (targetString.Length > 0)

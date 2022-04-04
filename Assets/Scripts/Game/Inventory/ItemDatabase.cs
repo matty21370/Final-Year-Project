@@ -29,11 +29,12 @@ namespace Game
 
         private void Init()
         {
-            _items.Add(new Food("Test food", "This is food added for testing purposes.", "Sprites/Food", 20));
+            _items.Add(new Food("Test food", "This is food added for testing purposes.", "Sprites/Food", 20, false));
             _items.Add(new Items.Weapons.Weapon("Unarmed", "no", "Deals damage", null, 10f, 1.5f, Items.Weapons.Weapon.WeaponTypes.Unarmed, null));
             _items.Add(new Items.Weapons.Weapon("Hammer", "An amazing hammer", "Deals damage", "Sprites/Hammer", 20f, 1.5f, Items.Weapons.Weapon.WeaponTypes.Sword, "Test"));
             _items.Add(new Resource("Wood", "Used for crafting.", "Sprites/Wood"));
             _items.Add(new Letter("Letter from Bob", "Dear player,\n\nPlease speak to me as soon as you arrive on the island. We are in a bad way, many people need your help.\n\nSafe travels,\n\nBob"));
+            _items.Add(new Food("The Potion of Life", "Take it if you want eternal life", "Sprites/potion_of_life", 10000.0f, true));
         }
 
         public Item GetItem()

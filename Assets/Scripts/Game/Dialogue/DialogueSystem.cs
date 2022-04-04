@@ -113,13 +113,9 @@ namespace Game.Dialogue
             {
                 if (activeQuest.GetCurrentObjective().Goal == Objective.Goals.Talk)
                 {
-                    foreach (Interactable interactable in activeQuest.GetCurrentObjective().Targets)
+                    if (activeQuest.GetCurrentObjective().Identifier == _activeSequence.condition)
                     {
-                        if (interactable == _activeSpeaker.GetComponent<Interactable>())
-                        {
-                            //StartCoroutine(Delay(objective));
-                            activeQuest.GetCurrentObjective().CompleteTarget(_activeSpeaker.GetComponent<Interactable>());
-                        }
+                        activeQuest.GetCurrentObjective().CompleteTarget(_activeSpeaker.GetComponent<Interactable>());
                     }
                 }
             }

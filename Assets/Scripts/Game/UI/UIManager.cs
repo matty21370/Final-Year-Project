@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Game.Character;
 using Game.Dialogue;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -21,6 +22,11 @@ namespace Game.UI
         [SerializeField] private GameObject deathScreen;
 
         [SerializeField] private GameObject dialogueUI;
+
+        [SerializeField] private GameObject xpBar;
+        private Slider _xpSlider;
+        private CanvasGroup _xpCanvasGroup;
+        private Text _xpBarText;
     
         private bool _characterMenuOpen = false;
         private bool _pauseMenuOpen = false;
@@ -40,6 +46,9 @@ namespace Game.UI
             }
             
             _player = FindObjectOfType<PlayerController>();
+            _xpSlider = xpBar.GetComponentInChildren<Slider>();
+            _xpCanvasGroup = xpBar.GetComponent<CanvasGroup>();
+            _xpBarText = xpBar.GetComponentInChildren<Text>();
         }
     
         public void ShowDeathScreen()
@@ -69,9 +78,12 @@ namespace Game.UI
         {
             _characterMenuOpen = !_characterMenuOpen;
             characterMenu.SetActive(_characterMenuOpen);
-            //characterMenu.GetComponent<CanvasGroup>().alpha = _characterMenuOpen ? 0 : 1;
-            //characterMenu.GetComponent<CanvasGroup>().blocksRaycasts = !_characterMenuOpen;
             _player.SetBusy(_characterMenuOpen ? true : false);
+        }
+
+        public void CloseCharacterMenu()
+        {
+            characterMenu.SetActive(false);
         }
 
         public void TogglePauseMenu()
@@ -79,6 +91,78 @@ namespace Game.UI
             _pauseMenuOpen = !_pauseMenuOpen;
             pauseMenu.SetActive(_pauseMenuOpen);
             Time.timeScale = _pauseMenuOpen ? 0 : 1;
+        }
+
+        private bool _isRunning = false;
+        
+        public void UpdateXpBar(float xp)
+        {
+            _xpSlider.maxValue = LevellingSystem.Instance.XpToLevel;
+            _xpBarText.text = "+" + xp + " XP";
+
+            if (!_isRunning)
+            {
+                StartCoroutine(XpBarSequence());
+            }
+        }
+        
+        private IEnumerator XpBarSequence()
+        {
+            StartCoroutine(FadeIn(_xpCanvasGroup));
+            _isRunning = true;
+
+            yield return new WaitForSeconds(1.5f);
+
+            StartCoroutine(FadeOut(_xpBarText.GetComponent<CanvasGroup>()));
+            
+            yield return new WaitForSeconds(2f);
+
+            StartCoroutine(FadeOut(_xpCanvasGroup));
+            
+            yield return new WaitForSeconds(1f);
+            _xpBarText.GetComponent<CanvasGroup>().alpha = 1f;
+            _isRunning = false;
+        }
+
+        private IEnumerator FadeIn(CanvasGroup canvasGroup)
+        {
+            while (canvasGroup.alpha < 1f)
+            {
+                canvasGroup.alpha += 0.01f;
+                yield return new WaitForSeconds(0.001f);
+            }
+        }
+        
+        private IEnumerator FadeOut(CanvasGroup canvasGroup)
+        {
+            while (canvasGroup.alpha > 0f)
+            {
+                canvasGroup.alpha -= 0.01f;
+                yield return new WaitForSeconds(0.001f);
+            }
+        }
+
+        private void Update()
+        {
+            if (Math.Abs(_xpSlider.value - LevellingSystem.Instance.Xp) > 0.01f)
+            {
+                _xpSlider.value = Mathf.Lerp(_xpSlider.value, LevellingSystem.Instance.Xp, Time.deltaTime * 3f);
+            }
+        }
+
+        public void UpdateXpBarLevelUp()
+        {
+            Slider slider = xpBar.GetComponentInChildren<Slider>();
+
+            slider.maxValue = LevellingSystem.Instance.XpToLevel;
+            slider.value = Mathf.MoveTowards(slider.value, LevellingSystem.Instance.Xp, Time.deltaTime * 6);
+        }
+
+        private IEnumerator LevellingSequence()
+        {
+            yield return new WaitForSeconds(1f);
+            
+            
         }
     }
 }

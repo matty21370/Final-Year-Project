@@ -69,6 +69,11 @@ namespace Game.Character
             {
                 UIManager.Instance.ToggleCharacterMenu();
             }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                _health.TakeDamage(10f);
+            }
             
             if (Input.GetKeyDown(KeyCode.R))
             {

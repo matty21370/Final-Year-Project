@@ -59,6 +59,7 @@ namespace Game.Questing
         public void CompleteObjective()
         {
             objectives[_objectiveIndex].OnObjectiveDeactivated();
+            Debug.Log("Objective completed");
             
             if (_objectiveIndex + 1 >= objectives.Count)
             {

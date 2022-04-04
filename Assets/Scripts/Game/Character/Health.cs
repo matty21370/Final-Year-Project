@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Interaction;
+using Game.Inventory;
 using Game.Questing;
 using Game.Saving;
 using UnityEngine;
@@ -14,11 +15,15 @@ namespace Game.Character
         [SerializeField] private float maxHealth;
         private float _currentHealth;
 
+        [SerializeField] private bool hideOnDeath;
+
         private bool _isAlive = true;
 
         private Animator _animator;
         private static readonly int Die = Animator.StringToHash("die");
         private static readonly int Revive = Animator.StringToHash("revive");
+
+        [SerializeField] private float xpOnDeath;
 
         private void Awake()
         {
@@ -29,13 +34,14 @@ namespace Game.Character
         public void TakeDamage(float amount)
         {
             _currentHealth = Mathf.Max(_currentHealth - amount, 0);
+            CheckHealth();
             
             if (gameObject.CompareTag("Player"))
             {
                 UpdateHealth();
             }
             
-            if (_currentHealth == 0)
+            if (_currentHealth <= 0)
             {
                 Kill();    
             }
@@ -45,23 +51,14 @@ namespace Game.Character
         private void SetHealth(float amt)
         {
             _currentHealth = amt;
-            
-            if (_currentHealth == 0)
-            {
-                Kill();    
-            }
-            else
-            {
-                _isAlive = true;
-                _animator.SetTrigger(Revive);
-            }
-            
+            CheckHealth();
             UpdateHealth();
         }
 
         public void Heal(float amt)
         {
             _currentHealth = Mathf.Min(maxHealth, _currentHealth + amt);
+            CheckHealth();
             UpdateHealth();
         }
 
@@ -70,9 +67,30 @@ namespace Game.Character
             HandleDeath();
         }
 
+        private void CheckHealth()
+        {
+            if (_currentHealth <= 0)
+            {
+                Kill();    
+            }
+            else
+            {
+                _isAlive = true;
+                if (_animator != null)
+                {
+                    _animator.SetTrigger(Revive);
+                }
+            }
+        }
+
         private void HandleDeath()
         {
             if(GetComponent<Destructable>() != null) GetComponent<Destructable>().Destruct();
+
+            if (hideOnDeath)
+            {
+                gameObject.SetActive(false);
+            }
             
             _isAlive = false;
             if (GetComponent<Animator>() != null)
@@ -84,10 +102,13 @@ namespace Game.Character
 
             if (gameObject.CompareTag("Player"))
             {
+                UIManager.Instance.CloseCharacterMenu();
                 StartCoroutine(PlayerDeath());
             }
             else
             {
+                LevellingSystem.Instance.GiveXp(xpOnDeath);
+                
                 if (QuestManager.Instance.ActiveQuest != null)
                 {
                     Interactable myInteractable = GetComponent<Interactable>();
