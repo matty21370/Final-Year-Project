@@ -141,6 +141,15 @@ namespace Game.Dialogue
 
         public void EndDialogue()
         {
+            if (QuestManager.Instance.ActiveQuest != null && _activeSpeaker.EndDialogueConditional)
+            {
+                Objective currentObjective = QuestManager.Instance.ActiveQuest.GetCurrentObjective();
+                if (currentObjective.Identifier == _activeSpeaker.EndDialogueCondition)
+                {
+                    _activeSpeaker.EndDialogueEvent.Invoke();
+                } 
+            }
+            
             ui.OnClose();
             _activeSpeaker = null;
             _activeSequence = null;

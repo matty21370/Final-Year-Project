@@ -15,6 +15,7 @@ namespace Game.UI
         {
             if (_instance == null)
             {
+                gameObject.SetActive(true);
                 _instance = this;
                 gameObject.SetActive(false);
             }

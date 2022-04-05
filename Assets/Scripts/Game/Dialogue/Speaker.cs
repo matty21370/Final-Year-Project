@@ -20,6 +20,17 @@ namespace Game.Dialogue
 
         private static List<Speaker> _allSpeakers = new List<Speaker>();
 
+        [Header("On closed dialogue")] [SerializeField]
+        private bool conditional;
+
+        [SerializeField] private string condition;
+
+        [SerializeField] private UnityEvent endDialogueEvent;
+
+        public bool EndDialogueConditional => conditional;
+        public string EndDialogueCondition => condition;
+        public UnityEvent EndDialogueEvent => endDialogueEvent;
+        
         public static Speaker GetSpeakerByName(string name)
         {
             foreach (var speaker in _allSpeakers)

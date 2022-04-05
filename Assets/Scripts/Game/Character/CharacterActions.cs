@@ -1,4 +1,5 @@
 ﻿using System;
+using Game.Dialogue;
 using Game.Inventory;
 using Game.Items;
 using UnityEngine;
@@ -10,9 +11,28 @@ namespace Game.Character
     {
         private Animator _animator;
 
+        private bool _moveToPlayerAndTalk = false;
+
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+        }
+
+        private void Update()
+        {
+            if (_moveToPlayerAndTalk)
+            {
+                if (Vector3.Distance(transform.position, FindObjectOfType<PlayerController>().transform.position) < 1.5f)
+                {
+                    _moveToPlayerAndTalk = false;
+                    GetComponent<Speaker>().Initiate();
+                    FindObjectOfType<PlayerController>().GetComponent<Movement>().Stop();
+                }
+                else
+                {
+                    GetComponent<Movement>().Move(FindObjectOfType<PlayerController>().transform.position);
+                }
+            }
         }
 
         public void Talk()
@@ -34,6 +54,12 @@ namespace Game.Character
             {
                 InventorySystem.Instance.AddItem(item);
             }
+        }
+
+        public void MoveToPlayerAndTalk()
+        {
+            _moveToPlayerAndTalk = true;
+            GetComponent<Movement>().Move(FindObjectOfType<PlayerController>().transform.position);
         }
     }
 }

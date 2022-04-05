@@ -9,7 +9,12 @@ namespace Game.Interaction.Interactables
     {
         [SerializeField] private NoticeBoardItem[] noticeBoardItems;
         
-        private void Awake()
+        private void Start()
+        {
+            Invoke(nameof(Init), 1f);
+        }
+
+        private void Init()
         {
             foreach (var noticeBoardItem in noticeBoardItems)
             {
@@ -33,14 +38,19 @@ namespace Game.Interaction.Interactables
         private Quest _quest;
 
         [SerializeField] private string title, description;
+        
+        [SerializeField] private QuestGiver questGiver;
 
         public string QuestId => questId;
         public Quest Quest => _quest;
         public string Title => title;
         public string Description => description;
 
+        public QuestGiver QuestGiver => questGiver;
+
         public void Init()
         {
+            Debug.Log(QuestId);
             _quest = QuestManager.Instance.GetQuestFromID(questId);
         }
     }
