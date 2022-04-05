@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Game.Character;
 using Game.Dialogue;
+using Game.Interaction.Interactables;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -250,9 +251,10 @@ namespace Game.UI
             questStartedText.GetComponent<CanvasGroup>().alpha = 0;
         }
         
-        public void ShowNoticeBoard()
+        public void ShowNoticeBoard(NoticeBoardItem[] items)
         {
             noticeBoard.gameObject.SetActive(true);
+            NoticeBoardUI.Instance.OnNoticeBoardOpened(items);
         }
 
         public void HideNoticeBoard()
