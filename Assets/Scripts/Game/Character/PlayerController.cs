@@ -116,7 +116,7 @@ namespace Game.Character
 
             if (Input.GetKeyDown(KeyCode.O))
             {
-                print(QuestManager.Instance.ActiveQuest.GetCurrentObjective().Identifier);
+                WaypointPath.Instance.SetDestination(FindObjectOfType<NpcController>().transform);
             }
             
             if (_combat.IsInCombat())
