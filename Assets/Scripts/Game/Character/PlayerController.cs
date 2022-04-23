@@ -17,9 +17,20 @@ namespace Game.Character
     {
         [SerializeField] private GameObject[] hair, beard, moustache;
 
+        public GameObject[] Hair => hair;
+
+        public GameObject[] Beard => beard;
+
+        public GameObject[] Moustache => moustache;
+
         public void SetHair(int index)
         {
             if (index < 0 || index > hair.Length) return;
+            
+            foreach (var hGameObject in hair)
+            {
+                hGameObject.SetActive(false);
+            }
             
             hair[index].SetActive(true);
         }
@@ -28,12 +39,22 @@ namespace Game.Character
         {
             if (index < 0 || index > beard.Length) return;
             
+            foreach (var bGameObject in beard)
+            {
+                bGameObject.SetActive(false);
+            }
+            
             beard[index].SetActive(true);
         }
         
         public void SetMoustache(int index)
         {
             if (index < 0 || index > moustache.Length) return;
+            
+            foreach (var mGameObject in moustache)
+            {
+                mGameObject.SetActive(false);
+            }
             
             moustache[index].SetActive(true);
         }
@@ -59,7 +80,9 @@ namespace Game.Character
         [SerializeField] private WeaponSlot[] weaponSlots;
 
         [SerializeField] private CustomizationOptions customizationOptions;
-        
+
+        public CustomizationOptions CustomizationOptions => customizationOptions;
+
         private Weapon _unarmed;
         
         public Health PlayerHealth => _health;
@@ -198,6 +221,8 @@ namespace Game.Character
 
         private void HandleClick()
         {
+            if(_busy) return;
+            
             if(EventSystem.current.IsPointerOverGameObject()) return;
             
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -230,7 +255,16 @@ namespace Game.Character
 
         public void SetBusy(bool busy)
         {
+            print("Setting busy");
             _busy = busy;
+            if (busy)
+            {
+                print("busy");
+            }
+            else
+            {
+                print("Not busy");
+            }
             UIManager.Instance.ToggleHealthbar(busy);
         }
 

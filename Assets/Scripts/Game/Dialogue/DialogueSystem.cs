@@ -46,7 +46,7 @@ namespace Game.Dialogue
 
         private void Start()
         {
-            EndDialogue();
+            Initialize();
         }
 
         public void Activate(Speaker speaker, DialogueSequence[] sequences)
@@ -157,6 +157,18 @@ namespace Game.Dialogue
             _active = false;
             DestroyButtons();
             _playerController.SetBusy(false);
+            _playerController.HideEquipmentSlots(false);
+            SetDialogue("");
+        }
+
+        private void Initialize()
+        {
+            ui.OnClose();
+            _activeSpeaker = null;
+            _activeSequence = null;
+            _sequences.Clear();
+            _active = false;
+            DestroyButtons();
             _playerController.HideEquipmentSlots(false);
             SetDialogue("");
         }

@@ -40,6 +40,8 @@ namespace Game.UI
         [SerializeField] private Text oldLevelText, newLevelText;
 
         [SerializeField] private GameObject noticeBoard;
+
+        [SerializeField] private GameObject createCharacterScreen;
     
         private bool _characterMenuOpen = false;
         private bool _pauseMenuOpen = false;
@@ -264,12 +266,24 @@ namespace Game.UI
 
         public void ShowCreateCharacterScreen()
         {
+            StartCoroutine(ShowCharacterScreen());
+        }
+
+        public void HideCreateCharacterScreen()
+        {
+            createCharacterScreen.SetActive(false);
+        }
+
+        private IEnumerator ShowCharacterScreen()
+        {
+            yield return new WaitForSeconds(2f);
             
+            createCharacterScreen.SetActive(true);
         }
 
         public void CreateCharacterButton()
         {
-            
+            AppearanceManager.Instance.CharacterDone();
         }
     }
 }
