@@ -34,6 +34,7 @@ namespace Game.Interaction
             }
 
             _isInteracting = false;
+            print("Setting interacting to false");
         }
 
         public bool GetIsPlayer()
