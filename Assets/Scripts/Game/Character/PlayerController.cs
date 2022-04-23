@@ -114,7 +114,6 @@ namespace Game.Character
         
         private void Start()
         {
-            //equipmentSlots = FindObjectsOfType<EquipmentSlot>();
             _health.UpdateHealth();
             
             _unarmed = ItemDatabase.Instance.GetItem("Unarmed") as Weapon; 
@@ -255,16 +254,7 @@ namespace Game.Character
 
         public void SetBusy(bool busy)
         {
-            print("Setting busy");
             _busy = busy;
-            if (busy)
-            {
-                print("busy");
-            }
-            else
-            {
-                print("Not busy");
-            }
             UIManager.Instance.ToggleHealthbar(busy);
         }
 

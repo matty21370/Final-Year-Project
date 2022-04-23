@@ -20,7 +20,6 @@ namespace Game.Questing
         {
             foreach (var quest in _questsToGive)
             {
-                print(quest.UniqueIdentifier);
                 QuestManager.Instance.RegisterQuest(quest);
             }
         }

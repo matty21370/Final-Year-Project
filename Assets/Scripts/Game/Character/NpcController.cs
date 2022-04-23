@@ -162,17 +162,14 @@ namespace Game.Character
         private void GetSandboxObject()
         {
             if (_currentSandboxObject != null || _currentSandboxPath != null) return; 
-            print("Getting sandbox object");
             Random random = new Random();
             int option = random.Next(0, 2); //0 = path, 1 = interact
             if (option == 0)
             {
-                print("0");
                 _currentSandboxPath = sandboxPaths[UnityEngine.Random.Range(0, sandboxPaths.Length)];
             }
             else
             {
-                print("1");
                 _currentSandboxObject = sandboxObjects[UnityEngine.Random.Range(0, sandboxObjects.Length)];
             }
         }

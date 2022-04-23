@@ -18,11 +18,6 @@ namespace Game.Interaction.Interactables
 
         public override void OnInteract(Interactor interactor)
         {
-            print(interactor);
-            base.OnInteract(interactor);
-
-            Interacted = false;
-
             if (_combat == null && _speaker != null)
             {
                 _speaker.Initiate();
@@ -40,6 +35,8 @@ namespace Game.Interaction.Interactables
                     _speaker.Initiate();
                 }
             }
+            
+            base.ResetInteractable(interactor);
         }
     }
 }

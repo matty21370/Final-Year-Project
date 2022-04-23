@@ -24,10 +24,11 @@ namespace Game.Interaction.Interactables
 
         public override void OnInteract(Interactor interactor)
         {
-            base.OnInteract(interactor);
-            Interacted = false;
+            if(!interactor.GetIsPlayer()) return;
             
             UIManager.Instance.ShowNoticeBoard(noticeBoardItems);
+            
+            base.ResetInteractable(interactor);
         }
     }
 

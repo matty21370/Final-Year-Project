@@ -394,6 +394,35 @@ MonoBehaviour:
   interactionRange: 1.5
   interactionTime: 0
   marker: {fileID: 2340853778881329855}
+  reusable: 1
+  noticeBoardItems:
+  - questId: quest_zulu_01
+    title: Kill some pigs!
+    description: My inn is running low on pork but I am in no fit state to slaughter
+      the pigs; they are too far away! I am looking for a capable warrior to take
+      care of them for me.
+    questGiver: {fileID: 0}
+  - questId: quest_noticeboard_01
+    title: Potion of Life
+    description: Are you scared of dying? Well have I got the solution for you! Come
+      visit my shop at the enterance of the village if you want to find out more.
+    questGiver: {fileID: 0}
+  - questId: 
+    title: Aaaa
+    description: bbbb
+    questGiver: {fileID: 0}
+  - questId: 
+    title: Minecraft
+    description: Is the best game ever
+    questGiver: {fileID: 0}
+  - questId: 
+    title: No it isnt
+    description: Ok
+    questGiver: {fileID: 0}
+  - questId: 
+    title: Yeet
+    description: adab
+    questGiver: {fileID: 0}
 --- !u!1 &9155206284306660744
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +575,10 @@ PrefabInstance:
     - target: {fileID: 2198957343570296201, guid: 94ba49601836dbd42aaabda983ee031b, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2198957343570296201, guid: 94ba49601836dbd42aaabda983ee031b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94ba49601836dbd42aaabda983ee031b, type: 3}

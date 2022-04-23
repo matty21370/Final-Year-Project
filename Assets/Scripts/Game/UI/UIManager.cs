@@ -256,6 +256,7 @@ namespace Game.UI
         public void ShowNoticeBoard(NoticeBoardItem[] items)
         {
             noticeBoard.gameObject.SetActive(true);
+            
             NoticeBoardUI.Instance.OnNoticeBoardOpened(items);
         }
 

@@ -205,6 +205,7 @@ MonoBehaviour:
   interactionRange: 1.5
   interactionTime: 5
   marker: {fileID: 0}
+  reusable: 0
 --- !u!1001 &19027437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3243,15 +3244,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8899148779194065570, guid: f88e8e7f95427284792bccca65ba1da9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -431.0375
+      value: -348.704
       objectReference: {fileID: 0}
     - target: {fileID: 8899148779194065570, guid: f88e8e7f95427284792bccca65ba1da9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 40.94764
+      value: 40.94763
       objectReference: {fileID: 0}
     - target: {fileID: 8899148779194065570, guid: f88e8e7f95427284792bccca65ba1da9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -353.76974
+      value: -348.21384
       objectReference: {fileID: 0}
     - target: {fileID: 8899148779194065570, guid: f88e8e7f95427284792bccca65ba1da9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3331,15 +3332,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8899148780314714534, guid: f88e8e7f95427284792bccca65ba1da9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -431.0375
+      value: -348.704
       objectReference: {fileID: 0}
     - target: {fileID: 8899148780314714534, guid: f88e8e7f95427284792bccca65ba1da9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 40.94764
+      value: 40.94763
       objectReference: {fileID: 0}
     - target: {fileID: 8899148780314714534, guid: f88e8e7f95427284792bccca65ba1da9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -353.76974
+      value: -348.21384
       objectReference: {fileID: 0}
     - target: {fileID: 8899148780314714534, guid: f88e8e7f95427284792bccca65ba1da9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6153,7 +6154,7 @@ PrefabInstance:
       objectReference: {fileID: 2105380474}
     - target: {fileID: 1977602657, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5989909703175289840, guid: 18b6048a6c53e024f8b8dc697d414c6a, type: 3}
       propertyPath: m_RenderMode
@@ -11240,7 +11241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6152718211545742532, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -420.5335
+      value: -338.2
       objectReference: {fileID: 0}
     - target: {fileID: 6152718211545742532, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11248,7 +11249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6152718211545742532, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -353.2559
+      value: -347.7
       objectReference: {fileID: 0}
     - target: {fileID: 6152718211545742532, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12063,18 +12064,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6154867217320444632, guid: 55b2195ab5bee664badcf8ecbdfe30ed, type: 3}
   m_PrefabInstance: {fileID: 1222415306}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1349654536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1349654535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a12959c253bc42347958bcf44a7e725d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!120 &1349654537
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -16847,6 +16836,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 665882775109692189, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: reusable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1421731397436764174, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -17984,77 +17977,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1472770777}
     m_Modifications:
-    - target: {fileID: 2340853778881329855, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[0].title
-      value: Kill some pigs!
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[1].title
-      value: Potion of Life
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[2].title
-      value: Aaaa
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[3].title
-      value: Minecraft
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[4].title
-      value: No it isnt
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[5].title
-      value: Yeet
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[0].questId
-      value: quest_zulu_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[1].questId
-      value: quest_noticeboard_01
-      objectReference: {fileID: 0}
     - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
       propertyPath: noticeBoardItems.Array.data[1].questGiver
       value: 
       objectReference: {fileID: 548585895}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[0].description
-      value: My inn is running low on pork but I am in no fit state to slaughter
-        the pigs; they are too far away! I am looking for a capable warrior to take
-        care of them for me.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[1].description
-      value: Are you scared of dying? Well have I got the solution for you! Come
-        visit my shop at the enterance of the village if you want to find out more.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[2].description
-      value: bbbb
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[3].description
-      value: Is the best game ever
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[4].description
-      value: Ok
-      objectReference: {fileID: 0}
-    - target: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-      propertyPath: noticeBoardItems.Array.data[5].description
-      value: adab
-      objectReference: {fileID: 0}
     - target: {fileID: 5765098140956787800, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
       propertyPath: m_RootOrder
       value: 19

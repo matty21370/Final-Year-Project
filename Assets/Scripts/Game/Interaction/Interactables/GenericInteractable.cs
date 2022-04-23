@@ -7,8 +7,9 @@ namespace Game.Interaction.Interactables
     {
         public override void OnInteract(Interactor interactor)
         {
-            base.OnInteract(interactor);
             Interacted = false;
+            
+            base.ResetInteractable(interactor);
         }
     }
 }

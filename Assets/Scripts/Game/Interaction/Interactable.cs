@@ -12,10 +12,14 @@ namespace Game.Interaction
         [SerializeField] private float interactionTime = 1.0f;
 
         [SerializeField] private GameObject marker;
+
+        [SerializeField] private bool reusable;
         
         private Interactor _interacting;
         
         protected bool Interacted = false;
+
+        private bool _waitForInteract = false;
 
         private void Update()
         {
@@ -26,16 +30,31 @@ namespace Game.Interaction
                     _interacting.transform.LookAt(transform);
                     _interacting.GetComponent<Movement>().Stop();
 
-                    StartCoroutine(WaitForInteract());
+                    if (!_waitForInteract)
+                    {
+                        StartCoroutine(WaitForInteract());
+                        _waitForInteract = true;
+                    }
                 }
             }
         }
 
         public void MoveToInteract(Interactor interactor)
         {
-            if(GetComponent<Interactor>() != null) if(GetComponent<Interactor>().GetIsPlayer() && interactor.GetIsPlayer()) return;
+            if (_interacting != null)
+            {
+                print("Already interacting!");
+                return;
+            }
             
-            print("yeet");
+            if (GetComponent<Interactor>() != null)
+            {
+                if (GetComponent<Interactor>().GetIsPlayer() && interactor.GetIsPlayer())
+                {
+                    return;
+                }
+            }
+            
             _interacting = interactor;
             _interacting.GetComponent<Movement>().Move(transform.position);
         }
@@ -43,16 +62,23 @@ namespace Game.Interaction
         private IEnumerator WaitForInteract()
         {
             yield return new WaitForSeconds(interactionTime);
-
-            print(_interacting);
+            
             OnInteract(_interacting);
         }
 
         public virtual void OnInteract(Interactor interactor)
         {
-            _interacting.OnFinished();
+            
+        }
+
+        public void ResetInteractable(Interactor interactor)
+        {
+            interactor.OnFinished();
+            
             _interacting = null;
-            Interacted = true;
+            Interacted = !reusable;
+            
+            _waitForInteract = false;
             
             if (QuestManager.Instance.ActiveQuest != null)
             {
@@ -63,20 +89,11 @@ namespace Game.Interaction
                     {
                         if (interactable == this)
                         {
-                            //StartCoroutine(Delay(objective));
                             objective.CompleteTarget(this);
                         }
                     }
                 }
             }
-            
-            print(interactor);
-        }
-        
-        private IEnumerator Delay(Objective objective)
-        {
-            yield return new WaitForSeconds(1f);
-            objective.CompleteTarget(this);
         }
 
         public void HandleMarker(bool enable)

@@ -12,6 +12,8 @@ namespace Game.Interaction
 
         private NpcController _npcController;
 
+        private bool _isInteracting = false;
+
         private void Start()
         {
             _npcController = GetComponent<NpcController>();
@@ -19,16 +21,19 @@ namespace Game.Interaction
 
         public void Interact(Interactable interactable)
         {
-            interactable.MoveToInteract(this);
+            if(_isInteracting) return;
+            _isInteracting = true;
+            interactable.MoveToInteract(gameObject.GetComponent<Interactor>());
         }
 
         public void OnFinished()
         {
-            print("yeeeeeee");
             if (_npcController != null)
             {
                 _npcController.OnFinishedInteracting();
             }
+
+            _isInteracting = false;
         }
 
         public bool GetIsPlayer()
