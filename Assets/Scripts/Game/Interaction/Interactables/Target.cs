@@ -18,6 +18,7 @@ namespace Game.Interaction.Interactables
 
         public override void OnInteract(Interactor interactor)
         {
+            print(interactor);
             base.OnInteract(interactor);
 
             Interacted = false;

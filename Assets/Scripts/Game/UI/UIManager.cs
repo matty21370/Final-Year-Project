@@ -261,6 +261,16 @@ namespace Game.UI
         {
             noticeBoard.gameObject.SetActive(false);
         }
+
+        public void ShowCreateCharacterScreen()
+        {
+            
+        }
+
+        public void CreateCharacterButton()
+        {
+            
+        }
     }
 }
 

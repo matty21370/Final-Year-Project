@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Character.AI;
+using Game.Interaction;
 using Game.Interaction.Interactables;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = System.Random;
 
 namespace Game.Character
 {
@@ -37,6 +39,14 @@ namespace Game.Character
         [FormerlySerializedAs("susTime")] [SerializeField] private float suspicionTime = 4f;
         private float _suspicionTimer = 0;
 
+        [SerializeField] private Interactable[] sandboxObjects;
+        [SerializeField] private PatrolPath[] sandboxPaths;
+
+        private Interactable _currentSandboxObject;
+        private PatrolPath _currentSandboxPath;
+
+        private PatrolPath _currentPath;
+        
         private float _timeSpentAtWaypoint = 0;
 
         private int _patrolIndex = 0;
@@ -75,7 +85,12 @@ namespace Game.Character
             {
                 if (startingBehaviour == BehaviourTypes.Patrol)
                 {
+                    _currentPath = patrolPath;
                     Patrol();
+                }
+                else if (startingBehaviour == BehaviourTypes.Sandbox)
+                {
+                    SandboxBehaviour();
                 }
             }
             else
@@ -87,7 +102,7 @@ namespace Game.Character
         private void Patrol()
         {
             _movement.SetSpeed(patrolSpeed);
-            _movement.Move(patrolPath.GetCurrentWaypoint(_patrolIndex));
+            _movement.Move(_currentPath.GetCurrentWaypoint(_patrolIndex));
 
             if (AtWaypoint())
             {
@@ -96,7 +111,8 @@ namespace Game.Character
                 if (_timeSpentAtWaypoint >= timeAtWaypoint)
                 {
                     _timeSpentAtWaypoint = 0;
-                    _patrolIndex = patrolPath.GetNextWaypoint(_patrolIndex);
+                    _patrolIndex = _currentPath.GetNextWaypoint(_patrolIndex);
+                    ReachedWaypoint();
                 }
             }
         }
@@ -124,12 +140,71 @@ namespace Game.Character
             }
         }
 
+        private void SandboxBehaviour()
+        {
+            if (_currentSandboxObject == null && _currentSandboxPath == null)
+            {
+                GetSandboxObject();
+            }
+
+            if (_currentSandboxObject != null)
+            {
+                GetComponent<Interactor>().Interact(_currentSandboxObject);
+            }
+
+            if (_currentSandboxPath != null)
+            {
+                _currentPath = _currentSandboxPath;
+                Patrol();
+            }
+        }
+
+        private void GetSandboxObject()
+        {
+            if (_currentSandboxObject != null || _currentSandboxPath != null) return; 
+            print("Getting sandbox object");
+            Random random = new Random();
+            int option = random.Next(0, 2); //0 = path, 1 = interact
+            if (option == 0)
+            {
+                print("0");
+                _currentSandboxPath = sandboxPaths[UnityEngine.Random.Range(0, sandboxPaths.Length)];
+            }
+            else
+            {
+                print("1");
+                _currentSandboxObject = sandboxObjects[UnityEngine.Random.Range(0, sandboxObjects.Length)];
+            }
+        }
+
+        private void ReachedWaypoint()
+        {
+            if (_currentSandboxPath != null)
+            {
+                ClearSandbox();
+                GetSandboxObject();
+            }
+        }
+
+        private void ClearSandbox()
+        {
+            _currentSandboxObject = null;
+            _currentSandboxPath = null;
+        }
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, detectionRadius);
         }
 
+        //Called by interactor component
+        public void OnFinishedInteracting()
+        {
+            ClearSandbox();
+            GetSandboxObject();
+        }
+        
         public int GetLevel()
         {
             return _level;
@@ -137,7 +212,7 @@ namespace Game.Character
 
         private bool AtWaypoint()
         {
-            bool reached = Vector3.Distance(transform.position, patrolPath.GetCurrentWaypoint(_patrolIndex)) <= 0.2;
+            bool reached = Vector3.Distance(transform.position, _currentPath.GetCurrentWaypoint(_patrolIndex)) <= 0.2;
             return reached;
         }
 

@@ -35,6 +35,7 @@ namespace Game.Interaction
         {
             if(GetComponent<Interactor>() != null) if(GetComponent<Interactor>().GetIsPlayer() && interactor.GetIsPlayer()) return;
             
+            print("yeet");
             _interacting = interactor;
             _interacting.GetComponent<Movement>().Move(transform.position);
         }
@@ -43,11 +44,13 @@ namespace Game.Interaction
         {
             yield return new WaitForSeconds(interactionTime);
 
+            print(_interacting);
             OnInteract(_interacting);
         }
 
         public virtual void OnInteract(Interactor interactor)
         {
+            _interacting.OnFinished();
             _interacting = null;
             Interacted = true;
             
@@ -66,6 +69,8 @@ namespace Game.Interaction
                     }
                 }
             }
+            
+            print(interactor);
         }
         
         private IEnumerator Delay(Objective objective)

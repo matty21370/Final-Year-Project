@@ -12,8 +12,38 @@ using UnityEngine.SceneManagement;
 
 namespace Game.Character
 {
+    [Serializable]
+    public class CustomizationOptions
+    {
+        [SerializeField] private GameObject[] hair, beard, moustache;
+
+        public void SetHair(int index)
+        {
+            if (index < 0 || index > hair.Length) return;
+            
+            hair[index].SetActive(true);
+        }
+        
+        public void SetBeard(int index)
+        {
+            if (index < 0 || index > beard.Length) return;
+            
+            beard[index].SetActive(true);
+        }
+        
+        public void SetMoustache(int index)
+        {
+            if (index < 0 || index > moustache.Length) return;
+            
+            moustache[index].SetActive(true);
+        }
+    }
+    
     public class PlayerController : MonoBehaviour
     {
+        private static PlayerController _instance;
+        public static PlayerController Instance => _instance;
+        
         private Camera _mainCamera;
         
         private Movement _movement;
@@ -28,12 +58,24 @@ namespace Game.Character
         [SerializeField] private EquipmentSlot[] equipmentSlots;
         [SerializeField] private WeaponSlot[] weaponSlots;
 
+        [SerializeField] private CustomizationOptions customizationOptions;
+        
         private Weapon _unarmed;
         
         public Health PlayerHealth => _health;
-        
+
         private void Awake()
         {
+            if (_instance == null)
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            
             _mainCamera = Camera.main;
             _movement = GetComponent<Movement>();
             _combat = GetComponent<Combat>();
@@ -52,7 +94,7 @@ namespace Game.Character
             //equipmentSlots = FindObjectsOfType<EquipmentSlot>();
             _health.UpdateHealth();
             
-            _unarmed = ItemDatabase.Instance.GetItem("Unarmed") as Weapon;
+            _unarmed = ItemDatabase.Instance.GetItem("Unarmed") as Weapon; 
         }
 
         // Update is called once per frame
@@ -61,6 +103,13 @@ namespace Game.Character
             if(!_health.IsAlive()) return;
 
             HandleInput();
+        }
+
+        public void ApplyCustomization(CharacterAppearance characterAppearance)
+        {
+            customizationOptions.SetHair(characterAppearance.Hair);
+            customizationOptions.SetBeard(characterAppearance.Beard);
+            customizationOptions.SetMoustache(characterAppearance.Moustache);
         }
 
         private void HandleInput()

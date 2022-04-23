@@ -50,7 +50,6 @@ namespace Game.Interaction.Interactables
 
         public void Init()
         {
-            Debug.Log(QuestId);
             _quest = QuestManager.Instance.GetQuestFromID(questId);
         }
     }
