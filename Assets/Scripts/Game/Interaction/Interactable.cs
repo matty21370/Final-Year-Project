@@ -14,12 +14,19 @@ namespace Game.Interaction
         [SerializeField] private GameObject marker;
 
         [SerializeField] private bool reusable;
+
+        [SerializeField] private bool conditional;
+        [SerializeField] private string condition;
         
         private Interactor _interacting;
         
         protected bool Interacted = false;
 
         private bool _waitForInteract = false;
+
+        public bool Conditional => conditional;
+
+        public string Condition => condition;
 
         private void Update()
         {

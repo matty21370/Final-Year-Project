@@ -206,6 +206,8 @@ MonoBehaviour:
   interactionTime: 5
   marker: {fileID: 0}
   reusable: 0
+  conditional: 0
+  condition: 
 --- !u!1001 &19027437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4374,105 +4376,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 419072, guid: bc17b1ed5476ec540a6ebe8135cd81e6, type: 3}
   m_PrefabInstance: {fileID: 496186688}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &497110464
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6031459807028041253, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6031459807028041253, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -417.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6031459807028041253, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 31.208155
-      objectReference: {fileID: 0}
-    - target: {fileID: 6031459807028041253, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -349.49
-      objectReference: {fileID: 0}
-    - target: {fileID: 6031459807028041253, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.44111347
-      objectReference: {fileID: 0}
-    - target: {fileID: 6031459807028041253, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6031459807028041253, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.8974513
-      objectReference: {fileID: 0}
-    - target: {fileID: 6031459807028041253, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6031459807028041253, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6031459807028041253, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -127.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 6031459807028041253, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6031459807028070917, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-      propertyPath: m_Name
-      value: Chest_01
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
---- !u!1 &497110465 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6031459807028070917, guid: 40d6d86fbdf064e4195a57ee25349813, type: 3}
-  m_PrefabInstance: {fileID: 497110464}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &497110466
+--- !u!114 &497110466 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 855182835116588006, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+  m_PrefabInstance: {fileID: 855182835039073828}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497110465}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68d62ea1438d03c47b8a03e741451396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionRange: 1.5
-  interactionTime: 2
-  marker: {fileID: 0}
-  reusable: 1
-  tier1Items: 4
-  tier2Items: 2
-  tier3Items: 0
---- !u!65 &497110467
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 497110465}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1171626, y: 0.76334584, z: 0.62239504}
-  m_Center: {x: -0.00000026822082, y: 0.3793192, z: 0.010651972}
---- !u!1 &499992002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6654011020469115965, guid: 737d6fc5dd5f5a04582f9a0c7377e08e, type: 3}
-  m_PrefabInstance: {fileID: 728539011}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &499992013 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6656153426227831329, guid: 737d6fc5dd5f5a04582f9a0c7377e08e, type: 3}
@@ -8569,8 +8483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f59a62897b547e0950fbbd493645c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _items:
-  - ItemType: 0
 --- !u!4 &898225956
 Transform:
   m_ObjectHideFlags: 0
@@ -8583,7 +8495,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &909523145
 GameObject:
@@ -8841,7 +8753,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &986607199
 PrefabInstance:
@@ -14179,7 +14091,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7182628, y: 1}
+    m_SensorSize: {x: 1.7144444, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -15887,6 +15799,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 420554857}
     m_Modifications:
+    - target: {fileID: -2156433795802992342, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
+      propertyPath: armourSets.Array.data[1].protection
+      value: 0.222
+      objectReference: {fileID: 0}
     - target: {fileID: 77892981981959599, guid: ec96758f633f9704cb80c212c07c50fa, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -16061,15 +15977,23 @@ MonoBehaviour:
   - uniqueIdentifier: quest_bob_01
     giver: {fileID: 1857911568}
     title: Helping Out
-    description: This is a test quest.
-    questObjects:
-    - {fileID: 499992002}
+    description: 
+    questObjects: []
     xpReward: 50
     objectives:
     - identifier: bob_quest_01_objective_01
-      description: Check the notice board
+      description: Collect your items from the chest
       targets:
-      - {fileID: 5771559865730431152}
+      - {fileID: 497110466}
+      targetString: 
+      goal: 0
+      eEvent:
+        m_PersistentCalls:
+          m_Calls: []
+    - identifier: bob_quest_01_objective_02
+      description: Speak to Bob
+      targets:
+      - {fileID: 1857911575}
       targetString: 
       goal: 0
       eEvent:
@@ -16115,7 +16039,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-    - dialogue: As I said in the letter, this island is in a very bad way.
+    - dialogue: As I said in the letter, we are in a very bad way.
       e:
         m_PersistentCalls:
           m_Calls:
@@ -16147,8 +16071,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-    - dialogue: The mayor of this village may make use of you, but you will have
-        to prove yourself if you want an audience with him.
+    - dialogue: There is a village just north of here; the mayor could use your help.
       e:
         m_PersistentCalls:
           m_Calls:
@@ -16164,8 +16087,8 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-    - dialogue: I would check the notice board if I were you, there are always people
-        in need of help.
+    - dialogue: But first, you will need some equipment. I have left your some items
+        in that chest over there.
       e:
         m_PersistentCalls:
           m_Calls:
@@ -16181,7 +16104,7 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
-    - dialogue: Once you are done, speak with me.
+    - dialogue: Go collect your items, and then we will head to the village together.
       e:
         m_PersistentCalls:
           m_Calls:
@@ -17977,6 +17900,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134362156}
   m_CullTransparentMesh: 1
+--- !u!1001 &855182835039073828
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6370962884030197185, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370962884030197185, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -417.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370962884030197185, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 31.208155
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370962884030197185, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -352.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370962884030197185, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9725317
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370962884030197185, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370962884030197185, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.23277046
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370962884030197185, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370962884030197185, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370962884030197185, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -26.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370962884030197185, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6370962884030558689, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
+      propertyPath: m_Name
+      value: Chest_01
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a34a0bdd9236565468d714cb506f6c98, type: 3}
 --- !u!1001 &5771559865730431151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18038,17 +18018,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
---- !u!114 &5771559865730431152 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2643119767627196091, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}
-  m_PrefabInstance: {fileID: 5771559865730431151}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a317ddfddde49d28708627e2a401f1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5771559865730431153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5765098140956787800, guid: 78f4a05d92de08a4da8f7849e0fe364a, type: 3}

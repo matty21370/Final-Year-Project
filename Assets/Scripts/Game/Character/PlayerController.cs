@@ -234,17 +234,31 @@ namespace Game.Character
                 Interactable interactable = hit.transform.GetComponent<Interactable>();
                 if (interactable != null)
                 {
-                    _interactor.Interact(interactable);
-                    _interactable = interactable;
+                    if (interactable.Conditional)
+                    {
+                        Quest quest = QuestManager.Instance.ActiveQuest;
+                        if (quest.GetCurrentObjective().Identifier == interactable.Condition)
+                        {
+                            _interactor.Interact(interactable);
+                            _interactable = interactable;
+                        }
+                    }
+                    else
+                    {
+                        _interactor.Interact(interactable);
+                        _interactable = interactable;
+                    }
                 }
                 else
                 {
                     if(_combat.HasTarget()) _combat.RemoveTarget();
+                    
                     if (_interactable != null)
                     {
                         _interactable.CancelInteraction();
                         _interactable = null;
                     }
+                    
                     _interactor.SetInteracting(false);
                     Move(hit.point);
                 }

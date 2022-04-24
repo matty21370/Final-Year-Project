@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game.Items;
 using Game.Items.Weapons;
 using Game.Utility;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Game
 {
@@ -11,7 +13,6 @@ namespace Game
         private static ItemDatabase _instance;
         public static ItemDatabase Instance => _instance;
         
-        [SerializeField]
         private List<Item> _items = new List<Item>();
 
         private LootTable _lootTable;
@@ -28,6 +29,13 @@ namespace Game
                 DontDestroyOnLoad(this);
             }
             
+            
+            
+            
+        }
+
+        private void Start()
+        {
             _lootTable = LootTable.Instance;
             
             Init();
