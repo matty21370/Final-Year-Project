@@ -2,7 +2,9 @@
 using Game.Dialogue;
 using Game.Inventory;
 using Game.Items;
+using Game.UI;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Game.Character
@@ -60,6 +62,12 @@ namespace Game.Character
         {
             _moveToPlayerAndTalk = true;
             GetComponent<Movement>().Move(FindObjectOfType<PlayerController>().transform.position);
+        }
+
+        public void ShowNotification(GameObject tGameObject)
+        {
+            NotificationArgs args = tGameObject.GetComponent<UI.NotificationArgs>();
+            NotificationSystem.Instance.ShowNotifcation(args.header, args.content);
         }
     }
 }

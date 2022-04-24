@@ -277,7 +277,7 @@ namespace Game.UI
 
         private IEnumerator ShowCharacterScreen()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0f);
             
             createCharacterScreen.SetActive(true);
         }

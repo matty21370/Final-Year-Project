@@ -2,6 +2,7 @@
 using Cinemachine;
 using Game.UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Character
 {
@@ -22,6 +23,8 @@ namespace Game.Character
         [SerializeField] private CinemachineVirtualCamera createCharacterCamera;
 
         private int _currentHair = 0, _currentBeard = 0, _currentMoustache = 0;
+
+        [SerializeField] private UnityEvent eEvent;
 
         public void HairNext()
         {
@@ -153,6 +156,13 @@ namespace Game.Character
             createCharacterCamera.Priority = 0;
             PlayerController.Instance.SetBusy(false);
             _uiManager.HideCreateCharacterScreen();
+
+            Invoke(nameof(StartEvents), 2f);
+        }
+
+        private void StartEvents()
+        {
+            eEvent.Invoke();
         }
 
         private void GetCharacter()
