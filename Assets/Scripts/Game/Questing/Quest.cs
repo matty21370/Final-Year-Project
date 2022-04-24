@@ -66,7 +66,8 @@ namespace Game.Questing
             
             if (_objectiveIndex + 1 >= objectives.Count)
             {
-                CompleteQuest();
+                CompleteQuest(); 
+                Debug.Log("Completed quest");
             }
             else
             {
@@ -83,6 +84,7 @@ namespace Game.Questing
             if (QuestManager.Instance.ActiveQuest == this)
             {
                 QuestManager.Instance.RemoveQuest();
+                Debug.Log("Removing quest");
             }
         }
     }

@@ -1,27 +1,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.UI
 {
     public class MenuSystem : MonoBehaviour
     {
-        [SerializeField] private GameObject startingScreen;
+        [SerializeField] private GameObject inventoryScreen, questScreen;
+        [SerializeField] private Text inventoryText, questText;
+        [SerializeField] private Color activeColour, inactiveColour;
         
-        private GameObject _currentScreen;
-
-        private void Awake()
+        public void InventoryClicked()
         {
-            ChangeScreen(startingScreen);
+            inventoryScreen.SetActive(true);
+            questScreen.SetActive(false);
+
+            inventoryText.color = activeColour;
+            questText.color = inactiveColour;
         }
 
-        public void ChangeScreen(GameObject screen)
+        public void QuestClicked()
         {
-            if(_currentScreen != null) _currentScreen.GetComponent<CanvasGroup>().alpha = 0;
+            inventoryScreen.SetActive(false);
+            questScreen.SetActive(true);
+            QuestMenu questMenu = questScreen.GetComponent<QuestMenu>();
+            questMenu.Init();
             
-            screen.GetComponent<CanvasGroup>().alpha = 1;
-            _currentScreen = screen;
+            inventoryText.color = inactiveColour;
+            questText.color = activeColour;
         }
     }
 }

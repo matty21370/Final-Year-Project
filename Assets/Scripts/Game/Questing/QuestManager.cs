@@ -24,6 +24,8 @@ namespace Game.Questing
 
         public Quest ActiveQuest => _activeQuest;
 
+        public List<Quest> CurrentQuests => _currentQuests;
+
         public void RegisterQuest(Quest quest)
         {
             _allQuests.Add(quest);
@@ -88,6 +90,7 @@ namespace Game.Questing
         public void RemoveQuest()
         {
             _activeQuest.CleanUp();
+            _currentQuests.Remove(_activeQuest);
             _activeQuest = null;
         }
 
