@@ -37,6 +37,8 @@ namespace Game.Character
 
         [SerializeField] private string factionName;
         private Faction _faction;
+
+        [SerializeField] private string armour;
         
         //private static readonly int InCombat = Animator.StringToHash("inCombat");
         private static readonly int Sword = Animator.StringToHash("sword");
@@ -46,11 +48,14 @@ namespace Game.Character
 
         public string FactionName => factionName;
 
+        private Clothing _clothing;
+
         private void Awake()
         {
             _animator = GetComponent<Animator>();
             _movement = GetComponent<Movement>();
-
+            _clothing = GetComponent<Clothing>();
+            
             _isAggressive = isAggressive;
         }
 
@@ -66,6 +71,11 @@ namespace Game.Character
             if (isPlayer)
             {
                 GetComponent<PlayerController>().InitWeapons(_equippedWeapons[0], _equippedWeapons[1]);
+            }
+
+            if (armour.Length > 1)
+            {
+                _clothing.EquipArmourSet(armour);
             }
         }
 

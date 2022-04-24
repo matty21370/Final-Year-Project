@@ -52,6 +52,11 @@ namespace Game.Inventory
                 }
             }
 
+            if (_contextSlot.ItemInSlot is Armour)
+            {
+                
+            }
+
             if (_contextSlot.ItemInSlot is Weapon)
             {
                 if (Input.GetKeyDown(KeyCode.Q))
@@ -112,6 +117,12 @@ namespace Game.Inventory
                 var interactable = (Letter) item;
                 onUse.text = "When used: ";
                 onUseText.text = interactable.OnUseText;
+            }
+            else if (item.GetItemType() == ItemTypes.Armour)
+            {
+                var armour = (Armour) item;
+                onUse.text = "Stats";
+                onUseText.text = $"Armour rating: {armour.ArmourSet.Protection}";
             }
             else
             {

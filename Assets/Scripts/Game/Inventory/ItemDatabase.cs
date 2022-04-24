@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Game.Items;
 using Game.Items.Weapons;
+using Game.Utility;
 using UnityEngine;
 
 namespace Game
@@ -10,7 +11,10 @@ namespace Game
         private static ItemDatabase _instance;
         public static ItemDatabase Instance => _instance;
         
-        private readonly List<Item> _items = new List<Item>();
+        [SerializeField]
+        private List<Item> _items = new List<Item>();
+
+        private LootTable _lootTable;
 
         private void Awake()
         {
@@ -24,17 +28,38 @@ namespace Game
                 DontDestroyOnLoad(this);
             }
             
+            _lootTable = LootTable.Instance;
+            
             Init();
         }
 
         private void Init()
         {
-            _items.Add(new Food("Test food", "This is food added for testing purposes.", "Sprites/Food", 20, false));
-            _items.Add(new Items.Weapons.Weapon("Unarmed", "no", "Deals damage", null, 10f, 1.5f, Items.Weapons.Weapon.WeaponTypes.Unarmed, null));
-            _items.Add(new Items.Weapons.Weapon("Hammer", "An amazing hammer", "Deals damage", "Sprites/Hammer", 20f, 1.5f, Items.Weapons.Weapon.WeaponTypes.Sword, "Test"));
-            _items.Add(new Resource("Wood", "Used for crafting.", "Sprites/Wood"));
-            _items.Add(new Letter("Letter from Bob", "Dear player,\n\nPlease speak to me as soon as you arrive on the island. We are in a bad way, many people need your help.\n\nSafe travels,\n\nBob"));
-            _items.Add(new Food("The Potion of Life", "Take it if you want eternal life", "Sprites/potion_of_life", 10000.0f, true));
+            //Food
+            Food testFood = new Food("Test food", "This is food added for testing purposes.", "Sprites/Food", 20, false);
+            _items.Add(testFood);
+            _lootTable.AddItemToLootTable(testFood, 1);
+            
+            Food potionOfLife = new Food("The Potion of Life", "Take it if you want eternal life", "Sprites/potion_of_life", 10000.0f, true);
+            _items.Add(potionOfLife);
+            
+            //Weapons
+            Weapon unarmed = new Items.Weapons.Weapon("Unarmed", "no", "Deals damage", null, 10f, 1.5f, Items.Weapons.Weapon.WeaponTypes.Unarmed, null);
+            _items.Add(unarmed);
+            
+            Weapon hammer = new Items.Weapons.Weapon("Hammer", "An amazing hammer", "Deals damage", "Sprites/Hammer", 20f, 1.5f, Items.Weapons.Weapon.WeaponTypes.Sword, "Test");
+            _items.Add(hammer);
+            _lootTable.AddItemToLootTable(hammer, 2);
+            
+            //Resources
+            Resource wood = new Resource("Wood", "Used for crafting.", "Sprites/Wood");
+            _items.Add(wood);
+            _lootTable.AddItemToLootTable(wood, 1);
+            
+            //Letters
+            Letter letterFromBob = new Letter("Letter from Bob", "Dear player,\n\nPlease speak to me as soon as you arrive on the island. We are in a bad way, many people need your help.\n\nSafe travels,\n\nBob");
+            _items.Add(letterFromBob);
+            
         }
 
         public Item GetItem()

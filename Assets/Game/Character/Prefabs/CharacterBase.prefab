@@ -10303,6 +10303,7 @@ GameObject:
   - component: {fileID: 6745834977483767851}
   - component: {fileID: 2006847531537884323}
   - component: {fileID: -1860815838460002596}
+  - component: {fileID: -2156433795802992342}
   m_Layer: 0
   m_Name: CharacterBase
   m_TagString: Untagged
@@ -10346,6 +10347,8 @@ MonoBehaviour:
   patrolSpeed: 2.3
   timeAtWaypoint: 2
   suspicionTime: 4
+  sandboxObjects: []
+  sandboxPaths: []
 --- !u!114 &1389288288475897582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10393,6 +10396,7 @@ MonoBehaviour:
   weapons: []
   isAggressive: 0
   factionName: 
+  armour: 
 --- !u!114 &665882775109692189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10408,6 +10412,7 @@ MonoBehaviour:
   interactionRange: 1.5
   interactionTime: 0
   marker: {fileID: 6267874733128962495}
+  reusable: 0
 --- !u!114 &665882775109692190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10516,6 +10521,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4643b9b994c24449af50ded3e925a603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2156433795802992342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6654011020469115965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f318410b254481a9b41d7c67a38dbbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armourSets:
+  - parts:
+    - {fileID: 6660476411384105098, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    - {fileID: 4682145641584378367, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    - {fileID: 6267056273443937311, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    id: starter
+    protection: 1
+  - parts:
+    - {fileID: 1672776859635292296, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    - {fileID: 1007464132880960688, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    - {fileID: 2317788678726590609, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    - {fileID: 4617993713734128655, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    - {fileID: 627310416209857596, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    id: leather
+    protection: 0
+  bodyParts:
+  - {fileID: 8145689730862003013, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+  - {fileID: 8112447297984805529, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+  - {fileID: 1481947895987771670, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
 --- !u!1 &6658816626290258940
 GameObject:
   m_ObjectHideFlags: 0

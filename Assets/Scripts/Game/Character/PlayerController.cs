@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Dialogue;
 using Game.UI;
 using Game.Interaction;
 using Game.Inventory;
@@ -218,6 +219,8 @@ namespace Game.Character
             }
         }
 
+        private Interactable _interactable;
+        
         private void HandleClick()
         {
             if(_busy) return;
@@ -232,11 +235,17 @@ namespace Game.Character
                 if (interactable != null)
                 {
                     _interactor.Interact(interactable);
+                    _interactable = interactable;
                 }
                 else
                 {
                     if(_combat.HasTarget()) _combat.RemoveTarget();
-                    
+                    if (_interactable != null)
+                    {
+                        _interactable.CancelInteraction();
+                        _interactable = null;
+                    }
+                    _interactor.SetInteracting(false);
                     Move(hit.point);
                 }
             }

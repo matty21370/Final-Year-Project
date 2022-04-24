@@ -41,5 +41,10 @@ namespace Game.Interaction
         {
             return isPlayer;
         }
+
+        public void SetInteracting(bool interacting)
+        {
+            _isInteracting = interacting;
+        }
     }
 }

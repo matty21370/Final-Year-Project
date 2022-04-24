@@ -22,6 +22,11 @@ namespace Game.Inventory
         public void SetWeapon(Weapon weapon)
         {
             if(weapon == null) return;
+
+            if (_weaponInSlot != null)
+            {
+                InventorySystem.Instance.AddItem(_weaponInSlot);
+            }
             
             _weaponInSlot = weapon;
             iconImage.sprite = Resources.Load<Sprite>(weapon.IconPath);

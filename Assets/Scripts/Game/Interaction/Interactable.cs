@@ -59,6 +59,11 @@ namespace Game.Interaction
             _interacting.GetComponent<Movement>().Move(transform.position);
         }
 
+        public void CancelInteraction()
+        {
+            _interacting = null;
+        }
+
         private IEnumerator WaitForInteract()
         {
             yield return new WaitForSeconds(interactionTime);

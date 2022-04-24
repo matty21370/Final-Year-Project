@@ -1,9 +1,10 @@
 using System;
+using UnityEngine;
 
 namespace Game.Items
 {
     [Serializable]
-    public abstract class Item
+    public class Item
     {
         private string _itemName;
         private string _itemDescription, _onUseText;
@@ -12,7 +13,7 @@ namespace Game.Items
         private bool _stackable;
         private bool _consumable;
         
-        protected ItemTypes ItemType;
+        public ItemTypes ItemType;
 
         public string ItemName => _itemName;
         public string ItemDescription => _itemDescription;
@@ -45,7 +46,8 @@ namespace Game.Items
         Weapon,
         Equipment,
         Resource,
-        Interactable
+        Interactable,
+        Armour
     }
 }
 

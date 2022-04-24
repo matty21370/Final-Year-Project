@@ -10929,6 +10929,7 @@ GameObject:
   - component: {fileID: 2003619929}
   - component: {fileID: 2003619930}
   - component: {fileID: 1994996909}
+  - component: {fileID: 5649781183119704667}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -10993,6 +10994,10 @@ MonoBehaviour:
   weaponSlots:
   - {fileID: 0}
   - {fileID: 0}
+  customizationOptions:
+    hair: []
+    beard: []
+    moustache: []
 --- !u!114 &1907853392973840395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11042,6 +11047,7 @@ MonoBehaviour:
   - 
   isAggressive: 0
   factionName: The Resistance
+  armour: 
 --- !u!65 &6644745210046997566
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11108,6 +11114,7 @@ MonoBehaviour:
   interactionRange: 1.5
   interactionTime: 1
   marker: {fileID: 0}
+  reusable: 0
 --- !u!114 &2003619930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11134,6 +11141,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueIdentifier: bf449934-99a1-40f9-a72b-ef4292ef3e46
+--- !u!114 &5649781183119704667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6154867217320444632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f318410b254481a9b41d7c67a38dbbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armourSets:
+  - parts:
+    - {fileID: 6660476411384105098, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    - {fileID: 4682145641584378367, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    - {fileID: 6267056273443937311, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    id: starter
+    protection: 1
+  - parts:
+    - {fileID: 1672776859635292296, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    - {fileID: 1007464132880960688, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    - {fileID: 2317788678726590609, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    - {fileID: 4617993713734128655, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    - {fileID: 627310416209857596, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+    id: leather
+    protection: 0
+  bodyParts:
+  - {fileID: 8145689730862003013, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+  - {fileID: 8112447297984805529, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
+  - {fileID: 1481947895987771670, guid: 17146255b79672c4aa8abab4e72af9ba, type: 3}
 --- !u!1 &6216842599619145202
 GameObject:
   m_ObjectHideFlags: 0
