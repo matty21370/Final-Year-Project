@@ -13,7 +13,7 @@ namespace Game.UI
         public void Init(Quest quest)
         {
             titleText.text = quest.Title;
-            quest = quest;
+            _quest = quest;
         }
 
         public void OnClicked()

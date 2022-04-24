@@ -61,6 +61,8 @@ namespace Game.Questing
 
         public void SetActiveQuest(Quest quest)
         {
+            if(_activeQuest == quest) return;
+            
             _activeQuest = quest;
             quest.Init();
             UpdateUI();
