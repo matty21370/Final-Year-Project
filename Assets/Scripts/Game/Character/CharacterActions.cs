@@ -1,7 +1,10 @@
 ﻿using System;
+using Game.Character.AI;
 using Game.Dialogue;
+using Game.Interaction;
 using Game.Inventory;
 using Game.Items;
+using Game.Questing;
 using Game.UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +16,9 @@ namespace Game.Character
     {
         private Animator _animator;
 
-        private bool _moveToPlayerAndTalk = false;
+        private bool _moveToPlayerAndTalk = false, _goingToDestination = false;
+
+        private Vector3 _destination;
 
         private void Awake()
         {
@@ -33,6 +38,15 @@ namespace Game.Character
                 else
                 {
                     GetComponent<Movement>().Move(FindObjectOfType<PlayerController>().transform.position);
+                }
+            }
+
+            if (_goingToDestination)
+            {
+                if (Vector3.Distance(transform.position, _destination) < 1.5f)
+                {
+                    _goingToDestination = false;
+                    OnReachedDestination();
                 }
             }
         }
@@ -62,6 +76,32 @@ namespace Game.Character
         {
             _moveToPlayerAndTalk = true;
             GetComponent<Movement>().Move(FindObjectOfType<PlayerController>().transform.position);
+        }
+
+        private string _questIdentifier;
+        
+        public void SetDestination(Waypoint waypoint, string identifier)
+        {
+            _destination = waypoint.transform.position;
+            GetComponent<Movement>().Move(waypoint.transform.position);
+            _goingToDestination = true;
+            _questIdentifier = identifier;
+        }
+
+        private void OnReachedDestination()
+        {
+            print("Reached destination");
+            
+            if (QuestManager.Instance.ActiveQuest != null)
+            {
+                Objective objective = QuestManager.Instance.ActiveQuest.GetCurrentObjective();
+                if (_questIdentifier == objective.Identifier)
+                {
+                    objective.CompleteTarget(GetComponent<Interactable>());
+                    print("Completing stuff");
+                    _goingToDestination = false;
+                }
+            }
         }
 
         public void ShowNotification(GameObject tGameObject)

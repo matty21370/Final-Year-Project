@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game;
+using Game.Character;
+using Game.Character.AI;
 using Game.Interaction;
 using Game.Items;
 using Game.Questing;
@@ -16,7 +18,8 @@ public class Objective
         Kill,
         Talk,
         InitTalk,
-        Use
+        Use,
+        Follow
     }
 
     [SerializeField] private string identifier;
@@ -31,6 +34,8 @@ public class Objective
 
     [SerializeField] private Goals goal;
 
+    [Header("If follow")] [SerializeField] private Waypoint destination;
+    
     [SerializeField] private UnityEvent eEvent;
 
     public Goals Goal => goal;
@@ -74,6 +79,11 @@ public class Objective
         if (eEvent != null)
         {
             eEvent.Invoke();
+        }
+        
+        if (Goal == Goals.Follow)
+        {
+            Targets[0].GetComponent<CharacterActions>().SetDestination(destination, Identifier);
         }
     }
     

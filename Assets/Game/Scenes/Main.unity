@@ -2292,6 +2292,7 @@ MonoBehaviour:
       - {fileID: 350124531}
       targetString: 
       goal: 1
+      destination: {fileID: 0}
       eEvent:
         m_PersistentCalls:
           m_Calls: []
@@ -2301,6 +2302,7 @@ MonoBehaviour:
       - {fileID: 259079089}
       targetString: 
       goal: 2
+      destination: {fileID: 0}
       eEvent:
         m_PersistentCalls:
           m_Calls: []
@@ -2326,6 +2328,7 @@ MonoBehaviour:
       - {fileID: 350124531}
       targetString: 
       goal: 1
+      destination: {fileID: 0}
       eEvent:
         m_PersistentCalls:
           m_Calls: []
@@ -3213,6 +3216,7 @@ MonoBehaviour:
       targets: []
       targetString: Letter from Bob
       goal: 4
+      destination: {fileID: 0}
       eEvent:
         m_PersistentCalls:
           m_Calls:
@@ -3234,6 +3238,7 @@ MonoBehaviour:
       - {fileID: 1857911575}
       targetString: 
       goal: 3
+      destination: {fileID: 0}
       eEvent:
         m_PersistentCalls:
           m_Calls: []
@@ -5180,6 +5185,7 @@ MonoBehaviour:
       - {fileID: 569769629}
       targetString: 
       goal: 3
+      destination: {fileID: 0}
       eEvent:
         m_PersistentCalls:
           m_Calls: []
@@ -5527,6 +5533,7 @@ MonoBehaviour:
       targets: []
       targetString: The Potion of Life
       goal: 4
+      destination: {fileID: 0}
       eEvent:
         m_PersistentCalls:
           m_Calls: []
@@ -7727,6 +7734,7 @@ MonoBehaviour:
       - {fileID: 1997644737}
       targetString: 
       goal: 1
+      destination: {fileID: 0}
       eEvent:
         m_PersistentCalls:
           m_Calls: []
@@ -16690,6 +16698,7 @@ MonoBehaviour:
       - {fileID: 497110466}
       targetString: 
       goal: 0
+      destination: {fileID: 0}
       eEvent:
         m_PersistentCalls:
           m_Calls: []
@@ -16698,7 +16707,8 @@ MonoBehaviour:
       targets:
       - {fileID: 1857911575}
       targetString: 
-      goal: 0
+      goal: 2
+      destination: {fileID: 0}
       eEvent:
         m_PersistentCalls:
           m_Calls:
@@ -16714,6 +16724,16 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
+    - identifier: bob_quest_01_objective_03
+      description: Follow Bob
+      targets:
+      - {fileID: 1857911575}
+      targetString: 
+      goal: 5
+      destination: {fileID: 1327705182}
+      eEvent:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!114 &1857911568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16845,6 +16865,48 @@ MonoBehaviour:
               m_IntArgument: 0
               m_FloatArgument: 0
               m_StringArgument: quest_bob_01
+              m_BoolArgument: 0
+            m_CallState: 2
+    repeating: 0
+    spoken: 0
+  - conditional: 1
+    condition: bob_quest_01_objective_02
+    promptText: Items
+    dialogues:
+    - dialogue: 
+      e:
+        m_PersistentCalls:
+          m_Calls: []
+    - dialogue: You got your items?
+      e:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1857911566}
+            m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
+            m_MethodName: Talk
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+    - dialogue: We shall head for the village. Follow me.
+      e:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1857911566}
+            m_TargetAssemblyTypeName: Game.Character.CharacterActions, Assembly-CSharp
+            m_MethodName: Talk
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
     repeating: 0
