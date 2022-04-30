@@ -2,6 +2,7 @@
 using Game.Character.AI;
 using Game.Dialogue;
 using Game.Interaction;
+using Game.Interaction.Interactables;
 using Game.Inventory;
 using Game.Items;
 using Game.Questing;
@@ -76,6 +77,13 @@ namespace Game.Character
         {
             _moveToPlayerAndTalk = true;
             GetComponent<Movement>().Move(FindObjectOfType<PlayerController>().transform.position);
+            PlayerController.Instance.GetComponent<Combat>().SetTarget(GetComponent<Target>());
+        }
+
+        public void SetAggressive()
+        {
+            GetComponent<Combat>().SetAggressive(true);
+            DialogueSystem.Instance.EndDialogue();
         }
 
         private string _questIdentifier;

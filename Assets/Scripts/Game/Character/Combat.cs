@@ -61,21 +61,26 @@ namespace Game.Character
 
         private void Start()
         {
-            for (int i = 0; i < weapons.Length; i++)
-            {
-                _equippedWeapons[i] = (Items.Weapons.Weapon)FindObjectOfType<ItemDatabase>().GetItem(weapons[i]);
-            }
+            Invoke(nameof(EquipWeapons), 0.2f);
 
             _faction = Faction.GetFactionByName(factionName);
 
-            if (isPlayer)
+            /*if (isPlayer)
             {
                 GetComponent<PlayerController>().InitWeapons(_equippedWeapons[0], _equippedWeapons[1]);
-            }
+            }*/
 
             if (armour.Length > 1)
             {
                 _clothing.EquipArmourSet(armour);
+            }
+        }
+
+        void EquipWeapons()
+        {
+            for (int i = 0; i < weapons.Length; i++)
+            {
+                _equippedWeapons[i] = (Weapon)FindObjectOfType<ItemDatabase>().GetItem(weapons[i]);
             }
         }
 

@@ -52,11 +52,6 @@ namespace Game.Inventory
                 }
             }
 
-            if (_contextSlot.ItemInSlot is Armour)
-            {
-                
-            }
-
             if (_contextSlot.ItemInSlot is Weapon)
             {
                 if (Input.GetKeyDown(KeyCode.Q))

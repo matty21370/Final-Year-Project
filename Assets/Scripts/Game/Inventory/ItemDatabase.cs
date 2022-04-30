@@ -28,10 +28,6 @@ namespace Game
                 _instance = this;
                 DontDestroyOnLoad(this);
             }
-            
-            
-            
-            
         }
 
         private void Start()
@@ -67,7 +63,10 @@ namespace Game
             //Letters
             Letter letterFromBob = new Letter("Letter from Bob", "Dear player,\n\nPlease speak to me as soon as you arrive on the island. We are in a bad way, many people need your help.\n\nSafe travels,\n\nBob");
             _items.Add(letterFromBob);
-            
+
+            Food water = new Food("A Bottle of Water", "Scrumptious indeed!", null, 10f, false);
+            _items.Add(water);
+            _lootTable.AddItemToLootTable(water, 1);
         }
 
         public Item GetItem()

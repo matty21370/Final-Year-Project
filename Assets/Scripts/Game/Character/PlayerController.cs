@@ -112,12 +112,20 @@ namespace Game.Character
             weaponSlots[0].SetWeapon(weapon1);
             weaponSlots[1].SetWeapon(weapon2);
         }
+
+        private void InitWeapons()
+        {
+            _unarmed = ItemDatabase.Instance.GetItem("Unarmed") as Weapon; 
+            
+            weaponSlots[0].SetWeapon(_unarmed);
+            weaponSlots[1].SetWeapon(_unarmed);
+        }
         
         private void Start()
         {
             _health.UpdateHealth();
             
-            _unarmed = ItemDatabase.Instance.GetItem("Unarmed") as Weapon; 
+            Invoke(nameof(InitWeapons), 0.5f);
         }
 
         // Update is called once per frame

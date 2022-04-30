@@ -27,6 +27,7 @@ namespace Game.Interaction.Interactables
             if (_combat.IsAggressive())
             {
                 interactor.GetComponent<Combat>().SetTarget(this);
+                print("yeeeee");
             }
             else
             {
